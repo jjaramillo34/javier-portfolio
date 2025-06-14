@@ -68,6 +68,8 @@ const Contact = ({ personalInfo }: ContactProps) => {
 
   const FORM_ID = import.meta.env.VITE_FORMSPREE_ID;
   const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  console.log('Formspree FORM_ID:', FORM_ID);
+  console.log('reCAPTCHA SITE_KEY:', RECAPTCHA_SITE_KEY);
 
   const [state, handleSubmit] = useForm(FORM_ID);
   const [captcha, setCaptcha] = useState<string | null>(null);
