@@ -4,6 +4,8 @@ import { Mail, Linkedin, MapPin, Phone, Send, User, MessageSquare } from 'lucide
 import { PersonalInfo } from '../../types/portfolio';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useForm } from '@formspree/react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ContactProps {
   personalInfo: PersonalInfo;
@@ -64,13 +66,11 @@ const Contact = ({ personalInfo }: ContactProps) => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
-  };
+  const FORM_ID = import.meta.env.VITE_FORMSPREE_ID;
+  const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
+  const [state, handleSubmit] = useForm(FORM_ID);
+  const [captcha, setCaptcha] = useState<string | null>(null);
 
   const contactInfo = [
     {
@@ -192,75 +192,62 @@ const Contact = ({ personalInfo }: ContactProps) => {
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700"
           >
             <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Send a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Your Name
-                </label>
-                <div className="relative">
+            {state.succeeded ? (
+              <p className="text-green-600">Thanks for your message!</p>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="Enter your full name"
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-white"
                   />
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Email Address
-                </label>
-                <div className="relative">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="your.email@example.com"
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-white"
                   />
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
-                <div className="relative">
+                <div>
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    Message
+                  </label>
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 pl-12 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder="Tell me about your project or idea..."
+                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-800 dark:text-white"
                   />
-                  <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
                 </div>
-              </div>
-
-              <motion.button
-                type="submit"
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark hover:from-golden-orange-dark hover:to-golden-orange text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-golden-orange/25"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Send className="w-5 h-5" />
-                Send Message
-              </motion.button>
-            </form>
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={setCaptcha}
+                />
+                <button
+                  type="submit"
+                  disabled={!captcha || state.submitting}
+                  className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-orange-600 transition disabled:opacity-50"
+                >
+                  Send
+                </button>
+                {Array.isArray(state.errors) && state.errors.length > 0 && (
+                  <p className="text-red-600">Error: {state.errors[0].message}</p>
+                )}
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
