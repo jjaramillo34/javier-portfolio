@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Phone, Send, User, MessageSquare } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Phone, Send, User, MessageSquare, Heart, Code, Book, Users, Star } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -251,6 +251,43 @@ const Contact = ({ personalInfo }: ContactProps) => {
           </motion.div>
         </div>
       </div>
+
+      {/* Motivation Section */}
+      <section id="motivation" className="py-16 px-4 md:px-0 bg-gradient-to-br from-orange-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+        {/* Flowing icons background */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {[
+            Heart, Code, Book, Users, Star,
+            Heart, Code, Book, Users, Star
+          ].map((Icon, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                left: `${10 + Math.random() * 80}%`,
+                top: `${5 + Math.random() * 80}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 6 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            >
+              <Icon className="w-10 h-10 md:w-14 md:h-14 text-orange-300 dark:text-orange-900 opacity-30 dark:opacity-20 blur-sm" />
+            </motion.div>
+          ))}
+        </div>
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-orange-700 dark:text-orange-400">{t('motivation.heading')}</h2>
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-line">
+            {t('motivation.text')}
+          </p>
+        </div>
+      </section>
     </section>
   );
 };

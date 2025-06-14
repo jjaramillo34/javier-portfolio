@@ -12,7 +12,8 @@ import {
   MessageSquareQuote,
   Mail, 
   Sun, 
-  Moon
+  Moon,
+  Heart
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -33,6 +34,7 @@ const VerticalNavigation = () => {
     { id: 'certifications', label: t('navigation.certifications'), icon: Award },
     { id: 'testimonials', label: t('navigation.testimonials'), icon: MessageSquareQuote },
     { id: 'contact', label: t('navigation.contact'), icon: Mail },
+    { id: 'motivation', label: t('motivation.heading'), icon: Heart },
   ];
 
   useEffect(() => {
@@ -188,7 +190,7 @@ const VerticalNavigation = () => {
                     {/* Active Indicator */}
                     {isActive && (
                       <motion.div
-                        className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-golden-orange to-golden-orange-dark rounded-l-full"
+                        className="absolute -right-2 top-0 bottom-0 my-auto w-2 h-full bg-gradient-to-b from-golden-orange to-golden-orange-dark rounded-l-full shadow-lg shadow-golden-orange/30"
                         layoutId="activeIndicator"
                         initial={false}
                         transition={{ type: "spring", stiffness: 400, damping: 30 }}

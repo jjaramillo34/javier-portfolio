@@ -5,7 +5,7 @@
     "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
     "location": "New York City Metropolitan Area",
     "linkedin": "https://www.linkedin.com/in/jaramillohub/",
-    "email": "contact@javierjaramillo.dev",
+    "email": "javier@jaramillohub.com",
     "phone": "+1 (347) 239-9026",
     "summary": "Experienced Data Analyst and Full Stack Developer with 15+ years of expertise in data visualization, automation, and software development. Proven track record of reducing processing time, improving efficiency, and delivering innovative solutions across education, healthcare, and technology sectors."
   },
@@ -615,6 +615,10 @@
         "backToTop": "Back to Top",
         "madeWith": "Made with",
         "and": "and"
+      },
+      "motivation": {
+        "heading": "Why I Built This Portfolio",
+        "text": "This portfolio was created with love for my wife Cris, my daughter Sofia, and my son Mateo. It reflects my journey as a developer, educator, and lifelong learner. My experience spans data analytics, full-stack development, and educational technology, and I am passionate about building tools that empower others. Thank you to my family for their unwavering support and to all the mentors, colleagues, and students who have inspired me along the way."
       }
     },
     "es": {
@@ -713,6 +717,10 @@
         "backToTop": "Volver Arriba",
         "madeWith": "Hecho con",
         "and": "y"
+      },
+      "motivation": {
+        "heading": "Por Qué Creé Este Portafolio",
+        "text": "Este portafolio fue creado con amor para mi esposa Cris, mi hija Sofía y mi hijo Mateo. Refleja mi trayectoria como desarrollador, educador y aprendiz de por vida. Mi experiencia abarca análisis de datos, desarrollo full-stack y tecnología educativa, y me apasiona crear herramientas que empoderan a otros. Gracias a mi familia por su apoyo incondicional y a todos los mentores, colegas y estudiantes que me han inspirado en el camino."
       }
     }
   }
