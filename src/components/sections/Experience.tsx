@@ -146,7 +146,7 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-2">{job.title}</h3>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{job.title}</h3>
                         <div className="flex items-center gap-2 text-orange-400 mb-2">
                           <Building className="w-4 h-4" />
                           <span className="font-semibold">{job.company}</span>
@@ -169,7 +169,7 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                       {job.achievements.map((achievement, achIndex) => (
                         <motion.li
                           key={achIndex}
-                          className="flex items-start gap-3 text-gray-300"
+                          className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
                           initial={{ opacity: 0, x: -20 }}
                           animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                           transition={{ delay: index * 0.2 + achIndex * 0.1 + 0.8 }}

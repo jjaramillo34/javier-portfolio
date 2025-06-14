@@ -65,6 +65,15 @@ const VerticalNavigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobile, isOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -136,7 +145,7 @@ const VerticalNavigation = () => {
       {/* Navigation Sidebar */}
       <motion.nav
         className={`fixed left-0 top-0 h-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-golden-orange/20 shadow-2xl z-40 ${
-          isMobile ? 'w-80' : 'w-20 lg:w-24'
+          isMobile ? 'w-full max-w-xs overflow-x-hidden' : 'w-20 lg:w-24'
         }`}
         variants={sidebarVariants}
         initial={isMobile ? "closed" : "open"}
