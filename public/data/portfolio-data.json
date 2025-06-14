@@ -1,0 +1,719 @@
+{
+  "personalInfo": {
+    "name": "Javier Jaramillo",
+    "title": "Data Analyst | Full Stack Developer | IT Specialist",
+    "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
+    "location": "New York City Metropolitan Area",
+    "linkedin": "https://www.linkedin.com/in/jaramillohub/",
+    "email": "contact@javierjaramillo.dev",
+    "phone": "+1 (555) 123-4567",
+    "summary": "Experienced Data Analyst and Full Stack Developer with 15+ years of expertise in data visualization, automation, and software development. Proven track record of reducing processing time, improving efficiency, and delivering innovative solutions across education, healthcare, and technology sectors."
+  },
+  "workExperience": [
+    {
+      "id": 1,
+      "title": "Data Systems Administrator",
+      "company": "NYC Department of Education",
+      "period": "Oct 2024 - Present",
+      "location": "New York, NY",
+      "achievements": [
+        "Developed and maintained dynamic Power Apps solutions for P2G, Coop Tech, and Adult Education",
+        "Automated complex processes using Power Automate, reducing manual intervention by 70%",
+        "Built customized dashboards and interactive reports in Power BI",
+        "Leveraged Microsoft Dynamics for comprehensive data management"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Data Analyst",
+      "company": "Multiple Companies",
+      "period": "Jul 2022 - Present",
+      "location": "New York, NY",
+      "achievements": [
+        "Enhanced communication through Streamlit and Twilio API integration",
+        "Enhanced data visualization using Tableau, Power BI, and Qlik",
+        "Engineered portfolio website using React.js and Sanity.io",
+        "Automated data management processes through ETL optimizations"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "AI Model Data Specialist",
+      "company": "Agilent Technologies",
+      "period": "Oct 2020 - Apr 2022",
+      "location": "Santa Clara, CA",
+      "achievements": [
+        "Reduced research time by two weeks using 'Golden Tag Set' methodology",
+        "Automated Excel templates with VBA and Python scripts",
+        "Optimized AI for connected assets and asset management",
+        "Improved data processing efficiency by 40%"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Junior Data Engineer",
+      "company": "CareerMD",
+      "period": "Jul 2019 - Nov 2019",
+      "location": "New York, NY",
+      "achievements": [
+        "Processed 6,000+ to 10,000+ raw data points daily on medical professionals",
+        "Cut data processing time by three weeks through automation",
+        "Accelerated project completion by six months",
+        "Implemented data quality assurance protocols"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Research Analyst",
+      "company": "CityRealty",
+      "period": "Dec 2012 - Mar 2019",
+      "location": "New York, NY",
+      "achievements": [
+        "Boosted processing speed by 20x using VBA for real estate data",
+        "Reduced manual data entry by 80% through automation",
+        "Analyzed over 1 million data points using Excel, VBA, and SQL",
+        "Developed comprehensive market analysis reports"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Security Identity Access Management",
+      "company": "NYC Department of Education",
+      "period": "Oct 2008 - Feb 2012",
+      "location": "New York, NY",
+      "achievements": [
+        "Accelerated new hire integration with comprehensive training sessions",
+        "Developed HRConnect tool using Java and DB2",
+        "Achieved 92.8% user satisfaction rating",
+        "Implemented security protocols for 50,000+ users"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Researcher",
+      "company": "National Institute of Health",
+      "period": "Jan 2007 - May 2007",
+      "location": "Bethesda, MD",
+      "achievements": [
+        "Conducted presentations for NIH collaborators in robotics",
+        "Tested computer software for programming robots",
+        "Used differential equations for advanced sensor analysis",
+        "Contributed to groundbreaking research in medical robotics"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor's degree Computer Science",
+      "school": "Queens College",
+      "period": "2008-2011",
+      "location": "Queens, NY"
+    },
+    {
+      "degree": "Associate's degree Computer Science",
+      "school": "LaGuardia Community College",
+      "period": "2005-2007",
+      "location": "Queens, NY"
+    },
+    {
+      "degree": "Analytics Certificate",
+      "school": "General Assembly",
+      "period": "2015",
+      "location": "New York, NY"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Website Portfolio",
+      "period": "Apr 2019 - Present",
+      "description": "Modern portfolio website with content management system",
+      "technologies": ["React.js", "Node.js", "Sanity.io", "TypeScript"],
+      "achievements": [
+        "Over 500 unique visitors monthly",
+        "Integrated Sanity.io for dynamic content management",
+        "Responsive design with modern animations"
+      ],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "Iconyc - BigApps Competition",
+      "period": "May 2014 - Jul 2014",
+      "description": "Photo-sharing and crowdsourcing app for NYC landmarks",
+      "technologies": ["Mobile Development", "UX Design", "JavaScript"],
+      "achievements": [
+        "Participant in NYC BigApps Competition",
+        "Built visual and UX design features",
+        "Focused on community engagement and landmark discovery"
+      ],
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "Power Solar PR Project",
+      "period": "2022 - 2023",
+      "description": "Solar power management system for Puerto Rico",
+      "technologies": ["React", "Mapbox", "Geographic Analysis", "Data Visualization"],
+      "achievements": [
+        "Geographical analysis for operational efficiency",
+        "Interactive map visualization of solar installations",
+        "Real-time monitoring dashboard"
+      ],
+      "link": "#"
+    },
+    {
+      "id": 4,
+      "title": "SMS Notifications System",
+      "period": "2023",
+      "description": "Automated notification system with cloud deployment",
+      "technologies": ["Python", "Streamlit", "MongoDB", "Twilio API", "AWS"],
+      "achievements": [
+        "Deployed on AWS Lightsail for scalability",
+        "Integrated multiple communication channels",
+        "Automated alert and notification workflows"
+      ],
+      "link": "#"
+    }
+  ],
+  "skills": {
+    "languages": [
+      { "name": "Python", "level": 95 },
+      { "name": "JavaScript", "level": 90 },
+      { "name": "TypeScript", "level": 85 },
+      { "name": "SQL", "level": 90 },
+      { "name": "Java", "level": 80 },
+      { "name": "VBA", "level": 85 }
+    ],
+    "frontend": [
+      { "name": "React.js", "level": 90 },
+      { "name": "Node.js", "level": 85 },
+      { "name": "HTML/CSS", "level": 95 },
+      { "name": "Tailwind CSS", "level": 85 }
+    ],
+    "dataVisualization": [
+      { "name": "Power BI", "level": 95 },
+      { "name": "Tableau", "level": 90 },
+      { "name": "Qlik", "level": 85 },
+      { "name": "Excel", "level": 95 }
+    ],
+    "cloud": [
+      { "name": "AWS", "level": 80 },
+      { "name": "Azure", "level": 75 },
+      { "name": "Power Platform", "level": 90 }
+    ],
+    "databases": [
+      { "name": "MongoDB", "level": 85 },
+      { "name": "SQL Server", "level": 90 },
+      { "name": "DB2", "level": 75 }
+    ],
+    "tools": [
+      { "name": "Git", "level": 85 },
+      { "name": "Power Apps", "level": 90 },
+      { "name": "Power Automate", "level": 85 },
+      { "name": "Streamlit", "level": 80 }
+    ]
+  },
+  "certifications": {
+    "backendDevelopment": [
+      {
+        "id": 1,
+        "title": "Backend, SQL and DevOps with Python",
+        "institution": "Nucamp Coding Bootcamp",
+        "issueDate": "Aug 2022",
+        "credentialId": null,
+        "skills": ["Python", "SQL", "DevOps", "Backend Development"],
+        "description": "Comprehensive bootcamp covering backend development, database management, and DevOps practices using Python.",
+        "link": "#"
+      },
+      {
+        "id": 2,
+        "title": "Python Django Course",
+        "institution": "Coderhouse",
+        "issueDate": "Jun 2022",
+        "credentialId": null,
+        "skills": ["Python", "Django", "Web Development", "Backend"],
+        "description": "Advanced course in Django framework for Python web development.",
+        "link": "#"
+      },
+      {
+        "id": 3,
+        "title": "JavaScript Understanding the Weird Parts",
+        "institution": "Udemy",
+        "issueDate": "Nov 2019",
+        "credentialId": null,
+        "skills": ["JavaScript", "Programming", "Web Development"],
+        "description": "Deep dive into JavaScript fundamentals and advanced concepts.",
+        "link": "#"
+      },
+      {
+        "id": 4,
+        "title": "Introduction to Programming Using Python",
+        "institution": "Udemy",
+        "issueDate": "Jan 2019",
+        "credentialId": null,
+        "skills": ["Python", "Programming", "Fundamentals"],
+        "description": "Foundation course in Python programming language.",
+        "link": "#"
+      },
+      {
+        "id": 5,
+        "title": "Git for Developers Using GitHub",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["Git", "GitHub", "Version Control", "Development"],
+        "description": "Version control and collaboration using Git and GitHub.",
+        "link": "#"
+      }
+    ],
+    "computerVisionAI": [
+      {
+        "id": 6,
+        "title": "OpenCV 102 — Basic Image Processing Operations",
+        "institution": "PyImageSearch",
+        "issueDate": "Mar 2022",
+        "credentialId": "47408258",
+        "skills": ["OpenCV", "Computer Vision", "Image Processing", "Python"],
+        "description": "Basic image processing operations using OpenCV library.",
+        "link": "#"
+      },
+      {
+        "id": 7,
+        "title": "OpenCV 104 — Histograms",
+        "institution": "PyImageSearch",
+        "issueDate": "Mar 2022",
+        "credentialId": "47520731",
+        "skills": ["OpenCV", "Histograms", "Computer Vision", "Python"],
+        "description": "Advanced histogram analysis techniques in computer vision.",
+        "link": "#"
+      },
+      {
+        "id": 8,
+        "title": "OpenCV 101 — OpenCV Basics",
+        "institution": "PyImageSearch",
+        "issueDate": "Feb 2022",
+        "credentialId": "47274837",
+        "skills": ["OpenCV", "Computer Vision", "Python", "Basics"],
+        "description": "Fundamental concepts and applications of OpenCV library.",
+        "link": "#"
+      },
+      {
+        "id": 9,
+        "title": "Getting Started with AWS ML",
+        "institution": "Coders Data",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["AWS", "Machine Learning", "Cloud Computing", "AI"],
+        "description": "Introduction to machine learning services on Amazon Web Services.",
+        "link": "#"
+      },
+      {
+        "id": 10,
+        "title": "Python for Everybody",
+        "institution": "Esri",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["Python", "GIS", "Data Analysis", "Programming"],
+        "description": "Python programming with focus on geographic information systems.",
+        "link": "#"
+      }
+    ],
+    "dataAnalysis": [
+      {
+        "id": 11,
+        "title": "Advanced SQL for Database and SQL",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["SQL", "Database", "Data Analysis", "Advanced Queries"],
+        "description": "Advanced database management and complex SQL queries.",
+        "link": "#"
+      },
+      {
+        "id": 12,
+        "title": "Introduction to Relational Database and SQL",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["SQL", "Database", "Relational Database", "Fundamentals"],
+        "description": "Foundation course in relational database design and SQL.",
+        "link": "#"
+      },
+      {
+        "id": 13,
+        "title": "Business Data Analysis with Microsoft Excel and Power BI",
+        "institution": "Udemy",
+        "issueDate": "Jan 2019",
+        "credentialId": null,
+        "skills": ["Excel", "Power BI", "Data Analysis", "Business Intelligence"],
+        "description": "Business data analysis using Excel and Power BI tools.",
+        "link": "#"
+      },
+      {
+        "id": 14,
+        "title": "Data Analysis with Excel & Tableau",
+        "institution": "General Assembly",
+        "issueDate": "May 2015",
+        "credentialId": null,
+        "skills": ["Excel", "Tableau", "Data Analysis", "Visualization"],
+        "description": "Data analysis and visualization using Excel and Tableau.",
+        "link": "#"
+      }
+    ],
+    "excelVBA": [
+      {
+        "id": 15,
+        "title": "Excel VBA Programming by Examples",
+        "institution": "Udemy",
+        "issueDate": "Jun 2018",
+        "credentialId": null,
+        "skills": ["Excel", "VBA", "Programming", "Automation"],
+        "description": "Practical VBA programming for Excel automation.",
+        "link": "#"
+      },
+      {
+        "id": 16,
+        "title": "Excel 2013 - Getting Started",
+        "institution": "Udemy",
+        "issueDate": "Jun 2017",
+        "credentialId": null,
+        "skills": ["Excel", "Spreadsheet", "Data Management", "Basics"],
+        "description": "Introduction to Excel 2013 features and functionality.",
+        "link": "#"
+      },
+      {
+        "id": 17,
+        "title": "Use Excel Like a Pro. Fast",
+        "institution": "Udemy",
+        "issueDate": "Mar 2015",
+        "credentialId": null,
+        "skills": ["Excel", "Productivity", "Advanced Features", "Efficiency"],
+        "description": "Advanced Excel techniques for professional use.",
+        "link": "#"
+      }
+    ],
+    "security": [
+      {
+        "id": 18,
+        "title": "Security and Privacy in for Big Data - Part 1",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["Security", "Privacy", "Big Data", "Data Protection"],
+        "description": "Security and privacy considerations in big data environments.",
+        "link": "#"
+      },
+      {
+        "id": 19,
+        "title": "Security and Privacy in for Big Data - Part 2",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["Security", "Privacy", "Big Data", "Advanced Protection"],
+        "description": "Advanced security and privacy techniques for big data.",
+        "link": "#"
+      },
+      {
+        "id": 20,
+        "title": "Troubleshooting and Debugging Techniques",
+        "institution": "Coursera",
+        "issueDate": "Sep 2020",
+        "credentialId": null,
+        "skills": ["Troubleshooting", "Debugging", "Problem Solving", "Technical Support"],
+        "description": "Systematic approaches to troubleshooting and debugging.",
+        "link": "#"
+      }
+    ]
+  },
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Michelle McFarlane, PMP, CSM",
+      "position": "Program Manager, Global Revenue Acceleration",
+      "company": "Google",
+      "relationship": "Worked with Javier at different companies",
+      "relationshipType": "colleague",
+      "date": "March 19, 2021",
+      "quote": "I worked with Javier at CityRealty for over 3 years. I've found him to be adaptable, supportive, and a great team member. He's an excellent problem solver and was always a go-to resource for technical issues. He was someone I always trusted and could count on for guidance. He's a motivated, intelligent, and a forward thinker. It was true pleasure working with him."
+    },
+    {
+      "id": 2,
+      "name": "Bonnie Clark",
+      "position": "Strategic Communications Professional & Writer for High-Profile Executives",
+      "company": "Independent",
+      "relationship": "Worked with Javier on the same team",
+      "relationshipType": "colleague",
+      "date": "March 1, 2021",
+      "quote": "Though I didn't work with Javier for very long, he left a very positive impression on me. He not only ran the data, which I needed for reports and stories, he always talked through the findings to make sure I fully understood and was capturing the information in the most accurate light. Javier would also assist with brainstorming and was an all-around team player. I recommend Javier and believe that he would be a great asset to any company."
+    },
+    {
+      "id": 3,
+      "name": "Ondel Hylton",
+      "position": "Senior Director of Content and Research",
+      "company": "CityRealty",
+      "relationship": "Managed Javier directly",
+      "relationshipType": "manager",
+      "date": "September 22, 2020",
+      "quote": "Javier is a close friend and a bastion of data and computer knowledge that I've had the pleasure of working with (and from) for six years at CityRealty. We have collaborated on several projects inside and outside of the office, and his passion for his field that continuously leads him to investigate more efficient and smarter means of solving problems made him a central asset to our team. His expertise in data analysis and various computer languages made him an essential asset to our company and team. I am certain he will bring his intelligence, insight, and professionalism to all his endeavors."
+    },
+    {
+      "id": 4,
+      "name": "Diana Schnabel",
+      "position": "Cybersecurity Professional",
+      "company": "Hearst",
+      "relationship": "Managed Javier directly",
+      "relationshipType": "manager",
+      "date": "December 12, 2016",
+      "quote": "I had the privilege of managing Javier as a CUNY intern for the NYC Department of Education. Javier is extremely hardworking and eager to learn new technologies. He is a great asset to any organization."
+    },
+    {
+      "id": 5,
+      "name": "James Beveridge",
+      "position": "Product Leadership | Business Analysis | Business Intelligence",
+      "company": "Independent",
+      "relationship": "Was Javier's teacher",
+      "relationshipType": "teacher",
+      "date": "July 27, 2015",
+      "quote": "Javier was a student in the Data Analytics course at General Assembly for which I was an instructor. Over 11 weeks I was exposed to his excellent analytical skills, especially with respect to VBA, Advanced Excel development and SQL. His curiosity, creativity and aptitude stood out throughout the course--for example, after an early assignment on basic address normalization he created a VBA module to automate and extend the work we had done, refining it over the course of the class. Javier is also a very amiable, personable guy, which is certainly not a given in this field! I wouldn't hesitate to recommend him to any analytically-minded team."
+    },
+    {
+      "id": 6,
+      "name": "Rosario Altamirano",
+      "position": "Asistente comercial",
+      "company": "Medico Dental Altamirano",
+      "relationship": "Was Javier's client",
+      "relationshipType": "client",
+      "date": "April 13, 2015",
+      "quote": "Javier es persona honorable confiable ejecutiva y respetuosa conoce bien de su formacion academica en programacion de sofware"
+    },
+    {
+      "id": 7,
+      "name": "Jerry George",
+      "position": "Director, Service Desk Operations",
+      "company": "NYC Department of Education",
+      "relationship": "Worked with Javier on different teams",
+      "relationshipType": "colleague",
+      "date": "February 23, 2015",
+      "quote": "I worked with Javier while he was with the Security Identity desk at the NYC Department of Education. Javier is a hardworking and dedicated individual who was a pleasure to interact with every day - he always followed through on issue resolutions and collaborated on process improvements. I am pleased to recommend Javier to any future prospective employer."
+    },
+    {
+      "id": 8,
+      "name": "Rev. Steve Lopez",
+      "position": "Associate Pastor",
+      "company": "Calvary Center Church",
+      "relationship": "Worked with Javier on different teams",
+      "relationshipType": "colleague",
+      "date": "February 20, 2015",
+      "quote": "I have had the pleasure of working for many years with Javier. He is a responsible, bright, articulate and energetic person who can view issues from a global perspective. His analytic skills are an asset to any organization."
+    }
+  ],
+  "languages": [
+    { "language": "English", "proficiency": "Professional working proficiency" },
+    { "language": "Spanish", "proficiency": "Native or bilingual proficiency" }
+  ],
+  "achievements": {
+    "yearsOfExperience": 15,
+    "projectsCompleted": 50,
+    "dataPointsProcessed": "1M+",
+    "satisfactionRate": 93
+  },
+  "translations": {
+    "en": {
+      "navigation": {
+        "home": "Home",
+        "about": "About",
+        "experience": "Experience",
+        "projects": "Projects",
+        "skills": "Skills",
+        "certifications": "Certifications",
+        "testimonials": "Testimonials",
+        "contact": "Contact"
+      },
+      "hero": {
+        "title": "Data Analyst | Full Stack Developer | IT Specialist",
+        "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
+        "getInTouch": "Get In Touch",
+        "linkedinProfile": "LinkedIn Profile"
+      },
+      "about": {
+        "heading": "About Me",
+        "yearsExperience": "Years Experience",
+        "projectsCompleted": "Projects Completed",
+        "dataPointsProcessed": "Data Points Processed",
+        "clientSatisfaction": "Client Satisfaction"
+      },
+      "experience": {
+        "heading": "Professional Experience",
+        "present": "Present",
+        "years": "years",
+        "months": "months"
+      },
+      "projects": {
+        "heading": "Featured Projects",
+        "viewProject": "View Project",
+        "technologiesUsed": "Technologies Used",
+        "keyAchievements": "Key Achievements"
+      },
+      "skills": {
+        "heading": "Technical Skills",
+        "proficiencyLevel": "Proficiency Level",
+        "programmingLanguages": "Programming Languages",
+        "frontendDevelopment": "Frontend Development",
+        "dataVisualization": "Data Visualization",
+        "cloudPlatforms": "Cloud & Platforms",
+        "databases": "Databases",
+        "toolsTechnologies": "Tools & Technologies"
+      },
+      "certifications": {
+        "heading": "Licenses & Certifications",
+        "issued": "Issued",
+        "credentialId": "Credential ID",
+        "skills": "Skills",
+        "viewCredential": "View Credential",
+        "backendDevelopment": "Backend & Development",
+        "computerVisionAI": "Computer Vision & AI",
+        "dataAnalysis": "Data Analysis & Databases",
+        "excelVBA": "Microsoft Excel & VBA",
+        "security": "Security & System Administration"
+      },
+      "testimonials": {
+        "heading": "What People Say",
+        "subheading": "Testimonials from colleagues, managers, and clients who have worked with me",
+        "filterAll": "All",
+        "filterManager": "Managers",
+        "filterColleague": "Colleagues", 
+        "filterTeacher": "Teachers",
+        "filterClient": "Clients",
+        "relationshipTypes": {
+          "manager": "Former Manager",
+          "colleague": "Former Colleague",
+          "teacher": "Former Teacher",
+          "client": "Former Client"
+        },
+        "at": "at",
+        "readMore": "Read More",
+        "readLess": "Read Less"
+      },
+      "contact": {
+        "heading": "Let's Work Together",
+        "subheading": "Ready to transform your data into actionable insights? Let's discuss your next project",
+        "getInTouch": "Get In Touch",
+        "name": "Your Name",
+        "email": "Email Address",
+        "message": "Message",
+        "sendMessage": "Send Message",
+        "nameLabel": "Name",
+        "emailLabel": "Email",
+        "messageLabel": "Message",
+        "messagePlaceholder": "Tell me about your project or idea..."
+      },
+      "footer": {
+        "quickLinks": "Quick Links",
+        "letsConnect": "Let's Connect",
+        "linkedinProfile": "LinkedIn Profile",
+        "backToTop": "Back to Top",
+        "madeWith": "Made with",
+        "and": "and"
+      }
+    },
+    "es": {
+      "navigation": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "experience": "Experiencia",
+        "projects": "Proyectos",
+        "skills": "Habilidades",
+        "certifications": "Certificaciones",
+        "testimonials": "Testimonios",
+        "contact": "Contacto"
+      },
+      "hero": {
+        "title": "Analista de Datos | Desarrollador Full Stack | Especialista en TI",
+        "tagline": "Innovador Tecnológico | Experto en Visualización de Datos | Desarrollador de Software | Gerente de Proyectos | Líder de Equipo | Ingeniero Full Stack | Especialista en Ciencia de Datos | Líder Ágil",
+        "getInTouch": "Ponte en Contacto",
+        "linkedinProfile": "Perfil de LinkedIn"
+      },
+      "about": {
+        "heading": "Sobre Mí",
+        "yearsExperience": "Años de Experiencia",
+        "projectsCompleted": "Proyectos Completados",
+        "dataPointsProcessed": "Puntos de Datos Analizados",
+        "clientSatisfaction": "Satisfacción del Cliente"
+      },
+      "experience": {
+        "heading": "Experiencia Profesional",
+        "present": "Presente",
+        "years": "años",
+        "months": "meses"
+      },
+      "projects": {
+        "heading": "Proyectos Destacados",
+        "viewProject": "Ver Proyecto",
+        "technologiesUsed": "Tecnologías Utilizadas",
+        "keyAchievements": "Logros Clave"
+      },
+      "skills": {
+        "heading": "Habilidades Técnicas",
+        "proficiencyLevel": "Nivel de Competencia",
+        "programmingLanguages": "Lenguajes de Programación",
+        "frontendDevelopment": "Desarrollo Frontend",
+        "dataVisualization": "Visualización de Datos",
+        "cloudPlatforms": "Nube y Plataformas",
+        "databases": "Bases de Datos",
+        "toolsTechnologies": "Herramientas y Tecnologías"
+      },
+      "certifications": {
+        "heading": "Licencias y Certificaciones",
+        "issued": "Emitido",
+        "credentialId": "ID de Credencial",
+        "skills": "Habilidades",
+        "viewCredential": "Ver Credencial",
+        "backendDevelopment": "Backend y Desarrollo",
+        "computerVisionAI": "Visión Computacional e IA",
+        "dataAnalysis": "Análisis de Datos y Bases de Datos",
+        "excelVBA": "Microsoft Excel y VBA",
+        "security": "Seguridad y Administración de Sistemas"
+      },
+      "testimonials": {
+        "heading": "Lo Que Dicen de Mí",
+        "subheading": "Testimonios de colegas, gerentes y clientes que han trabajado conmigo",
+        "filterAll": "Todos",
+        "filterManager": "Gerentes",
+        "filterColleague": "Colegas",
+        "filterTeacher": "Profesores",
+        "filterClient": "Clientes",
+        "relationshipTypes": {
+          "manager": "Ex Gerente",
+          "colleague": "Ex Colega",
+          "teacher": "Ex Profesor",
+          "client": "Ex Cliente"
+        },
+        "at": "en",
+        "readMore": "Leer Más",
+        "readLess": "Leer Menos"
+      },
+      "contact": {
+        "heading": "Trabajemos Juntos",
+        "subheading": "¿Listo para transformar tus datos en información accionable? Hablemos de tu próximo proyecto",
+        "getInTouch": "Ponte en Contacto",
+        "name": "Tu Nombre",
+        "email": "Correo Electrónico",
+        "message": "Mensaje",
+        "sendMessage": "Enviar Mensaje",
+        "nameLabel": "Nombre",
+        "emailLabel": "Correo",
+        "messageLabel": "Mensaje",
+        "messagePlaceholder": "Cuéntame sobre tu proyecto o idea..."
+      },
+      "footer": {
+        "quickLinks": "Enlaces Rápidos",
+        "letsConnect": "Conectemos",
+        "linkedinProfile": "Perfil de LinkedIn",
+        "backToTop": "Volver Arriba",
+        "madeWith": "Hecho con",
+        "and": "y"
+      }
+    }
+  }
+}
