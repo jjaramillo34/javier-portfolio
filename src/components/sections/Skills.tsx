@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Database, Cloud, BarChart3, Globe, Wrench, FileCode } from 'lucide-react';
+import { Code, Database, Cloud, BarChart3, Globe, Wrench, FileCode, Coffee, FileText, Atom, Server, Code2, Wind, BarChart2, PieChart, FileSpreadsheet, CloudSun, Zap, Leaf, GitBranch, AppWindow, Repeat, Sliders } from 'lucide-react';
 import { SkillCategory } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -83,11 +83,31 @@ const Skills = ({ skills }: SkillsProps) => {
     },
   ];
 
-  const languageIcons: Record<string, JSX.Element> = {
+  const skillIcons: Record<string, JSX.Element> = {
     'Python': <Code className="w-5 h-5 text-blue-400 inline-block mr-2" />,
     'JavaScript': <FileCode className="w-5 h-5 text-yellow-400 inline-block mr-2" />,
     'TypeScript': <FileCode className="w-5 h-5 text-blue-500 inline-block mr-2" />,
     'SQL': <Database className="w-5 h-5 text-green-400 inline-block mr-2" />,
+    'Java': <Coffee className="w-5 h-5 text-amber-800 inline-block mr-2" />,
+    'VBA': <FileText className="w-5 h-5 text-purple-500 inline-block mr-2" />,
+    'React.js': <Atom className="w-5 h-5 text-sky-400 inline-block mr-2" />,
+    'Node.js': <Server className="w-5 h-5 text-green-500 inline-block mr-2" />,
+    'HTML/CSS': <Code2 className="w-5 h-5 text-orange-400 inline-block mr-2" />,
+    'Tailwind CSS': <Wind className="w-5 h-5 text-teal-400 inline-block mr-2" />,
+    'Power BI': <BarChart3 className="w-5 h-5 text-yellow-400 inline-block mr-2" />,
+    'Tableau': <BarChart2 className="w-5 h-5 text-blue-400 inline-block mr-2" />,
+    'Qlik': <PieChart className="w-5 h-5 text-green-500 inline-block mr-2" />,
+    'Excel': <FileSpreadsheet className="w-5 h-5 text-green-600 inline-block mr-2" />,
+    'AWS': <Cloud className="w-5 h-5 text-orange-400 inline-block mr-2" />,
+    'Azure': <CloudSun className="w-5 h-5 text-blue-500 inline-block mr-2" />,
+    'Power Platform': <Zap className="w-5 h-5 text-purple-500 inline-block mr-2" />,
+    'MongoDB': <Leaf className="w-5 h-5 text-green-600 inline-block mr-2" />,
+    'SQL Server': <Database className="w-5 h-5 text-red-500 inline-block mr-2" />,
+    'DB2': <Database className="w-5 h-5 text-blue-700 inline-block mr-2" />,
+    'Git': <GitBranch className="w-5 h-5 text-orange-500 inline-block mr-2" />,
+    'Power Apps': <AppWindow className="w-5 h-5 text-purple-500 inline-block mr-2" />,
+    'Power Automate': <Repeat className="w-5 h-5 text-blue-500 inline-block mr-2" />,
+    'Streamlit': <Sliders className="w-5 h-5 text-pink-400 inline-block mr-2" />,
   };
 
   const SkillBar = ({ skill, delay, color }: { skill: any, delay: number, color: string }) => {
@@ -95,7 +115,7 @@ const Skills = ({ skills }: SkillsProps) => {
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-white font-medium">
-            {languageIcons[skill.name] || null}{skill.name}
+            {skillIcons[skill.name] || null}{skill.name}
           </span>
           <span className="text-gray-200 text-sm font-semibold">{skill.level}%</span>
         </div>

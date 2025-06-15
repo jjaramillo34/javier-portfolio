@@ -50,11 +50,11 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div className="flex">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 max-w-[100vw] mx-auto overflow-x-hidden">
+      <div className="flex flex-col lg:flex-row w-full">
         <VerticalNavigation />
         
-        <main className="flex-1">
+        <main className="flex-1 w-full">
           <section id="hero">
             <Hero personalInfo={data.personalInfo} />
           </section>

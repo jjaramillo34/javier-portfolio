@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Building, MapPin, Calendar, CheckCircle } from 'lucide-react';
+import { Building, MapPin, Calendar, CheckCircle, Briefcase, BarChart3, Users, Code as CodeIcon } from 'lucide-react';
 import { WorkExperience } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -58,6 +58,36 @@ const Experience = ({ workExperience }: ExperienceProps) => {
         <div className="absolute bottom-0 right-1/4 w-[28rem] h-[28rem] bg-gradient-to-tl from-green-300/20 to-orange-300/30 dark:from-green-500/30 dark:to-orange-500/40 rounded-full blur-3xl"></div>
         {/* Extra color layer */}
         <div className="absolute top-1/2 left-1/2 w-[20rem] h-[20rem] bg-gradient-to-br from-orange-200/20 to-green-200/20 dark:from-orange-400/20 dark:to-green-400/20 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2"></div>
+        {/* Animated floating icons */}
+        {[
+          { Icon: Briefcase, color: 'text-orange-200 dark:text-orange-900', size: 'w-24 h-24', style: { left: '2%', top: '10%' } },
+          { Icon: Building, color: 'text-green-200 dark:text-green-900', size: 'w-20 h-20', style: { left: '5%', bottom: '15%' } },
+          { Icon: BarChart3, color: 'text-yellow-200 dark:text-yellow-900', size: 'w-20 h-20', style: { right: '8%', top: '18%' } },
+          { Icon: Users, color: 'text-blue-200 dark:text-blue-900', size: 'w-24 h-24', style: { right: '3%', bottom: '10%' } },
+          { Icon: CodeIcon, color: 'text-purple-200 dark:text-purple-900', size: 'w-16 h-16', style: { left: '50%', top: '5%' } },
+          { Icon: Briefcase, color: 'text-orange-300 dark:text-orange-800', size: 'w-16 h-16', style: { left: '10%', top: '60%' } },
+          { Icon: Building, color: 'text-green-300 dark:text-green-800', size: 'w-14 h-14', style: { right: '12%', top: '70%' } },
+          { Icon: BarChart3, color: 'text-yellow-300 dark:text-yellow-800', size: 'w-12 h-12', style: { left: '20%', bottom: '5%' } },
+          { Icon: Users, color: 'text-blue-300 dark:text-blue-800', size: 'w-16 h-16', style: { right: '18%', bottom: '20%' } },
+          { Icon: CodeIcon, color: 'text-purple-300 dark:text-purple-800', size: 'w-12 h-12', style: { right: '40%', top: '10%' } },
+        ].map(({ Icon, color, size, style }, i) => (
+          <motion.div
+            key={i}
+            className={`absolute ${color} ${size} opacity-40 blur-xl`}
+            style={style}
+            animate={{
+              y: [0, 20, 0],
+              opacity: [0.25, 0.5, 0.25],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          >
+            <Icon />
+          </motion.div>
+        ))}
         {/* Animated floating particles */}
         {[...Array(18)].map((_, i) => (
           <motion.div
@@ -141,7 +171,7 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                 {/* Content card */}
                 <div className={`ml-20 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
                   <motion.div
-                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10"
+                    className="bg-white/70 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-gray-300 dark:border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10"
                     whileHover={{ scale: 1.02 }}
                   >
                     <div className="flex items-start justify-between mb-4">
