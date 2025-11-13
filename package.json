@@ -7,7 +7,8 @@
     "dev": "pnpm install && vite",
     "build": "pnpm install && rm -rf node_modules/.vite-temp && tsc -b && vite build",
     "lint": "pnpm install && eslint .",
-    "preview": "pnpm install && vite preview"
+    "preview": "pnpm install && vite preview",
+    "seed:contentful": "node scripts/seed-contentful.mjs"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
@@ -40,6 +41,7 @@
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
     "@vercel/analytics": "^1.5.0",
+    "contentful": "^11.8.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
@@ -72,6 +74,8 @@
     "@types/react-router-dom": "^5",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "10.4.20",
+    "contentful-management": "^11.13.1",
+    "dotenv": "^16.4.5",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",

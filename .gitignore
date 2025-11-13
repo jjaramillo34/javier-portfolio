@@ -34,4 +34,7 @@ coverage/
 
 # Optional: next.js/.next, vercel, etc.
 .next/
-.vercel/ 
+.vercel/
+
+# docs
+docs/
