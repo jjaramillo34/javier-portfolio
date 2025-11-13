@@ -98,10 +98,12 @@ const Projects = ({ projects }: ProjectsProps) => {
             variants={itemVariants}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            {t('projects.subheading', {
-              defaultValue:
-                'Showcasing innovative solutions that blend data analysis with modern technology.',
-            })}
+            {(() => {
+              const subheading = t('projects.subheading');
+              return subheading === 'projects.subheading'
+                ? 'Showcasing innovative solutions that blend data analysis with modern technology.'
+                : subheading;
+            })()}
           </motion.p>
           <motion.div
             variants={itemVariants}
@@ -109,7 +111,12 @@ const Projects = ({ projects }: ProjectsProps) => {
           >
             <Award className="w-4 h-4 text-golden-orange" />
             <span>
-              {t('projects.totalCount', 'Total projects: {{count}}', { count: totalProjects })}
+              {(() => {
+                const totalLabel = t('projects.totalCount');
+                return totalLabel === 'projects.totalCount'
+                  ? `Total projects: ${totalProjects}`
+                  : totalLabel.replace('{{count}}', String(totalProjects));
+              })()}
             </span>
           </motion.div>
         </motion.div>

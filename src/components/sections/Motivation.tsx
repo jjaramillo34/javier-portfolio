@@ -76,14 +76,22 @@ const Motivation = () => {
           variants={itemVariants}
           className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-snug"
         >
-          {t('motivation.title', { defaultValue: 'Why I Built This Portfolio' })}
+          {(() => {
+            const title = t('motivation.title');
+            return title === 'motivation.title' ? 'Why I Built This Portfolio' : title;
+          })()}
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
           className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-line"
         >
-          {t('motivation.text')}
+          {(() => {
+            const text = t('motivation.text');
+            return text === 'motivation.text'
+              ? 'This portfolio was created with love for my wife Cris, my daughter Sofia, and my son Mateo. It reflects my journey as a developer, educator, and lifelong learner. My experience spans data analytics, full-stack development, and educational technology, and I am passionate about building tools that empower others. Thank you to my family for their unwavering support and to all the mentors, colleagues, and students who have inspired me along the way.'
+              : text;
+          })()}
         </motion.p>
       </motion.div>
     </section>
