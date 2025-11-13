@@ -1,6 +1,32 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Database, Cloud, BarChart3, Globe, Wrench, FileCode, Coffee, FileText, Atom, Server, Code2, Wind, BarChart2, PieChart, FileSpreadsheet, CloudSun, Zap, Leaf, GitBranch, AppWindow, Repeat, Sliders } from 'lucide-react';
+import { useMemo } from 'react';
+import {
+  Code,
+  Database,
+  Cloud,
+  BarChart3,
+  Globe,
+  Wrench,
+  FileCode,
+  Coffee,
+  FileText,
+  Atom,
+  Server,
+  Code2,
+  Wind,
+  BarChart2,
+  PieChart,
+  FileSpreadsheet,
+  CloudSun,
+  Zap,
+  Leaf,
+  GitBranch,
+  AppWindow,
+  Repeat,
+  Sliders,
+  Award,
+} from 'lucide-react';
 import { SkillCategory } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -14,6 +40,18 @@ const Skills = ({ skills }: SkillsProps) => {
     threshold: 0.1,
   });
   const { t } = useLanguage();
+
+  const normalizedSkills = useMemo(
+    () => ({
+      languages: skills.languages ?? [],
+      frontend: skills.frontend ?? [],
+      dataVisualization: skills.dataVisualization ?? [],
+      cloud: skills.cloud ?? [],
+      databases: skills.databases ?? [],
+      tools: skills.tools ?? [],
+    }),
+    [skills],
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,7 +148,7 @@ const Skills = ({ skills }: SkillsProps) => {
     'Streamlit': <Sliders className="w-5 h-5 text-pink-400 inline-block mr-2" />,
   };
 
-  const SkillBar = ({ skill, delay, color }: { skill: any, delay: number, color: string }) => {
+  const SkillBar = ({ skill, delay, color }: { skill: { name: string; level: number }, delay: number, color: string }) => {
     return (
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
@@ -150,7 +188,7 @@ const Skills = ({ skills }: SkillsProps) => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('/images/coding-bg.jpg')`,
+              backgroundImage: `url('/images/coding-bg.jpg')`,
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 to-gray-800/90"></div>
@@ -209,7 +247,9 @@ const Skills = ({ skills }: SkillsProps) => {
           animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          {skillCategories.map((category, categoryIndex) => (
+          {skillCategories.map((category, categoryIndex) => {
+            const categorySkills = category.skills ?? [];
+            return (
             <motion.div
               key={categoryIndex}
               variants={itemVariants}
@@ -224,17 +264,25 @@ const Skills = ({ skills }: SkillsProps) => {
               </div>
 
               <div className="space-y-6">
-                {category.skills.map((skill, skillIndex) => (
+                {categorySkills.length > 0 ? (
+                  categorySkills.map((skill, skillIndex) => (
                   <SkillBar
                     key={skillIndex}
                     skill={skill}
                     delay={categoryIndex * 0.2 + skillIndex * 0.1}
                     color={category.color}
                   />
-                ))}
+                  ))
+                ) : (
+                  <div className="flex items-center gap-2 text-sm text-gray-400 italic">
+                    <Award className="w-4 h-4 text-gray-500" />
+                    {t('skills.noSkills') ?? 'Skills coming soon.'}
+                  </div>
+                )}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* Featured skills highlight */}

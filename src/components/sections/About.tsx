@@ -95,42 +95,90 @@ const About = ({ personalInfo, achievements }: AboutProps) => {
           <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-golden-orange to-golden-orange-dark mx-auto mb-8"></motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Content */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="space-y-6"
+            className="space-y-8"
           >
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col gap-2 text-left"
+            >
+              <span className="inline-block text-sm font-semibold uppercase tracking-[0.35em] text-golden-orange">
+                {personalInfo.title}
+              </span>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
+                {personalInfo.tagline}
+              </h3>
+            </motion.div>
+
             <motion.p 
               variants={itemVariants}
               className="text-lg text-gray-700 leading-relaxed"
             >
-              I'm a passionate Data Analyst and Full Stack Developer with over 15 years of experience 
-              transforming complex data into actionable insights and building innovative software solutions. 
-              My journey spans across education, healthcare, and technology sectors, where I've consistently 
-              delivered results that drive business growth and operational efficiency.
+              {personalInfo.summary}
             </motion.p>
 
             <motion.p 
               variants={itemVariants}
               className="text-lg text-gray-700 leading-relaxed"
             >
-              My expertise lies in bridging the gap between data and technology, creating automated systems 
-              that reduce manual work while providing clear, visual insights. I specialize in Power BI, 
-              Tableau, React.js, and Python, always focusing on user-centric solutions that make complex 
-              data accessible to everyone.
+              {t('hero.title')} · {personalInfo.location}
             </motion.p>
 
             <motion.p 
               variants={itemVariants}
               className="text-lg text-gray-700 leading-relaxed"
             >
-              When I'm not coding or analyzing data, I'm constantly learning new technologies and 
-              methodologies to stay at the forefront of the rapidly evolving tech landscape. I believe 
-              in the power of data-driven decisions and elegant code to solve real-world problems.
+              {t('motivation.heading')}
             </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="grid gap-4 md:grid-cols-2"
+            >
+              <div className="rounded-2xl bg-white shadow-lg border border-golden-orange/20 p-5 space-y-2">
+                <h4 className="text-sm font-semibold text-golden-orange tracking-[0.3em] uppercase">
+                  {t('contact.heading')}
+                </h4>
+                <div className="text-gray-800">
+                  <p className="font-semibold">{personalInfo.name}</p>
+                  <p className="text-sm">{personalInfo.email}</p>
+                  <p className="text-sm">{personalInfo.phone}</p>
+                </div>
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-golden-orange hover:text-golden-orange-dark transition-colors"
+                >
+                  {t('hero.linkedinProfile')}
+                </a>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-br from-golden-orange to-golden-orange-dark text-white shadow-xl p-5 space-y-3">
+                <h4 className="text-sm font-semibold tracking-[0.3em] uppercase opacity-90">
+                  {t('about.heading')}
+                </h4>
+                <ul className="space-y-1 text-sm opacity-95">
+                  <li>
+                    <span className="font-semibold">{t('about.yearsExperience')}:</span> {achievements.yearsOfExperience}+
+                  </li>
+                  <li>
+                    <span className="font-semibold">{t('about.projectsCompleted')}:</span> {achievements.projectsCompleted}+
+                  </li>
+                  <li>
+                    <span className="font-semibold">{t('about.dataPointsProcessed')}:</span> {achievements.dataPointsProcessed}
+                  </li>
+                  <li>
+                    <span className="font-semibold">{t('about.clientSatisfaction')}:</span> {achievements.satisfactionRate}%
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Personal Photo */}

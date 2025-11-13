@@ -12,6 +12,7 @@ import Skills from './components/sections/Skills';
 import Certifications from './components/sections/Certifications';
 import Testimonials from './components/sections/Testimonials';
 import Contact from './components/sections/Contact';
+import Motivation from './components/sections/Motivation';
 import Footer from './components/sections/Footer';
 
 function AppContent() {
@@ -85,6 +86,8 @@ function AppContent() {
           <section id="testimonials">
             <Testimonials testimonials={data.testimonials} />
           </section>
+
+          <Motivation />
           
           <section id="contact">
             <Contact personalInfo={data.personalInfo} />

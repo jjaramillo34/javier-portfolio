@@ -49,6 +49,8 @@ const Experience = ({ workExperience }: ExperienceProps) => {
     },
   };
 
+  const achievementsEmptyLabel = t('experience.noAchievements') ?? 'Highlights coming soon.';
+
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
       {/* Enhanced Background effects */}
@@ -150,7 +152,7 @@ const Experience = ({ workExperience }: ExperienceProps) => {
             animate={inView ? "visible" : "hidden"}
             className="space-y-12"
           >
-            {workExperience.map((job, index) => (
+          {workExperience.map((job, index) => (
               <motion.div
                 key={job.id}
                 variants={itemVariants}
@@ -196,18 +198,25 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                     </div>
 
                     <ul className="space-y-3">
-                      {job.achievements.map((achievement, achIndex) => (
-                        <motion.li
-                          key={achIndex}
-                          className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                          transition={{ delay: index * 0.2 + achIndex * 0.1 + 0.8 }}
-                        >
-                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                          <span className="leading-relaxed">{achievement}</span>
-                        </motion.li>
-                      ))}
+                      {job.achievements && job.achievements.length > 0 ? (
+                        job.achievements.map((achievement, achIndex) => (
+                          <motion.li
+                            key={achIndex}
+                            className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                            transition={{ delay: index * 0.2 + achIndex * 0.1 + 0.8 }}
+                          >
+                            <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                            <span className="leading-relaxed">{achievement}</span>
+                          </motion.li>
+                        ))
+                      ) : (
+                        <li className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm italic">
+                          <CheckCircle className="w-4 h-4 text-gray-400" />
+                          {achievementsEmptyLabel}
+                        </li>
+                      )}
                     </ul>
                   </motion.div>
                 </div>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Quote, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Testimonial } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -28,13 +28,31 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
     { key: 'client', label: t('testimonials.filterClient') },
   ];
 
-  const filteredTestimonials = activeFilter === 'all' 
-    ? testimonials 
-    : testimonials.filter(testimonial => testimonial.relationshipType === activeFilter);
+  const normalizedTestimonials = useMemo(
+    () =>
+      testimonials.map((testimonial) => ({
+        ...testimonial,
+        quote: testimonial.quote?.trim() ?? '',
+        relationshipType: testimonial.relationshipType ?? 'colleague',
+        date: testimonial.date ?? '',
+        company: testimonial.company ?? '',
+        position: testimonial.position ?? '',
+        name: testimonial.name ?? 'Anonymous',
+        id: testimonial.id ?? Math.random(),
+      })),
+    [testimonials],
+  );
+
+  const filteredTestimonials =
+    activeFilter === 'all'
+      ? normalizedTestimonials
+      : normalizedTestimonials.filter((testimonial) => testimonial.relationshipType === activeFilter);
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % filteredTestimonials.length);
   };
+
+  const testimonialsUnavailable = filteredTestimonials.length === 0;
 
   const prevTestimonial = () => {
     setCurrentIndex((prev) => (prev - 1 + filteredTestimonials.length) % filteredTestimonials.length);
@@ -124,7 +142,13 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
         {/* Testimonials Carousel */}
         <motion.div variants={itemVariants} className="relative">
-          {filteredTestimonials.length > 0 && (
+          {testimonialsUnavailable ? (
+            <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700">
+              <p className="text-lg text-gray-500 dark:text-gray-400">
+                {t('testimonials.none') ?? 'No testimonials available for this filter yet.'}
+              </p>
+            </div>
+          ) : (
             <>
               {/* Main Testimonial */}
               <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-xl">
@@ -173,10 +197,10 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                             </p>
                             <div className="flex items-center gap-2 mt-2">
                               <span className="text-sm bg-gradient-to-r from-orange-100 to-green-100 dark:from-orange-900 dark:to-green-900 text-orange-800 dark:text-orange-200 px-3 py-1 rounded-full">
-                                {getRelationshipTypeLabel(filteredTestimonials[currentIndex]?.relationshipType || '')}
+                                {getRelationshipTypeLabel(filteredTestimonials[currentIndex]?.relationshipType || 'colleague')}
                               </span>
                               <span className="text-sm text-gray-500 dark:text-gray-400">
-                                {filteredTestimonials[currentIndex]?.date}
+                                {filteredTestimonials[currentIndex]?.date || t('testimonials.noDate') || 'Date unavailable'}
                               </span>
                             </div>
                           </div>
@@ -232,7 +256,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
         </motion.div>
 
         {/* All Testimonials Grid (Optional - for showing more) */}
-        {filteredTestimonials.length > 3 && (
+        {!testimonialsUnavailable && filteredTestimonials.length > 3 && (
           <motion.div variants={itemVariants} className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
               All {filterOptions.find(f => f.key === activeFilter)?.label} Testimonials

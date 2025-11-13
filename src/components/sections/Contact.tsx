@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Phone, Send, User, MessageSquare, Heart, Code, Book, Users, Star } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useForm } from '@formspree/react';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -17,12 +17,6 @@ const Contact = ({ personalInfo }: ContactProps) => {
     threshold: 0.1,
   });
   const { t } = useLanguage();
-
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -59,49 +53,51 @@ const Contact = ({ personalInfo }: ContactProps) => {
     },
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const FORM_ID = import.meta.env.VITE_FORMSPREE_ID;
   const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   const [state, handleSubmit] = useForm(FORM_ID);
   const [captcha, setCaptcha] = useState<string | null>(null);
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: personalInfo.email,
-      href: `mailto:${personalInfo.email}`,
-      color: 'from-orange-500 to-orange-600',
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: personalInfo.phone,
-      href: `tel:${personalInfo.phone}`,
-      color: 'from-green-500 to-green-600',
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: personalInfo.location,
-      href: '#',
-      color: 'from-golden-orange to-golden-orange-dark',
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      value: 'Connect with me',
-      href: personalInfo.linkedin,
-      color: 'from-golden-orange-dark to-golden-orange',
-    },
-  ];
+  const submissionError = Array.isArray(state.errors) ? state.errors[0]?.message : null;
+  const contactInfo = useMemo(() => {
+    const entries = [
+      personalInfo.email && {
+        icon: Mail,
+        label: t('contact.emailLabel') ?? 'Email',
+        value: personalInfo.email,
+        href: `mailto:${personalInfo.email}`,
+        color: 'from-orange-500 to-orange-600',
+      },
+      personalInfo.phone && {
+        icon: Phone,
+        label: 'Phone',
+        value: personalInfo.phone,
+        href: `tel:${personalInfo.phone}`,
+        color: 'from-green-500 to-green-600',
+      },
+      personalInfo.location && {
+        icon: MapPin,
+        label: 'Location',
+        value: personalInfo.location,
+        href: '#',
+        color: 'from-golden-orange to-golden-orange-dark',
+      },
+      personalInfo.linkedin && {
+        icon: Linkedin,
+        label: 'LinkedIn',
+        value: t('hero.linkedinProfile') ?? 'LinkedIn',
+        href: personalInfo.linkedin,
+        color: 'from-golden-orange-dark to-golden-orange',
+      },
+    ];
+    return entries.filter(Boolean) as {
+      icon: typeof Mail;
+      label: string;
+      value: string;
+      href: string;
+      color: string;
+    }[];
+  }, [personalInfo.email, personalInfo.phone, personalInfo.location, personalInfo.linkedin, t]);
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 relative overflow-hidden">
@@ -153,9 +149,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
               variants={itemVariants}
               className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8"
             >
-              I'm always interested in discussing new opportunities, innovative projects, 
-              and ways to leverage data for business growth. Whether you need data analysis, 
-              full-stack development, or consultation on your next big idea, I'd love to hear from you.
+              {t('contact.subheading')}
             </motion.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -191,14 +185,34 @@ const Contact = ({ personalInfo }: ContactProps) => {
             animate={inView ? "visible" : "hidden"}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-100 dark:border-gray-700"
           >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Send a Message</h3>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+                <Send className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {t('contact.getInTouch')}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {t('contact.messagePlaceholder')}
+                </p>
+              </div>
+            </div>
             {state.succeeded ? (
-              <p className="text-green-600">Thanks for your message!</p>
+              <div className="flex items-start gap-3 rounded-xl bg-green-50 border border-green-200 px-4 py-3 text-green-700">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold">{t('contact.sendMessage')}</p>
+                  <p className="text-sm text-green-600">
+                    Thanks for reaching out! I’ll get back to you shortly.
+                  </p>
+                </div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Your Name
+                    {t('contact.nameLabel')}
                   </label>
                   <input
                     type="text"
@@ -210,7 +224,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Email Address
+                    {t('contact.emailLabel')}
                   </label>
                   <input
                     type="email"
@@ -222,7 +236,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </div>
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Message
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     id="message"
@@ -239,12 +253,25 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 <button
                   type="submit"
                   disabled={!captcha || state.submitting}
-                  className="bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-orange-600 transition disabled:opacity-50"
+                  className="inline-flex items-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-orange-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send
+                  {state.submitting ? (
+                    <span className="flex items-center gap-2">
+                      <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-r-transparent" />
+                      {t('contact.sendMessage')}
+                    </span>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      {t('contact.sendMessage')}
+                    </>
+                  )}
                 </button>
-                {Array.isArray(state.errors) && state.errors.length > 0 && (
-                  <p className="text-red-600">Error: {state.errors[0].message}</p>
+                {submissionError && (
+                  <div className="flex items-start gap-2 text-red-600 text-sm">
+                    <AlertCircle className="w-4 h-4 mt-0.5" />
+                    <span>{submissionError}</span>
+                  </div>
                 )}
               </form>
             )}
@@ -252,42 +279,6 @@ const Contact = ({ personalInfo }: ContactProps) => {
         </div>
       </div>
 
-      {/* Motivation Section */}
-      <section id="motivation" className="py-16 px-4 md:px-0 bg-gradient-to-br from-orange-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-        {/* Flowing icons background */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          {[
-            Heart, Code, Book, Users, Star,
-            Heart, Code, Book, Users, Star
-          ].map((Icon, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
-              style={{
-                left: `${10 + Math.random() * 80}%`,
-                top: `${5 + Math.random() * 80}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 6 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            >
-              <Icon className="w-10 h-10 md:w-14 md:h-14 text-orange-300 dark:text-orange-900 opacity-30 dark:opacity-20 blur-sm" />
-            </motion.div>
-          ))}
-        </div>
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-orange-700 dark:text-orange-400">{t('motivation.heading')}</h2>
-          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-line">
-            {t('motivation.text')}
-          </p>
-        </div>
-      </section>
     </section>
   );
 };

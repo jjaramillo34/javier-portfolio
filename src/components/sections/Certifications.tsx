@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Search, Filter } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { CertificationCategory, Certification } from '../../types/portfolio';
 
@@ -71,29 +71,40 @@ const Certifications = ({ certifications }: CertificationsProps) => {
     { key: 'security', label: t('certifications.security') },
   ];
 
-  const getAllCertifications = (): Certification[] => {
-    const allCerts: Certification[] = [];
-    Object.values(certifications).forEach(categoryArray => {
-      allCerts.push(...categoryArray);
-    });
-    return allCerts;
-  };
+  const allCertifications = useMemo(
+    () => Object.values(certifications).flat(),
+    [certifications],
+  );
 
-  const getFilteredCertifications = (): Certification[] => {
-    let certs = selectedCategory === 'all' 
-      ? getAllCertifications() 
-      : certifications[selectedCategory] || [];
+  const filteredCertifications = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
 
-    if (searchTerm) {
-      certs = certs.filter(cert => 
-        cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cert.institution.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        cert.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+    const baseList =
+      selectedCategory === 'all'
+        ? allCertifications
+        : (certifications[selectedCategory as keyof CertificationCategory] ?? []);
+
+    if (!normalizedSearch) {
+      return baseList;
     }
 
-    return certs;
-  };
+    return baseList.filter((cert) =>
+      [cert.title, cert.institution, ...(cert.skills ?? [])]
+        .join(' ')
+        .toLowerCase()
+        .includes(normalizedSearch),
+    );
+  }, [allCertifications, certifications, searchTerm, selectedCategory]);
+
+  const totalCertifications = allCertifications.length;
+  const displayedCertifications = filteredCertifications.length;
+  const hasActiveFilters = selectedCategory !== 'all' || searchTerm.trim() !== '';
+  const activeCategoryLabel =
+    categories.find((category) => category.key === selectedCategory)?.label ?? categories[0]?.label;
+  const searchPlaceholder =
+    selectedCategory === 'all'
+      ? 'Search certifications...'
+      : `Search ${activeCategoryLabel?.toLowerCase()}...`;
 
   const getInstitutionColor = (institution: string): string => {
     const colors = {
@@ -153,7 +164,7 @@ const Certifications = ({ certifications }: CertificationsProps) => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search certifications..."
+                placeholder={searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 text-gray-800 dark:text-white"
@@ -176,6 +187,30 @@ const Certifications = ({ certifications }: CertificationsProps) => {
               </select>
             </motion.div>
           </div>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-300 mt-6"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full">
+              <Award className="w-4 h-4 text-golden-orange" />
+              <span>
+                Showing <strong>{displayedCertifications}</strong> of{' '}
+                <strong>{totalCertifications}</strong> certifications
+              </span>
+            </span>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setSearchTerm('');
+                }}
+                className="text-golden-orange hover:text-golden-orange-dark font-semibold transition-colors"
+              >
+                Clear filters
+              </button>
+            )}
+          </motion.div>
         </motion.div>
 
         {/* Certifications Grid */}
@@ -185,9 +220,11 @@ const Certifications = ({ certifications }: CertificationsProps) => {
           animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          {getFilteredCertifications().map((cert, index) => (
+          {filteredCertifications.map((cert, index) => {
+            const showCredentialLink = cert.link && cert.link !== '#';
+            return (
             <motion.div
-              key={cert.id}
+              key={cert.id ?? `${cert.title}-${index}`}
               variants={cardVariants}
               whileHover="hover"
               className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
@@ -236,7 +273,7 @@ const Certifications = ({ certifications }: CertificationsProps) => {
                 <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('certifications.skills')}</h4>
                   <div className="flex flex-wrap gap-2">
-                    {cert.skills.map((skill, skillIndex) => (
+                    {(cert.skills ?? []).map((skill, skillIndex) => (
                       <motion.span
                         key={skillIndex}
                         className={`px-3 py-1 bg-gradient-to-r ${getInstitutionColor(cert.institution)} bg-opacity-10 text-xs font-medium rounded-full border border-orange-200 dark:border-orange-800 text-white dark:text-white`}
@@ -252,25 +289,30 @@ const Certifications = ({ certifications }: CertificationsProps) => {
                 </div>
 
                 {/* View Credential Link */}
-                <motion.a
-                  href={cert.link}
-                  className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${getInstitutionColor(cert.institution)} hover:opacity-90 text-white text-sm font-semibold rounded-lg transition-all duration-300 group-hover:shadow-lg`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>{t('certifications.viewCredential')}</span>
-                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.a>
+                {showCredentialLink && (
+                  <motion.a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${getInstitutionColor(cert.institution)} hover:opacity-90 text-white text-sm font-semibold rounded-lg transition-all duration-300 group-hover:shadow-lg`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span>{t('certifications.viewCredential')}</span>
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </motion.a>
+                )}
               </div>
 
               {/* Decorative elements */}
               <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${getInstitutionColor(cert.institution)} opacity-5 rounded-full blur-xl group-hover:scale-110 transition-transform duration-500`}></div>
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
 
         {/* No results message */}
-        {getFilteredCertifications().length === 0 && (
+        {filteredCertifications.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

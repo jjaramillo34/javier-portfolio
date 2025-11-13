@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, Calendar, CheckCircle, Code } from 'lucide-react';
+import { ExternalLink, Calendar, CheckCircle, Code, Award } from 'lucide-react';
+import { useMemo } from 'react';
 import { Project } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -14,6 +15,18 @@ const Projects = ({ projects }: ProjectsProps) => {
     threshold: 0.1,
   });
   const { t } = useLanguage();
+
+  const totalProjects = projects.length;
+  const sanitizedProjects = useMemo(
+    () =>
+      projects.map((project) => ({
+        ...project,
+        technologies: project.technologies ?? [],
+        achievements: project.achievements ?? [],
+        link: project.link && project.link !== '#' ? project.link : null,
+      })),
+    [projects],
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -85,8 +98,20 @@ const Projects = ({ projects }: ProjectsProps) => {
             variants={itemVariants}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            Showcasing innovative solutions that blend data analysis with modern technology
+            {t('projects.subheading', {
+              defaultValue:
+                'Showcasing innovative solutions that blend data analysis with modern technology.',
+            })}
           </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-white shadow rounded-full border border-orange-100 text-sm text-gray-600"
+          >
+            <Award className="w-4 h-4 text-golden-orange" />
+            <span>
+              {t('projects.totalCount', 'Total projects: {{count}}', { count: totalProjects })}
+            </span>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -95,7 +120,7 @@ const Projects = ({ projects }: ProjectsProps) => {
           animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {projects.map((project, index) => (
+          {sanitizedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               variants={cardVariants}
@@ -134,7 +159,7 @@ const Projects = ({ projects }: ProjectsProps) => {
                 <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">{t('projects.technologiesUsed')}</h4>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
+                    {(project.technologies.length ? project.technologies : ['N/A']).map((tech, techIndex) => (
                       <motion.span
                         key={techIndex}
                         className="px-3 py-1 bg-gradient-to-r from-orange-100 to-green-100 text-orange-700 text-sm font-medium rounded-full border border-orange-200"
@@ -153,31 +178,47 @@ const Projects = ({ projects }: ProjectsProps) => {
                 <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">{t('projects.keyAchievements')}</h4>
                   <ul className="space-y-2">
-                    {project.achievements.map((achievement, achIndex) => (
-                      <motion.li
-                        key={achIndex}
-                        className="flex items-start gap-2 text-sm text-gray-600"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ delay: index * 0.2 + achIndex * 0.1 + 0.8 }}
-                      >
-                        <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span>{achievement}</span>
-                      </motion.li>
-                    ))}
+                    {project.achievements.length > 0 ? (
+                      project.achievements.map((achievement, achIndex) => (
+                        <motion.li
+                          key={achIndex}
+                          className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                          transition={{ delay: index * 0.2 + achIndex * 0.1 + 0.8 }}
+                        >
+                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span>{achievement}</span>
+                        </motion.li>
+                      ))
+                    ) : (
+                      <li className="flex items-center gap-2 text-sm text-gray-400 italic">
+                        <CheckCircle className="w-4 h-4 text-gray-300" />
+                        {t('projects.noAchievements') ?? 'Full project details coming soon.'}
+                      </li>
+                    )}
                   </ul>
                 </div>
 
                 {/* Project link */}
-                <motion.a
-                  href={project.link}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>{t('projects.viewProject')}</span>
-                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.a>
+                {project.link ? (
+                  <motion.a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-green-500 hover:from-orange-600 hover:to-green-600 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span>{t('projects.viewProject')}</span>
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </motion.a>
+                ) : (
+                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-500 rounded-xl cursor-not-allowed">
+                    <ExternalLink className="w-4 h-4" />
+                    <span>{t('projects.viewProjectUnavailable') ?? 'Live link unavailable'}</span>
+                  </div>
+                )}
               </div>
 
               {/* Decorative elements */}

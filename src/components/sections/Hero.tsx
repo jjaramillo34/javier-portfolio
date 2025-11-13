@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronDown, Mail, Linkedin, MapPin } from 'lucide-react';
+import { useMemo } from 'react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -14,6 +15,18 @@ const Hero = ({ personalInfo }: HeroProps) => {
     threshold: 0.1,
   });
   const { t } = useLanguage();
+
+  const sanitizedEmail = personalInfo.email?.trim() ?? '';
+  const sanitizedLinkedIn = personalInfo.linkedin?.trim() ?? '';
+  const sanitizedLocation = personalInfo.location?.trim() ?? t('contact.locationFallback') ?? 'Global';
+
+  const taglineSegments = useMemo(() => {
+    return personalInfo.tagline
+      ?.split('|')
+      .map((segment) => segment.trim())
+      .filter(Boolean)
+      .slice(0, 6);
+  }, [personalInfo.tagline]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -96,7 +109,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
         <motion.div variants={itemVariants} className="mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
             <MapPin className="w-4 h-4" />
-            {personalInfo.location}
+            {sanitizedLocation}
           </span>
         </motion.div>
 
@@ -139,22 +152,48 @@ const Hero = ({ personalInfo }: HeroProps) => {
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
           <a
-            href={`mailto:${personalInfo.email}`}
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark hover:from-golden-orange-dark hover:to-golden-orange text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25"
+            href={sanitizedEmail ? `mailto:${sanitizedEmail}` : '#'}
+            className={`group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white font-semibold rounded-xl transition-all duration-300 ${
+              sanitizedEmail
+                ? 'hover:from-golden-orange-dark hover:to-golden-orange hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25'
+                : 'opacity-60 cursor-not-allowed'
+            }`}
+            aria-disabled={!sanitizedEmail}
           >
             <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
             {t('hero.getInTouch')}
           </a>
           <a
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 hover:from-golden-orange/30 hover:to-golden-orange/40 text-golden-orange border-2 border-golden-orange font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25 backdrop-blur-sm"
+            href={sanitizedLinkedIn || '#'}
+            target={sanitizedLinkedIn ? '_blank' : undefined}
+            rel={sanitizedLinkedIn ? 'noopener noreferrer' : undefined}
+            className={`group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 text-golden-orange border-2 border-golden-orange font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm ${
+              sanitizedLinkedIn
+                ? 'hover:from-golden-orange/30 hover:to-golden-orange/40 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25'
+                : 'opacity-60 cursor-not-allowed'
+            }`}
+            aria-disabled={!sanitizedLinkedIn}
           >
             <Linkedin className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
             {t('hero.linkedinProfile')}
           </a>
         </motion.div>
+
+        {taglineSegments && taglineSegments.length > 0 && (
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            {taglineSegments.map((segment, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-white/10 border border-white/20 rounded-full text-sm md:text-base text-white/85 backdrop-blur-sm"
+              >
+                {segment}
+              </span>
+            ))}
+          </motion.div>
+        )}
 
         <motion.button
           variants={itemVariants}

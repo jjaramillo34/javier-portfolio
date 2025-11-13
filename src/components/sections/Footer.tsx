@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion';
 import { Heart, Mail, Linkedin, MapPin, ArrowUp } from 'lucide-react';
+import { useMemo } from 'react';
 import { PersonalInfo } from '../../types/portfolio';
 
 interface FooterProps {
   personalInfo: PersonalInfo;
 }
+
+const quickLinks: Array<{ label: string; href: string }> = [
+  { label: 'About', href: '#about' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Certifications', href: '#certifications' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Contact', href: '#contact' },
+];
 
 const Footer = ({ personalInfo }: FooterProps) => {
   const scrollToTop = () => {
@@ -15,6 +26,13 @@ const Footer = ({ personalInfo }: FooterProps) => {
   };
 
   const currentYear = new Date().getFullYear();
+  const sanitizedEmail = personalInfo.email ?? 'hello@example.com';
+  const sanitizedLocation = personalInfo.location ?? 'Remote';
+  const sanitizedLinkedIn = personalInfo.linkedin ?? '#';
+  const tagline =
+    personalInfo.summary ||
+    'Transforming data into insights and ideas into reality. Always ready for the next challenge.';
+  const sortedQuickLinks = useMemo(() => quickLinks, []);
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
@@ -37,12 +55,11 @@ const Footer = ({ personalInfo }: FooterProps) => {
               {personalInfo.name}
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              Transforming data into insights and ideas into reality. 
-              Always ready for the next challenge in the ever-evolving world of technology.
+              {tagline}
             </p>
             <div className="flex items-center gap-2 text-gray-400">
               <MapPin className="w-4 h-4" />
-              <span>{personalInfo.location}</span>
+              <span>{sanitizedLocation}</span>
             </div>
           </motion.div>
 
@@ -55,15 +72,15 @@ const Footer = ({ personalInfo }: FooterProps) => {
           >
             <h4 className="text-xl font-semibold text-white">Quick Links</h4>
             <ul className="space-y-3">
-              {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map((link, index) => (
-                <li key={link}>
+              {sortedQuickLinks.map(({ label, href }) => (
+                <li key={label}>
                   <motion.a
-                    href={`#${link.toLowerCase()}`}
+                    href={href}
                     className="text-gray-400 hover:text-orange-400 transition-colors duration-300 flex items-center gap-2 group"
                     whileHover={{ x: 5 }}
                   >
                     <span className="w-1 h-1 bg-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    {link}
+                    {label}
                   </motion.a>
                 </li>
               ))}
@@ -80,17 +97,17 @@ const Footer = ({ personalInfo }: FooterProps) => {
             <h4 className="text-xl font-semibold text-white">Let's Connect</h4>
             <div className="space-y-4">
               <motion.a
-                href={`mailto:${personalInfo.email}`}
+                href={`mailto:${sanitizedEmail}`}
                 className="flex items-center gap-3 text-gray-400 hover:text-orange-400 transition-colors duration-300 group"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="p-2 bg-orange-500/20 rounded-lg group-hover:bg-orange-500/30 transition-colors duration-300">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span>{personalInfo.email}</span>
+                <span>{sanitizedEmail}</span>
               </motion.a>
               <motion.a
-                href={personalInfo.linkedin}
+                href={sanitizedLinkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-gray-400 hover:text-green-400 transition-colors duration-300 group"
