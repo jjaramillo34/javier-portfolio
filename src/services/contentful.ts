@@ -165,16 +165,31 @@ const getSingleEntry = async <T>(
 const getCollection = async <T>(
   contentType: string,
   locale: string,
-  orderFields: string[] = ['fields.order', 'fields.id'],
+  orderFields: string[] = ['fields.order', 'sys.createdAt'],
 ): Promise<ContentfulEntry<T>[]> => {
   const client = ensureClient();
-  const response = (await client.getEntries({
-    content_type: contentType,
-    limit: 1000,
-    locale,
-    order: orderFields as any,
-  })) as unknown as { items: ContentfulEntry<T>[] };
-  return response.items;
+  const fetchEntries = async (order?: string[]) =>
+    (await client.getEntries({
+      content_type: contentType,
+      limit: 1000,
+      locale,
+      order: order as any,
+    })) as unknown as { items: ContentfulEntry<T>[] };
+
+  try {
+    const response = await fetchEntries(orderFields);
+    return response.items;
+  } catch (error) {
+    const message = (error as { message?: string })?.message ?? '';
+    if (orderFields.length > 0 && /No field with id/.test(message)) {
+      console.warn(
+        `[Contentful] Retrying ${contentType} without custom order because: ${message}`,
+      );
+      const response = await fetchEntries();
+      return response.items;
+    }
+    throw error;
+  }
 };
 
 const mapWorkExperience = (entries: ContentfulEntry<WorkExperienceFields>[]): WorkExperience[] =>

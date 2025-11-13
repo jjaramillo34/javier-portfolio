@@ -83,10 +83,8 @@ const VerticalNavigation = () => {
   };
 
   const toggleLanguage = () => {
-    console.log('Language toggle clicked! Current language:', language);
     const newLanguage = language === 'en' ? 'es' : 'en';
     setLanguage(newLanguage);
-    console.log('Language changed to:', newLanguage);
   };
 
   const sidebarVariants = {
