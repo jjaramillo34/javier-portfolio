@@ -146,6 +146,7 @@ const Skills = ({ skills }: SkillsProps) => {
     'Power Apps': <AppWindow className="w-5 h-5 text-purple-500 inline-block mr-2" />,
     'Power Automate': <Repeat className="w-5 h-5 text-blue-500 inline-block mr-2" />,
     'Streamlit': <Sliders className="w-5 h-5 text-pink-400 inline-block mr-2" />,
+    'Google Cloud': <Cloud className="w-5 h-5 text-orange-400 inline-block mr-2" />,
   };
 
   const SkillBar = ({ skill, delay, color }: { skill: { name: string; level: number }, delay: number, color: string }) => {
@@ -237,8 +238,11 @@ const Skills = ({ skills }: SkillsProps) => {
             variants={itemVariants}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Expertise across the full technology stack, from data analysis to full-stack development
+            {t('skills.subheading')}
           </motion.p>
+          <motion.span variants={itemVariants} className="text-gray-500 text-sm">
+            {t('skills.subheading2')}
+          </motion.span>
         </motion.div>
 
         <motion.div
@@ -249,6 +253,9 @@ const Skills = ({ skills }: SkillsProps) => {
         >
           {skillCategories.map((category, categoryIndex) => {
             const categorySkills = category.skills ?? [];
+            const sortedSkills = [...categorySkills].sort(
+              (a, b) => (b?.level ?? 0) - (a?.level ?? 0),
+            );
             return (
             <motion.div
               key={categoryIndex}
@@ -264,8 +271,8 @@ const Skills = ({ skills }: SkillsProps) => {
               </div>
 
               <div className="space-y-6">
-                {categorySkills.length > 0 ? (
-                  categorySkills.map((skill, skillIndex) => (
+                {sortedSkills.length > 0 ? (
+                  sortedSkills.map((skill, skillIndex) => (
                   <SkillBar
                     key={skillIndex}
                     skill={skill}

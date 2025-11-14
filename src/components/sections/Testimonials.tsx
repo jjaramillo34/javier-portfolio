@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useMemo, useState } from 'react';
-import { Quote, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Quote, Filter, ChevronLeft, ChevronRight, Loader2, Sparkles, Ellipsis } from 'lucide-react';
 import { Testimonial } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -110,15 +110,67 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
         animate={inView ? "visible" : "hidden"}
       >
         {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-golden-orange to-golden-orange-dark bg-clip-text text-transparent">
-            {t('testimonials.heading')}
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('testimonials.subheading')}
-          </p>
-        </motion.div>
+        {/* Animated, visually striking header section */}
+        <motion.div 
+          variants={itemVariants} 
+          className="text-center relative mb-20"
+        >
+          {/* Decorative background sparkles */}
+          <div className="absolute -top-12 left-1/2 -translate-x-1/2 pointer-events-none z-0">
+            <span className="block w-32 h-32 bg-gradient-to-br from-golden-orange/30 to-golden-orange-dark/20 rounded-full blur-3xl opacity-80 animate-pulse"></span>
+          </div>
+          
+          {/* Title with animated underline and accent gradient glow */}
+          <motion.h2 
+            variants={itemVariants}
+            className="relative z-10 text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-golden-orange via-yellow-400 to-golden-orange-dark bg-clip-text text-transparent drop-shadow-[0_3px_30px_rgba(255,161,22,0.35)]"
+          >
+            <span className="inline-block animate-gradient-x bg-clip-text text-transparent">
+              {t('testimonials.heading')}
+            </span>
+            {/* Sparkling accent using stars from Lucide */}
+            <span className="absolute right-[-25px] top-0 animate-bounce">
+              {/* Use Sparkles icon from lucide-react */}
+              <span className="text-yellow-400">
+                {/* Sparkles Icon from lucide-react */}
+                <Sparkles width={26} height={26} className="text-yellow-400" />
+              </span>
+            </span>
+          </motion.h2>
+          
+          <motion.div 
+            variants={itemVariants} 
+            className="w-32 h-2 mx-auto bg-gradient-to-r from-golden-orange/60 via-yellow-400/80 to-golden-orange-dark/60 rounded-full shadow-lg shadow-yellow-300/20 mb-8"
+            style={{ 
+              boxShadow: '0 2px 26px 0 rgba(255,193,96,0.25),0 0px 4px 0 rgba(222,151,39,0.11)'
+            }}
+          />
 
+          {/* Subheading with soft highlight */}
+          <motion.p 
+            variants={itemVariants} 
+            className="relative z-10 text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6 font-medium rounded-full px-5 py-2 bg-gradient-to-l from-yellow-50/30 to-transparent dark:from-gray-800/40 dark:to-transparent shadow-none"
+          >
+            <span className="relative">
+              {/* Use Lucide's Ellipsis icon for horizontal sparkle accent */}
+              <span className="absolute w-8 h-8 -left-10 -top-2 text-yellow-300/60 animate-pulse">
+                <Ellipsis className="w-8 h-8" />
+              </span>
+              {t('testimonials.subheading')}
+            </span>
+          </motion.p>
+          {/* Sub-subheading */}
+          <motion.span 
+            variants={itemVariants} 
+            className="block text-gray-500 text-base italic tracking-wide"
+          >
+            {/* Use a loader Lucide icon (Loader2) for spin animation */}
+            <span className="inline-block w-5 h-5 text-golden-orange align-middle mr-1 animate-spin-slow">
+              <Loader2 className="w-5 h-5 opacity-80" />
+            </span>
+            {t('testimonials.subheading2')}
+          </motion.span>
+        </motion.div>
         {/* Filter Buttons */}
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 mb-12">
           {filterOptions.map((option) => (
@@ -259,7 +311,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
         {!testimonialsUnavailable && filteredTestimonials.length > 3 && (
           <motion.div variants={itemVariants} className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
-              All {filterOptions.find(f => f.key === activeFilter)?.label} Testimonials
+              {filterOptions.find(f => f.key === activeFilter)?.label} Testimonials
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 sm:px-6">
               {filteredTestimonials.slice(0, 6).map((testimonial, index) => (

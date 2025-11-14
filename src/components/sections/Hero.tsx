@@ -25,7 +25,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
       ?.split('|')
       .map((segment) => segment.trim())
       .filter(Boolean)
-      .slice(0, 6);
+      .slice(0, 8);
   }, [personalInfo.tagline]);
 
   const containerVariants = {
@@ -136,10 +136,10 @@ const Hero = ({ personalInfo }: HeroProps) => {
 
         <motion.div variants={itemVariants} className="mb-8">
           <h2 className="text-xl md:text-2xl lg:text-3xl font-light mb-4 text-golden-orange-light">
-            {t('hero.title')}
+            {personalInfo.title}
           </h2>
           <p className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
-            {t('hero.tagline')}
+            {personalInfo.tagline}
           </p>
         </motion.div>
 
