@@ -15,6 +15,8 @@ export interface WorkExperience {
   company: string;
   period: string;
   location: string;
+  year: number;
+  yearEnd: number;
   achievements: string[];
 }
 

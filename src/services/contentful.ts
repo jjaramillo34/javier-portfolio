@@ -199,6 +199,8 @@ const mapWorkExperience = (entries: ContentfulEntry<WorkExperienceFields>[]): Wo
     company: entry.fields.company,
     period: entry.fields.period,
     location: entry.fields.location,
+    year: entry.fields.year,
+    yearEnd: entry.fields.yearEnd,
     achievements: entry.fields.achievements ?? [],
   }));
 

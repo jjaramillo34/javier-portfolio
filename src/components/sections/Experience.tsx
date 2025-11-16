@@ -15,6 +15,36 @@ const Experience = ({ workExperience }: ExperienceProps) => {
   });
   const { t } = useLanguage();
 
+  const getDisplayYearRange = (job: WorkExperience): string | null => {
+    if (job.year && job.yearEnd) {
+      return `${job.year} - ${job.yearEnd}`;
+    }
+
+    if (!job.period) return null;
+
+    const yearMatches = job.period.match(/(\d{4})/g);
+    if (!yearMatches || yearMatches.length === 0) {
+      return null;
+    }
+
+    const startYear = parseInt(yearMatches[0], 10);
+    let endYear: number;
+
+    if (yearMatches.length > 1) {
+      endYear = parseInt(yearMatches[1], 10);
+    } else if (/present/i.test(job.period)) {
+      endYear = new Date().getFullYear();
+    } else {
+      endYear = startYear;
+    }
+
+    if (!Number.isFinite(startYear) || !Number.isFinite(endYear)) {
+      return null;
+    }
+
+    return `${startYear} - ${endYear}`;
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -120,19 +150,21 @@ const Experience = ({ workExperience }: ExperienceProps) => {
           animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-green-400 bg-clip-text text-transparent"
           >
             {t('experience.heading')}
           </motion.h2>
-          <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-orange-500 to-green-500 mx-auto mb-8"></motion.div>
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            A journey of continuous growth and innovation across diverse industries
-          </motion.p>
+          <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-orange-500 to-green-500 mx-auto mb-6"></motion.div>
+        </motion.div>
+        <motion.div variants={itemVariants} className="flex flex-col gap-2 items-center justify-center max-w-3xl mx-auto mb-6">
+          <motion.span variants={itemVariants} className="text-gray-500 text-sm">
+            {t('experience.subheading')}
+          </motion.span>
+          <motion.span variants={itemVariants} className="text-gray-500 text-sm">
+            {t('experience.subheading2')}
+          </motion.span>
         </motion.div>
 
         <div className="relative">
@@ -145,20 +177,18 @@ const Experience = ({ workExperience }: ExperienceProps) => {
               animate={inView ? "visible" : "hidden"}
             />
           </div>
-
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             className="space-y-12"
           >
-          {workExperience.map((job, index) => (
+            {workExperience.map((job, index) => (
               <motion.div
                 key={job.id}
                 variants={itemVariants}
-                className={`relative flex flex-col md:flex-row items-start ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
+                className={`relative flex flex-col md:flex-row items-start ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
               >
                 {/* Timeline dot */}
                 <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-2">
@@ -221,8 +251,24 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                   </motion.div>
                 </div>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block md:w-5/12"></div>
+                {/* Year range column (desktop) */}
+                <div className="hidden md:flex md:w-5/12 items-center justify-center">
+                  <motion.div
+                    variants={itemVariants}
+                    className="inline-flex flex-col items-center gap-2 px-6 py-4 rounded-2xl border border-orange-400/40 bg-gradient-to-br from-orange-500/90 to-green-500/80 shadow-lg text-white"
+                  >
+                    <div className="flex items-center gap-2 text-sm uppercase tracking-wide">
+                      <Calendar className="w-4 h-4 text-white dark:text-white text-xl" />
+                      <h2 className="font-semibold text-white text-xl">
+                        {getDisplayYearRange(job)}
+                      </h2>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-white/90">
+                      <MapPin className="w-4 h-4" />
+                      <span>{job.location}</span>
+                    </div>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </motion.div>

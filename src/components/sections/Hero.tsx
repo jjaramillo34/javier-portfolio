@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ChevronDown, Mail, Linkedin, MapPin } from 'lucide-react';
+import { ChevronDown, Mail, Linkedin, MapPin, Phone } from 'lucide-react';
 import { useMemo } from 'react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -110,6 +110,29 @@ const Hero = ({ personalInfo }: HeroProps) => {
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
             <MapPin className="w-4 h-4" />
             {sanitizedLocation}
+          </span>
+        </motion.div>
+
+        {/* Heading*/}
+        <motion.div variants={itemVariants} className="mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-r from-golden-orange via-white to-golden-orange-light bg-clip-text text-transparent">
+            {t('hero.heading')}
+          </h1>
+        </motion.div>
+        {/* Subheading  & Subheading2*/}
+        <motion.div variants={itemVariants} className="mb-6 flex flex-col gap-2">
+          <p className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed uppercase">
+            {t('hero.subheading')}
+          </p>
+          <p className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed uppercase">
+            {t('hero.subheading2')}
+          </p>
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
+            <Phone className="w-4 h-4" />
+            {personalInfo.phone}
           </span>
         </motion.div>
 

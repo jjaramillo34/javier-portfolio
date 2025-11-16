@@ -61,6 +61,8 @@ const contentTypeDefinitions = [
         localized: true,
         items: { type: 'Symbol' },
       },
+      { id: 'year', name: 'Year', type: 'Integer' },
+      { id: 'yearEnd', name: 'YearEnd', type: 'Integer' },
     ],
   },
   {
@@ -213,6 +215,32 @@ const normalizeValue = (value) => (value === undefined ? null : value);
 const normalizeAchievements = (achievements) => achievements ?? [];
 
 const withOrder = (value, index) => (value !== undefined ? value : index + 1);
+
+const inferYearsFromPeriod = (period) => {
+  if (!period || typeof period !== 'string') {
+    return { year: null, yearEnd: null };
+  }
+
+  const yearMatches = period.match(/(\d{4})/g);
+  if (!yearMatches || yearMatches.length === 0) {
+    return { year: null, yearEnd: null };
+  }
+
+  const startYear = parseInt(yearMatches[0], 10);
+
+  // If there's an explicit end year, use that; otherwise, treat "Present" as the current year
+  let endYear = startYear;
+  if (yearMatches.length > 1) {
+    endYear = parseInt(yearMatches[1], 10);
+  } else if (/present/i.test(period)) {
+    endYear = new Date().getFullYear();
+  }
+
+  return {
+    year: Number.isFinite(startYear) ? startYear : null,
+    yearEnd: Number.isFinite(endYear) ? endYear : null,
+  };
+};
 
 const logStep = (message) => {
   console.log(`[seed-contentful] ${message}`);
@@ -412,6 +440,7 @@ const importData = async () => {
 
   // Work Experience
   for (const experience of data.workExperience) {
+    const inferredYears = inferYearsFromPeriod(experience.period);
     await upsertEntry(environment, 'workExperience', `work-experience-${experience.id}`, () => ({
       id: localize(experience.id),
       order: localize(experience.id),
@@ -420,6 +449,8 @@ const importData = async () => {
       period: localize(experience.period),
       location: localize(experience.location),
       achievements: localize(normalizeAchievements(experience.achievements)),
+      year: localize(experience.year ?? inferredYears.year),
+      yearEnd: localize(experience.yearEnd ?? inferredYears.yearEnd),
     }));
   }
 
