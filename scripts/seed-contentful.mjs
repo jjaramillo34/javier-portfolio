@@ -102,6 +102,7 @@ const contentTypeDefinitions = [
         items: { type: 'Symbol' },
       },
       { id: 'link', name: 'Link', type: 'Symbol', localized: true },
+      { id: 'image', name: 'Image', type: 'Symbol', localized: true },
     ],
   },
   {
@@ -469,13 +470,14 @@ const importData = async () => {
   for (const project of data.projects) {
     await upsertEntry(environment, 'project', `project-${project.id}`, () => ({
       id: localize(project.id),
-      order: localize(project.id),
-      title: localize(project.title),
+      order: localize(project.order ?? project.id),
+      title: localize(project.title, project.titleEs),
       period: localize(project.period),
-      description: localize(project.description),
+      description: localize(project.description, project.descriptionEs),
       technologies: localize(project.technologies),
-      achievements: localize(project.achievements),
+      achievements: localize(project.achievements, project.achievementsEs),
       link: localize(project.link),
+      image: localize(project.image),
     }));
   }
 

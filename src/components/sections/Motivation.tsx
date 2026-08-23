@@ -1,15 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Heart, Sparkle, Users, GraduationCap } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-const backgroundIcons = [
-  { Icon: Heart, left: '12%', top: '18%', delay: 0 },
-  { Icon: Sparkle, left: '78%', top: '12%', delay: 0.8 },
-  { Icon: Users, left: '24%', top: '68%', delay: 0.3 },
-  { Icon: GraduationCap, left: '60%', top: '75%', delay: 1.2 },
-  { Icon: Sparkle, left: '85%', top: '52%', delay: 0.6 },
-] as const;
+const FAMILY = ['Cris', 'Sofia', 'Mateo'];
 
 const Motivation = () => {
   const { t } = useLanguage();
@@ -18,85 +12,54 @@ const Motivation = () => {
     threshold: 0.1,
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
-    },
-  };
+  const title = t('motivation.title');
+  const heading = title === 'motivation.title' ? t('motivation.heading') : title;
+  const text = t('motivation.text');
+  const body =
+    text === 'motivation.text'
+      ? 'This portfolio was created with love for my wife Cris, my daughter Sofia, and my son Mateo. It reflects my journey as a developer, educator, and lifelong learner.'
+      : text;
 
   return (
     <section
       id="motivation"
-      className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden"
+      className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        {backgroundIcons.map(({ Icon, left, top, delay }, index) => (
-          <motion.div
-            key={index}
-            className="absolute text-orange-300 dark:text-orange-900 opacity-30 dark:opacity-20 blur-sm"
-            style={{ left, top }}
-            animate={{ y: [0, -20, 0], opacity: [0.2, 0.5, 0.2] }}
-            transition={{ duration: 7, repeat: Infinity, delay }}
-          >
-            <Icon className="w-12 h-12 md:w-16 md:h-16" />
-          </motion.div>
-        ))}
-      </div>
-
       <motion.div
         ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        className="relative z-10 max-w-4xl mx-auto px-6 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 max-w-3xl mx-auto px-6"
       >
-        <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 mb-6 rounded-full bg-white shadow border border-orange-100 text-orange-600 font-semibold">
-          <Heart className="w-5 h-5" />
-          {t('motivation.heading')}
-        </motion.div>
+        <div className="bg-white dark:bg-gray-800 rounded-3xl border border-golden-orange/20 shadow-lg p-8 md:p-12 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-golden-orange/10 text-golden-orange font-semibold text-sm">
+            <Heart className="w-4 h-4" />
+            {t('navigation.story') === 'navigation.story' ? 'Story' : t('navigation.story')}
+          </div>
 
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-snug"
-        >
-          {(() => {
-            const title = t('motivation.title');
-            return title === 'motivation.title' ? 'Why I Built This Portfolio' : title;
-          })()}
-        </motion.h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-snug">
+            {heading}
+          </h2>
 
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed whitespace-pre-line"
-        >
-          {(() => {
-            const text = t('motivation.text');
-            return text === 'motivation.text'
-              ? 'This portfolio was created with love for my wife Cris, my daughter Sofia, and my son Mateo. It reflects my journey as a developer, educator, and lifelong learner. My experience spans data analytics, full-stack development, and educational technology, and I am passionate about building tools that empower others. Thank you to my family for their unwavering support and to all the mentors, colleagues, and students who have inspired me along the way.'
-              : text;
-          })()}
-        </motion.p>
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+            {body}
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {FAMILY.map((name) => (
+              <span
+                key={name}
+                className="px-4 py-1.5 rounded-full bg-golden-orange/10 text-golden-orange-dark dark:text-golden-orange text-sm font-medium"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
       </motion.div>
     </section>
   );
 };
 
 export default Motivation;
-

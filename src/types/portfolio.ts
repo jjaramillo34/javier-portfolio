@@ -35,6 +35,8 @@ export interface Project {
   technologies: string[];
   achievements: string[];
   link: string;
+  image?: string;
+  order?: number;
 }
 
 export interface Skill {

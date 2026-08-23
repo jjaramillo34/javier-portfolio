@@ -124,7 +124,93 @@
   ],
   "projects": [
     {
+      "id": 5,
+      "order": 1,
+      "title": "Michael Kellermann Foundation",
+      "titleEs": "Fundación Michael Kellermann",
+      "period": "2026",
+      "description": "Public site for MKF, a recovery foundation that funds private treatment and aftercare so people are not lost in a revolving-door clinic. Built around donate, programs, stories, and family support.",
+      "descriptionEs": "Sitio público de MKF, una fundación de recuperación que financia tratamiento privado y aftercare para que nadie se pierda en un sistema de puertas giratorias. Incluye donaciones, programas, testimonios y apoyo familiar.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+      "achievements": [
+        "Live site at mkfrecovery.org with donate, programs, and contact paths",
+        "Mission, recovery stories, and 30/60/90-day program structure",
+        "Quiet visual system around hope, sobriety, and community"
+      ],
+      "achievementsEs": [
+        "Sitio en mkfrecovery.org con donaciones, programas y contacto",
+        "Misión, testimonios y estructura de programas de 30/60/90 días",
+        "Sistema visual sereno centrado en esperanza, sobriedad y comunidad"
+      ],
+      "link": "https://mkfrecovery.org/",
+      "image": "/images/projects/mkf-recovery.jpg"
+    },
+    {
+      "id": 6,
+      "order": 2,
+      "title": "Miles for MBC",
+      "period": "2026",
+      "description": "Event site for the Howard Beach Color Fun Run that raises funds for metastatic breast cancer research through METAvivor. Covers registration, donations, sponsors, and local family stories.",
+      "descriptionEs": "Sitio del Color Fun Run de Howard Beach que recauda fondos para investigación de cáncer de mama metastásico a través de METAvivor. Incluye registro, donaciones, patrocinadores e historias de familias locales.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS"],
+      "achievements": [
+        "Live site at milesformbc.org for the #LightUpMBC fun run",
+        "Paths to register, donate, fundraise, and sponsor",
+        "Community stories that keep the cause personal"
+      ],
+      "achievementsEs": [
+        "Sitio en milesformbc.org para la carrera #LightUpMBC",
+        "Flujos para registrarse, donar, recaudar y patrocinar",
+        "Historias de la comunidad que mantienen la causa presente"
+      ],
+      "link": "https://milesformbc.org/",
+      "image": "/images/projects/miles-for-mbc.jpg"
+    },
+    {
+      "id": 7,
+      "order": 3,
+      "title": "La Poetisa del Semáforo",
+      "period": "2026",
+      "description": "Literary site for Andrea Vaca Cifuentes: biography, gallery, La Luz Verde, and a poetry reader with a red-and-black visual voice.",
+      "descriptionEs": "Sitio literario de Andrea Vaca Cifuentes: biografía, galería, La Luz Verde y un lector de poemas con una voz visual en rojo y negro.",
+      "technologies": ["React", "Vite", "Vercel"],
+      "achievements": [
+        "Live at lapoetadelsemaforo.vercel.app",
+        "Book presentation with prologue, review, and cover views",
+        "Poem reader that keeps the traffic-light metaphor intact"
+      ],
+      "achievementsEs": [
+        "En línea en lapoetadelsemaforo.vercel.app",
+        "Presentación del libro con prólogo, reseña y portadas",
+        "Lector de poemas que conserva la metáfora del semáforo"
+      ],
+      "link": "https://lapoetadelsemaforo.vercel.app/",
+      "image": "/images/projects/la-poeta-del-semaforo.jpg"
+    },
+    {
+      "id": 8,
+      "order": 4,
+      "title": "Crissel Studio",
+      "period": "2026",
+      "description": "Booking-first site for a lash, brow, and makeup studio in Ambato: services, packages, gallery, and WhatsApp reservation.",
+      "descriptionEs": "Sitio orientado a reservas para un estudio de pestañas, cejas y maquillaje en Ambato: servicios, paquetes, galería y reserva por WhatsApp.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS"],
+      "achievements": [
+        "Live at crisselstudio.makeup with Spanish-first copy",
+        "Services, bundles, before/after gallery, and online booking",
+        "Local presence for Centro Comercial La Galería, Ambato"
+      ],
+      "achievementsEs": [
+        "En línea en crisselstudio.makeup, escrito primero en español",
+        "Servicios, paquetes, galería de antes y después, y reserva online",
+        "Presencia local en el Centro Comercial La Galería, Ambato"
+      ],
+      "link": "https://www.crisselstudio.makeup/",
+      "image": "/images/projects/crissel-studio.jpg"
+    },
+    {
       "id": 1,
+      "order": 5,
       "title": "Website Portfolio",
       "period": "Apr 2019 - Present",
       "description": "Modern portfolio website with content management system",
@@ -138,6 +224,7 @@
     },
     {
       "id": 2,
+      "order": 6,
       "title": "Iconyc - BigApps Competition",
       "period": "May 2014 - Jul 2014",
       "description": "Photo-sharing and crowdsourcing app for NYC landmarks",
@@ -151,6 +238,7 @@
     },
     {
       "id": 3,
+      "order": 7,
       "title": "Power Solar PR Project",
       "period": "2022 - 2023",
       "description": "Solar power management system for Puerto Rico",
@@ -164,6 +252,7 @@
     },
     {
       "id": 4,
+      "order": 8,
       "title": "SMS Notifications System",
       "period": "2023",
       "description": "Automated notification system with cloud deployment",
@@ -526,8 +615,9 @@
         "experience": "Experience",
         "projects": "Projects",
         "skills": "Skills",
-        "certifications": "Certifications",
-        "testimonials": "Testimonials",
+        "certifications": "Certs",
+        "testimonials": "Quotes",
+        "story": "Story",
         "contact": "Contact"
       },
       "hero": {
@@ -606,15 +696,18 @@
         "nameLabel": "Name",
         "emailLabel": "Email",
         "messageLabel": "Message",
-        "messagePlaceholder": "Tell me about your project or idea..."
+        "messagePlaceholder": "Tell me about your project or idea...",
+        "phoneLabel": "Phone",
+        "locationLabel": "Location",
+        "sendAMessage": "Send a message",
+        "successTitle": "Message sent",
+        "success": "Thanks for reaching out. I’ll get back to you shortly."
       },
       "footer": {
-        "quickLinks": "Quick Links",
-        "letsConnect": "Let's Connect",
-        "linkedinProfile": "LinkedIn Profile",
-        "backToTop": "Back to Top",
-        "madeWith": "Made with",
-        "and": "and"
+        "credit": "Built with React",
+        "email": "Email",
+        "linkedin": "LinkedIn",
+        "connect": "Connect"
       },
       "motivation": {
         "heading": "Why I Built This Portfolio",
@@ -628,8 +721,9 @@
         "experience": "Experiencia",
         "projects": "Proyectos",
         "skills": "Habilidades",
-        "certifications": "Certificaciones",
-        "testimonials": "Testimonios",
+        "certifications": "Cursos",
+        "testimonials": "Voces",
+        "story": "Historia",
         "contact": "Contacto"
       },
       "hero": {
@@ -708,15 +802,18 @@
         "nameLabel": "Nombre",
         "emailLabel": "Correo",
         "messageLabel": "Mensaje",
-        "messagePlaceholder": "Cuéntame sobre tu proyecto o idea..."
+        "messagePlaceholder": "Cuéntame sobre tu proyecto o idea...",
+        "phoneLabel": "Teléfono",
+        "locationLabel": "Ubicación",
+        "sendAMessage": "Enviar un mensaje",
+        "successTitle": "Mensaje enviado",
+        "success": "Gracias por escribirme. Te responderé pronto."
       },
       "footer": {
-        "quickLinks": "Enlaces Rápidos",
-        "letsConnect": "Conectemos",
-        "linkedinProfile": "Perfil de LinkedIn",
-        "backToTop": "Volver Arriba",
-        "madeWith": "Hecho con",
-        "and": "y"
+        "credit": "Hecho con React",
+        "email": "Correo",
+        "linkedin": "LinkedIn",
+        "connect": "Conectar"
       },
       "motivation": {
         "heading": "Por Qué Creé Este Portafolio",

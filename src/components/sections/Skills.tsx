@@ -8,36 +8,22 @@ import {
   BarChart3,
   Globe,
   Wrench,
-  FileCode,
-  Coffee,
-  FileText,
-  Atom,
-  Server,
-  Code2,
-  Wind,
-  BarChart2,
-  PieChart,
-  FileSpreadsheet,
-  CloudSun,
-  Zap,
-  Leaf,
-  GitBranch,
-  AppWindow,
-  Repeat,
-  Sliders,
   Award,
 } from 'lucide-react';
-import { SkillCategory } from '../../types/portfolio';
+import { Skill, SkillCategory } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 interface SkillsProps {
   skills: SkillCategory;
 }
 
+const CORE_LEVEL = 85;
+
 const Skills = ({ skills }: SkillsProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05,
+    rootMargin: '120px 0px',
   });
   const { t } = useLanguage();
 
@@ -53,267 +39,172 @@ const Skills = ({ skills }: SkillsProps) => {
     [skills],
   );
 
+  const skillCategories = [
+    { title: t('skills.programmingLanguages'), icon: Code, skills: normalizedSkills.languages },
+    { title: t('skills.frontendDevelopment'), icon: Globe, skills: normalizedSkills.frontend },
+    { title: t('skills.dataVisualization'), icon: BarChart3, skills: normalizedSkills.dataVisualization },
+    { title: t('skills.cloudPlatforms'), icon: Cloud, skills: normalizedSkills.cloud },
+    { title: t('skills.databases'), icon: Database, skills: normalizedSkills.databases },
+    { title: t('skills.toolsTechnologies'), icon: Wrench, skills: normalizedSkills.tools },
+  ];
+
+  const featuredSkills = useMemo(() => {
+    const allSkills = Object.values(normalizedSkills).flat();
+    return [...allSkills]
+      .sort((a, b) => (b.level ?? 0) - (a.level ?? 0))
+      .filter((skill, index, list) => list.findIndex((item) => item.name === skill.name) === index)
+      .slice(0, 8)
+      .map((skill) => skill.name);
+  }, [normalizedSkills]);
+
+  const splitSkills = (categorySkills: Skill[]) => {
+    const sorted = [...categorySkills].sort((a, b) => (b.level ?? 0) - (a.level ?? 0));
+    return {
+      core: sorted.filter((skill) => (skill.level ?? 0) >= CORE_LEVEL),
+      familiar: sorted.filter((skill) => (skill.level ?? 0) < CORE_LEVEL),
+    };
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.1,
-      },
+      transition: { duration: 0.6, staggerChildren: 0.08 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, ease: 'easeOut' },
     },
   };
 
-  const skillCategories = [
-    {
-      title: t('skills.programmingLanguages'),
-      icon: Code,
-      skills: skills.languages,
-      color: 'from-golden-orange to-golden-orange-dark',
-      bgColor: 'from-golden-orange-light/20 to-golden-orange/20',
-    },
-    {
-      title: t('skills.frontendDevelopment'),
-      icon: Globe,
-      skills: skills.frontend,
-      color: 'from-golden-orange-dark to-golden-orange',
-      bgColor: 'from-golden-orange/20 to-golden-orange-light/20',
-    },
-    {
-      title: t('skills.dataVisualization'),
-      icon: BarChart3,
-      skills: skills.dataVisualization,
-      color: 'from-golden-orange to-golden-orange-light',
-      bgColor: 'from-golden-orange-light/30 to-golden-orange/10',
-    },
-    {
-      title: t('skills.cloudPlatforms'),
-      icon: Cloud,
-      skills: skills.cloud,
-      color: 'from-golden-orange-light to-golden-orange',
-      bgColor: 'from-golden-orange/10 to-golden-orange-light/30',
-    },
-    {
-      title: t('skills.databases'),
-      icon: Database,
-      skills: skills.databases,
-      color: 'from-golden-orange-dark to-golden-orange-light',
-      bgColor: 'from-golden-orange-light/25 to-golden-orange-dark/15',
-    },
-    {
-      title: t('skills.toolsTechnologies'),
-      icon: Wrench,
-      skills: skills.tools,
-      color: 'from-golden-orange-light to-golden-orange-dark',
-      bgColor: 'from-golden-orange-dark/15 to-golden-orange-light/25',
-    },
-  ];
+  const coreLabel = t('skills.core') === 'skills.core' ? 'Core' : t('skills.core');
+  const familiarLabel = t('skills.familiar') === 'skills.familiar' ? 'Also use' : t('skills.familiar');
 
-  const skillIcons: Record<string, JSX.Element> = {
-    'Python': <Code className="w-5 h-5 text-blue-400 inline-block mr-2" />,
-    'JavaScript': <FileCode className="w-5 h-5 text-yellow-400 inline-block mr-2" />,
-    'TypeScript': <FileCode className="w-5 h-5 text-blue-500 inline-block mr-2" />,
-    'SQL': <Database className="w-5 h-5 text-green-400 inline-block mr-2" />,
-    'Java': <Coffee className="w-5 h-5 text-amber-800 inline-block mr-2" />,
-    'VBA': <FileText className="w-5 h-5 text-purple-500 inline-block mr-2" />,
-    'React.js': <Atom className="w-5 h-5 text-sky-400 inline-block mr-2" />,
-    'Node.js': <Server className="w-5 h-5 text-green-500 inline-block mr-2" />,
-    'HTML/CSS': <Code2 className="w-5 h-5 text-orange-400 inline-block mr-2" />,
-    'Tailwind CSS': <Wind className="w-5 h-5 text-teal-400 inline-block mr-2" />,
-    'Power BI': <BarChart3 className="w-5 h-5 text-yellow-400 inline-block mr-2" />,
-    'Tableau': <BarChart2 className="w-5 h-5 text-blue-400 inline-block mr-2" />,
-    'Qlik': <PieChart className="w-5 h-5 text-green-500 inline-block mr-2" />,
-    'Excel': <FileSpreadsheet className="w-5 h-5 text-green-600 inline-block mr-2" />,
-    'AWS': <Cloud className="w-5 h-5 text-orange-400 inline-block mr-2" />,
-    'Azure': <CloudSun className="w-5 h-5 text-blue-500 inline-block mr-2" />,
-    'Power Platform': <Zap className="w-5 h-5 text-purple-500 inline-block mr-2" />,
-    'MongoDB': <Leaf className="w-5 h-5 text-green-600 inline-block mr-2" />,
-    'SQL Server': <Database className="w-5 h-5 text-red-500 inline-block mr-2" />,
-    'DB2': <Database className="w-5 h-5 text-blue-700 inline-block mr-2" />,
-    'Git': <GitBranch className="w-5 h-5 text-orange-500 inline-block mr-2" />,
-    'Power Apps': <AppWindow className="w-5 h-5 text-purple-500 inline-block mr-2" />,
-    'Power Automate': <Repeat className="w-5 h-5 text-blue-500 inline-block mr-2" />,
-    'Streamlit': <Sliders className="w-5 h-5 text-pink-400 inline-block mr-2" />,
-    'Google Cloud': <Cloud className="w-5 h-5 text-orange-400 inline-block mr-2" />,
-  };
-
-  const SkillBar = ({ skill, delay, color }: { skill: { name: string; level: number }, delay: number, color: string }) => {
-    return (
-      <div className="mb-6">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-white font-medium">
-            {skillIcons[skill.name] || null}{skill.name}
-          </span>
-          <span className="text-gray-200 text-sm font-semibold">{skill.level}%</span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-          <motion.div
-            className={`h-full bg-gradient-to-r ${color} rounded-full relative`}
-            initial={{ width: 0 }}
-            animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-            transition={{ duration: 1.5, delay, ease: "easeOut" }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-white/20"
-              animate={{
-                x: ['-100%', '100%'],
-              }}
-              transition={{
-                duration: 2,
-                delay: delay + 1.5,
-                ease: "linear",
-              }}
-            />
-          </motion.div>
-        </div>
-      </div>
-    );
-  };
+  const SkillChips = ({ items, featured = false }: { items: Skill[]; featured?: boolean }) => (
+    <div className="flex flex-wrap gap-2">
+      {items.map((skill) => (
+        <span
+          key={skill.name}
+          className={`px-3 py-1.5 rounded-full text-sm font-medium border ${
+            featured
+              ? 'bg-golden-orange text-white border-golden-orange'
+              : 'bg-golden-orange/10 text-golden-orange-dark dark:text-golden-orange border-golden-orange/20'
+          }`}
+        >
+          {skill.name}
+        </span>
+      ))}
+    </div>
+  );
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-20">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-              backgroundImage: `url('/images/coding-bg.jpg')`,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 to-gray-800/90"></div>
-        </div>
-      </div>
-
-      {/* Animated particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-golden-orange to-golden-orange-light rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 1, 0.3],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
+    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={inView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-golden-orange to-golden-orange-light bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-golden-orange to-golden-orange-dark bg-clip-text text-transparent"
           >
             {t('skills.heading')}
           </motion.h2>
-          <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-golden-orange to-golden-orange-dark mx-auto mb-8"></motion.div>
-          <motion.p 
+          <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-golden-orange to-golden-orange-dark mx-auto mb-8" />
+          <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
             {t('skills.subheading')}
           </motion.p>
-          <motion.span variants={itemVariants} className="text-gray-500 text-sm">
-            {t('skills.subheading2')}
-          </motion.span>
         </motion.div>
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={inView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          {skillCategories.map((category, categoryIndex) => {
-            const categorySkills = category.skills ?? [];
-            const sortedSkills = [...categorySkills].sort(
-              (a, b) => (b?.level ?? 0) - (a?.level ?? 0),
-            );
-            return (
-            <motion.div
-              key={categoryIndex}
-              variants={itemVariants}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-orange-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/10"
-              whileHover={{ scale: 1.02 }}
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <div className={`p-4 bg-gradient-to-br ${category.bgColor} rounded-xl`}>
-                  <category.icon className="w-8 h-8 text-orange-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
-              </div>
+          {skillCategories.map((category) => {
+            const { core, familiar } = splitSkills(category.skills);
+            const Icon = category.icon;
 
-              <div className="space-y-6">
-                {sortedSkills.length > 0 ? (
-                  sortedSkills.map((skill, skillIndex) => (
-                  <SkillBar
-                    key={skillIndex}
-                    skill={skill}
-                    delay={categoryIndex * 0.2 + skillIndex * 0.1}
-                    color={category.color}
-                  />
-                  ))
-                ) : (
+            return (
+              <motion.div
+                key={category.title}
+                variants={itemVariants}
+                className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-lg"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-golden-orange/10 rounded-xl">
+                    <Icon className="w-6 h-6 text-golden-orange" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
+                </div>
+
+                {core.length === 0 && familiar.length === 0 ? (
                   <div className="flex items-center gap-2 text-sm text-gray-400 italic">
-                    <Award className="w-4 h-4 text-gray-500" />
-                    {t('skills.noSkills') ?? 'Skills coming soon.'}
+                    <Award className="w-4 h-4" />
+                    {t('skills.noSkills') === 'skills.noSkills' ? 'Skills coming soon.' : t('skills.noSkills')}
+                  </div>
+                ) : (
+                  <div className="space-y-5">
+                    {core.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-golden-orange mb-2">
+                          {coreLabel}
+                        </p>
+                        <SkillChips items={core} featured />
+                      </div>
+                    )}
+                    {familiar.length > 0 && (
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
+                          {familiarLabel}
+                        </p>
+                        <SkillChips items={familiar} />
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
-            </motion.div>
+              </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Featured skills highlight */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="mt-16 text-center"
-        >
-          <motion.div variants={itemVariants} className="inline-flex flex-wrap items-center justify-center gap-4">
-            {['Python', 'React.js', 'Power BI', 'SQL', 'TypeScript', 'Tableau', 'AWS', 'Node.js'].map((skill, index) => (
-              <motion.span
-                key={skill}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500/20 to-green-500/20 border border-orange-500/30 text-white font-semibold rounded-full backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                transition={{ delay: index * 0.1 + 1 }}
-                whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
-              >
-                {skill}
-              </motion.span>
-            ))}
+        {featuredSkills.length > 0 && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            className="mt-16 text-center"
+          >
+            <motion.p
+              variants={itemVariants}
+              className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4"
+            >
+              {t('skills.featured') === 'skills.featured' ? 'Most used' : t('skills.featured')}
+            </motion.p>
+            <motion.div variants={itemVariants} className="inline-flex flex-wrap items-center justify-center gap-3">
+              {featuredSkills.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-5 py-2 bg-white dark:bg-gray-800 border border-golden-orange/30 text-gray-800 dark:text-white font-semibold rounded-full"
+                >
+                  {skill}
+                </span>
+              ))}
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
       </div>
     </section>
   );

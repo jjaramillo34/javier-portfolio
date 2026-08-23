@@ -27,7 +27,7 @@ const Loading = () => {
           
           {/* Center dot */}
           <motion.div
-            className="absolute inset-8 bg-gradient-to-br from-orange-500 to-green-500 rounded-full"
+            className="absolute inset-8 bg-gradient-to-br from-golden-orange to-golden-orange-dark rounded-full"
             animate={{ scale: [1, 1.2, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
           />
@@ -35,7 +35,7 @@ const Loading = () => {
 
         {/* Loading text */}
         <motion.h2
-          className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-green-400 bg-clip-text text-transparent mb-4"
+          className="text-2xl font-bold bg-gradient-to-r from-golden-orange to-golden-orange-dark bg-clip-text text-transparent mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -48,7 +48,7 @@ const Loading = () => {
           {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
-              className="w-3 h-3 bg-gradient-to-r from-orange-500 to-green-500 rounded-full"
+              className="w-3 h-3 bg-gradient-to-r from-golden-orange to-golden-orange-dark rounded-full"
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [0.5, 1, 0.5],

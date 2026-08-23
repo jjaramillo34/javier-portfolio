@@ -221,6 +221,8 @@ const mapProjects = (entries: ContentfulEntry<ProjectFields>[]): Project[] =>
     technologies: entry.fields.technologies ?? [],
     achievements: entry.fields.achievements ?? [],
     link: entry.fields.link,
+    image: entry.fields.image,
+    order: entry.fields.order,
   }));
 
 const mapSkills = (entries: ContentfulEntry<SkillFields>[]): SkillCategory => {

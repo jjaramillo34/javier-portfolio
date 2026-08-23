@@ -14,6 +14,7 @@ import Testimonials from './components/sections/Testimonials';
 import Contact from './components/sections/Contact';
 import Motivation from './components/sections/Motivation';
 import Footer from './components/sections/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function AppContent() {
   const { data, loading, error } = usePortfolioData();
@@ -41,7 +42,7 @@ function AppContent() {
           </p>
           <button 
             onClick={() => window.location.reload()}
-            className="px-8 py-3 bg-gradient-to-r from-orange-500 to-green-500 rounded-lg font-semibold hover:from-orange-600 hover:to-green-600 transition-all duration-300"
+            className="px-8 py-3 bg-gradient-to-r from-golden-orange to-golden-orange-dark rounded-lg font-semibold hover:from-golden-orange-dark hover:to-golden-orange transition-all duration-300"
           >
             Try Again
           </button>
@@ -96,6 +97,7 @@ function AppContent() {
           <Footer personalInfo={data.personalInfo} />
         </main>
       </div>
+      <ScrollToTop />
     </div>
   );
 }
