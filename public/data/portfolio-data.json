@@ -209,22 +209,51 @@
       "image": "/images/projects/crissel-studio.jpg"
     },
     {
-      "id": 1,
+      "id": 9,
       "order": 5,
-      "title": "Website Portfolio",
-      "period": "Apr 2019 - Present",
-      "description": "Modern portfolio website with content management system",
-      "technologies": ["React.js", "Node.js", "Sanity.io", "TypeScript"],
+      "title": "Private Dining Pros",
+      "period": "2026",
+      "description": "NYC private dining directory for restaurants, rooftops, and event rooms. Search by neighborhood, browse verified venues, and plan celebrations on a map.",
+      "descriptionEs": "Directorio de cenas privadas en NYC: restaurantes, rooftops y salas para eventos. Busca por barrio, explora locales verificados y planifica en el mapa.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "Map"],
       "achievements": [
-        "Over 500 unique visitors monthly",
-        "Integrated Sanity.io for dynamic content management",
-        "Responsive design with modern animations"
+        "Live at privatediningpros.com with 154+ venues and 339+ rooms",
+        "Verified listings across 72 neighborhoods",
+        "Featured venues, rooftops, and an interactive map"
       ],
-      "link": "#"
+      "achievementsEs": [
+        "En línea en privatediningpros.com con más de 154 locales y 339 salas",
+        "Listados verificados en 72 barrios",
+        "Locales destacados, rooftops y mapa interactivo"
+      ],
+      "link": "https://www.privatediningpros.com/",
+      "image": "/images/projects/private-dining-pros.jpg"
+    },
+    {
+      "id": 1,
+      "order": 6,
+      "title": "Website Portfolio",
+      "titleEs": "Portafolio Web",
+      "period": "Apr 2019 - Present",
+      "description": "This site: a bilingual portfolio with Contentful, theme and language controls, and a vertical nav built for recruiters and clients.",
+      "descriptionEs": "Este sitio: un portafolio bilingüe con Contentful, controles de tema e idioma, y una navegación vertical pensada para reclutadores y clientes.",
+      "technologies": ["React", "TypeScript", "Contentful", "Vite"],
+      "achievements": [
+        "Live at jaramillohub.com",
+        "English and Spanish copy from Contentful",
+        "Light and dark theme with a persistent sidebar"
+      ],
+      "achievementsEs": [
+        "En línea en jaramillohub.com",
+        "Textos en inglés y español desde Contentful",
+        "Tema claro y oscuro con barra lateral persistente"
+      ],
+      "link": "https://www.jaramillohub.com/",
+      "image": "/images/projects/website-portfolio.jpg"
     },
     {
       "id": 2,
-      "order": 6,
+      "order": 7,
       "title": "Iconyc - BigApps Competition",
       "period": "May 2014 - Jul 2014",
       "description": "Photo-sharing and crowdsourcing app for NYC landmarks",
@@ -238,21 +267,29 @@
     },
     {
       "id": 3,
-      "order": 7,
+      "order": 8,
       "title": "Power Solar PR Project",
+      "titleEs": "Proyecto Power Solar PR",
       "period": "2022 - 2023",
-      "description": "Solar power management system for Puerto Rico",
+      "description": "Interactive map of solar customers across Puerto Rico: clusters, heatmaps, municipality filters, and ML analytics on 13K+ installations.",
+      "descriptionEs": "Mapa interactivo de clientes solares en Puerto Rico: clusters, mapas de calor, filtros por municipio y analytics con ML sobre más de 13 mil instalaciones.",
       "technologies": ["React", "Mapbox", "Geographic Analysis", "Data Visualization"],
       "achievements": [
-        "Geographical analysis for operational efficiency",
-        "Interactive map visualization of solar installations",
-        "Real-time monitoring dashboard"
+        "Live at powersolarpr-nu.vercel.app",
+        "Coverage across 78 municipalities and 13K+ solar customers",
+        "Cluster, heatmap, 3D, and ML analytics views"
       ],
-      "link": "#"
+      "achievementsEs": [
+        "En línea en powersolarpr-nu.vercel.app",
+        "Cobertura en 78 municipios y más de 13 mil clientes solares",
+        "Vistas de clusters, mapa de calor, 3D y analytics con ML"
+      ],
+      "link": "https://powersolarpr-nu.vercel.app/",
+      "image": "/images/projects/power-solar-pr.jpg"
     },
     {
       "id": 4,
-      "order": 8,
+      "order": 9,
       "title": "SMS Notifications System",
       "period": "2023",
       "description": "Automated notification system with cloud deployment",
