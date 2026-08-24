@@ -129,19 +129,27 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                             {impactLabel}
                           </p>
                           <p className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
-                            {job.achievements[0]}
+                            {job.achievements.find((achievement) => /\d|%|\+|x\b/i.test(achievement)) ??
+                              job.achievements[0]}
                           </p>
                         </div>
                         <ul className="space-y-2">
-                          {job.achievements.slice(1).map((achievement) => (
-                            <li
-                              key={achievement}
-                              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                            >
-                              <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
-                              <span className="leading-relaxed">{achievement}</span>
-                            </li>
-                          ))}
+                          {job.achievements
+                            .filter(
+                              (achievement) =>
+                                achievement !==
+                                (job.achievements.find((item) => /\d|%|\+|x\b/i.test(item)) ??
+                                  job.achievements[0]),
+                            )
+                            .map((achievement) => (
+                              <li
+                                key={achievement}
+                                className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
+                              >
+                                <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
+                                <span className="leading-relaxed">{achievement}</span>
+                              </li>
+                            ))}
                         </ul>
                       </>
                     ) : (

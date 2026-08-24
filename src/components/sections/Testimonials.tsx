@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useMemo, useState } from 'react';
-import { Quote } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 import { Testimonial } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -51,6 +51,15 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
     activeFilter === 'all'
       ? normalizedTestimonials
       : normalizedTestimonials.filter((testimonial) => testimonial.relationshipType === activeFilter);
+  const featuredTestimonial =
+    filteredTestimonials.find(
+      (testimonial) =>
+        testimonial.relationshipType === 'manager' || testimonial.relationshipType === 'client',
+    ) ?? filteredTestimonials[0];
+  const featuredLabel =
+    t('testimonials.featured') === 'testimonials.featured'
+      ? 'Featured recommendation'
+      : t('testimonials.featured');
 
   const toggleExpanded = (id: number) => {
     setExpandedCards((current) => {
@@ -123,6 +132,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
           >
             {filteredTestimonials.map((testimonial) => {
               const isLong = testimonial.quote.length > 220;
+              const isFeatured = testimonial.id === featuredTestimonial?.id;
               const relationshipLabel = t(
                 `testimonials.relationshipTypes.${testimonial.relationshipType}`,
               );
@@ -135,10 +145,28 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                 <motion.article
                   key={testimonial.id}
                   variants={itemVariants}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm"
+                  className={`rounded-2xl border p-6 shadow-sm ${
+                    isFeatured
+                      ? 'border-golden-orange/30 bg-gradient-to-br from-golden-orange/10 via-white to-white md:col-span-2 dark:from-golden-orange/15 dark:via-gray-800 dark:to-gray-800'
+                      : 'border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800'
+                  }`}
                 >
-                  <Quote className="w-8 h-8 text-golden-orange mb-4" />
-                  <blockquote className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                  <div className="mb-4 flex items-center justify-between gap-3">
+                    <Quote className={`${isFeatured ? 'h-10 w-10' : 'h-8 w-8'} text-golden-orange`} />
+                    {isFeatured && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-golden-orange/10 px-3 py-1 text-xs font-semibold text-golden-orange">
+                        <Star className="h-3.5 w-3.5" />
+                        {featuredLabel}
+                      </span>
+                    )}
+                  </div>
+                  <blockquote
+                    className={`leading-relaxed mb-4 ${
+                      isFeatured
+                        ? 'max-w-4xl text-lg text-gray-800 dark:text-gray-100 md:text-xl'
+                        : 'text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
                     “{shownQuote}”
                   </blockquote>
                   {isLong && (
