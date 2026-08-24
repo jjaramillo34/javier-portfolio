@@ -58,6 +58,7 @@ const Projects = ({ projects }: ProjectsProps) => {
   const highlightsLabel = label('projects.keyAchievements', language === 'es' ? 'Logros clave' : 'Key achievements');
   const featuredLabel = label('projects.featured', language === 'es' ? 'Trabajo destacado' : 'Featured work');
   const allProjectsLabel = label('projects.allProjects', language === 'es' ? 'Todos los proyectos' : 'All projects');
+  const caseStudyLabel = label('projects.caseStudy', language === 'es' ? 'Caso de estudio' : 'Case study');
 
   const sanitizedProjects = useMemo<ProjectCard[]>(
     () =>
@@ -158,10 +159,31 @@ const Projects = ({ projects }: ProjectsProps) => {
                 >
                   <img src={project.cover} alt="" className="h-36 w-full object-cover" />
                   <div className="p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-golden-orange">
+                      {caseStudyLabel}
+                    </p>
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white">{project.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
                       {project.description}
                     </p>
+                    {project.achievements.length > 0 && (
+                      <div className="mt-4">
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-gray-500 dark:text-gray-400">
+                          {highlightsLabel}
+                        </p>
+                        <ul className="space-y-1.5">
+                          {project.achievements.slice(0, 2).map((achievement) => (
+                            <li
+                              key={achievement}
+                              className="flex items-start gap-2 text-xs leading-relaxed text-gray-600 dark:text-gray-300"
+                            >
+                              <CheckCircle className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-golden-orange" />
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                     <div className="mt-4 flex flex-wrap gap-2">
                       <button
                         type="button"
