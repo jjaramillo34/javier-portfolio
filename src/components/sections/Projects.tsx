@@ -204,7 +204,13 @@ const Projects = ({ projects }: ProjectsProps) => {
                   variants={itemVariants}
                   className="overflow-hidden rounded-2xl border border-golden-orange/20 bg-white shadow-md dark:bg-gray-800 dark:border-golden-orange/30"
                 >
-                  <img src={project.cover} alt="" className="h-36 w-full object-cover" />
+                  <img
+                    src={project.cover}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="h-36 w-full object-cover"
+                  />
                   <div className="p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-golden-orange">
                       {caseStudyLabel}
@@ -292,6 +298,8 @@ const Projects = ({ projects }: ProjectsProps) => {
                     <img
                       src={project.cover}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-golden-orange/20" />
@@ -366,7 +374,12 @@ const Projects = ({ projects }: ProjectsProps) => {
           {selected && (
             <>
               <div className="relative h-48 sm:h-56 overflow-hidden">
-                <img src={selected.cover} alt="" className="w-full h-full object-cover" />
+                <img
+                  src={selected.cover}
+                  alt=""
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent" />
               </div>
               <div className="p-6 sm:p-8">

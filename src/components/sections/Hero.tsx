@@ -191,6 +191,9 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
               <img
                 src="/images/myself.png"
                 alt={personalInfo.name}
+                width="256"
+                height="256"
+                fetchPriority="high"
                 className="relative w-full h-full object-cover rounded-full border-4 border-golden-orange/30 shadow-2xl"
               />
             </div>
