@@ -218,6 +218,7 @@ const mapProjects = (entries: ContentfulEntry<ProjectFields>[]): Project[] =>
     title: entry.fields.title,
     period: entry.fields.period,
     description: entry.fields.description,
+    category: entry.fields.category,
     technologies: entry.fields.technologies ?? [],
     achievements: entry.fields.achievements ?? [],
     link: entry.fields.link,
@@ -368,4 +369,3 @@ export const fetchPortfolioDataFromContentful = async (): Promise<PortfolioData>
     translations,
   };
 };
-
