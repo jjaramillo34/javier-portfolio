@@ -28,11 +28,14 @@ export interface Education {
   location: string;
 }
 
+export type ProjectCategory = 'data' | 'full-stack' | 'automation';
+
 export interface Project {
   id: number;
   title: string;
   period: string;
   description: string;
+  category?: ProjectCategory;
   technologies: string[];
   achievements: string[];
   link: string;
