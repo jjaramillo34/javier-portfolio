@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { usePortfolioData } from './hooks/usePortfolioData';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -18,16 +17,6 @@ import ScrollToTop from './components/ScrollToTop';
 import type { PortfolioData } from './types/portfolio';
 
 function AppContent({ data }: { data: PortfolioData }) {
-
-  useEffect(() => {
-    // Smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 max-w-[100vw] mx-auto overflow-x-hidden">
       <div className="flex flex-col lg:flex-row w-full">
