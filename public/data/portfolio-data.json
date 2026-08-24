@@ -729,6 +729,7 @@
         "filterColleague": "Colleagues", 
         "filterTeacher": "Teachers",
         "filterClient": "Clients",
+        "featured": "Featured recommendation",
         "relationshipTypes": {
           "manager": "Former Manager",
           "colleague": "Former Colleague",
@@ -851,6 +852,7 @@
         "filterColleague": "Colegas",
         "filterTeacher": "Profesores",
         "filterClient": "Clientes",
+        "featured": "Recomendación destacada",
         "relationshipTypes": {
           "manager": "Ex Gerente",
           "colleague": "Ex Colega",
