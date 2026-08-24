@@ -724,6 +724,7 @@
       "testimonials": {
         "heading": "What People Say",
         "subheading": "Testimonials from colleagues, managers, and clients who have worked with me",
+        "filterLabel": "Filter testimonials by relationship",
         "filterAll": "All",
         "filterManager": "Managers",
         "filterColleague": "Colleagues", 
@@ -847,6 +848,7 @@
       "testimonials": {
         "heading": "Lo Que Dicen de Mí",
         "subheading": "Testimonios de colegas, gerentes y clientes que han trabajado conmigo",
+        "filterLabel": "Filtrar testimonios por relación",
         "filterAll": "Todos",
         "filterManager": "Gerentes",
         "filterColleague": "Colegas",
