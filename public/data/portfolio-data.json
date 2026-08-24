@@ -686,6 +686,7 @@
       "experience": {
         "heading": "Professional Experience",
         "present": "Present",
+        "currentRole": "Current role",
         "years": "years",
         "months": "months"
       },
@@ -806,6 +807,7 @@
       "experience": {
         "heading": "Experiencia Profesional",
         "present": "Presente",
+        "currentRole": "Rol actual",
         "years": "años",
         "months": "meses"
       },

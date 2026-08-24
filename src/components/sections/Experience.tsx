@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Building, MapPin, Calendar, CheckCircle } from 'lucide-react';
+import { Building, MapPin, Calendar, CheckCircle, BriefcaseBusiness } from 'lucide-react';
 import { WorkExperience } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -24,6 +24,10 @@ const Experience = ({ workExperience }: ExperienceProps) => {
     t('experience.noAchievements') === 'experience.noAchievements'
       ? 'Highlights coming soon.'
       : t('experience.noAchievements');
+  const currentRoleLabel =
+    t('experience.currentRole') === 'experience.currentRole'
+      ? 'Current role'
+      : t('experience.currentRole');
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.08 } },
@@ -90,6 +94,12 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                         <Calendar className="w-4 h-4" />
                         {job.period}
                       </span>
+                      {current && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-golden-orange/10 px-2.5 py-1 text-xs font-semibold text-golden-orange">
+                          <BriefcaseBusiness className="h-3.5 w-3.5" />
+                          {currentRoleLabel}
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
