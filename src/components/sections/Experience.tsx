@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Building, MapPin, Calendar, CheckCircle } from 'lucide-react';
+import { Building, MapPin, Calendar, CheckCircle, BriefcaseBusiness } from 'lucide-react';
 import { WorkExperience } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -24,6 +24,14 @@ const Experience = ({ workExperience }: ExperienceProps) => {
     t('experience.noAchievements') === 'experience.noAchievements'
       ? 'Highlights coming soon.'
       : t('experience.noAchievements');
+  const currentRoleLabel =
+    t('experience.currentRole') === 'experience.currentRole'
+      ? 'Current role'
+      : t('experience.currentRole');
+  const impactLabel =
+    t('experience.impactHighlight') === 'experience.impactHighlight'
+      ? 'Impact highlight'
+      : t('experience.impactHighlight');
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.08 } },
@@ -90,6 +98,12 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                         <Calendar className="w-4 h-4" />
                         {job.period}
                       </span>
+                      {current && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-golden-orange/10 px-2.5 py-1 text-xs font-semibold text-golden-orange">
+                          <BriefcaseBusiness className="h-3.5 w-3.5" />
+                          {currentRoleLabel}
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
@@ -109,17 +123,27 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                     </div>
 
                     {job.achievements?.length ? (
-                      <ul className="space-y-2">
-                        {job.achievements.map((achievement) => (
-                          <li
-                            key={achievement}
-                            className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                          >
-                            <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
-                            <span className="leading-relaxed">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <>
+                        <div className="mb-4 rounded-xl border border-golden-orange/15 bg-golden-orange/5 p-4">
+                          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-golden-orange">
+                            {impactLabel}
+                          </p>
+                          <p className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
+                            {job.achievements[0]}
+                          </p>
+                        </div>
+                        <ul className="space-y-2">
+                          {job.achievements.slice(1).map((achievement) => (
+                            <li
+                              key={achievement}
+                              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
+                            >
+                              <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
+                              <span className="leading-relaxed">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
                     ) : (
                       <p className="text-sm italic text-gray-500 dark:text-gray-400">{emptyLabel}</p>
                     )}

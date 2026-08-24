@@ -21,7 +21,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
 
   const normalizedTestimonials = useMemo(
     () =>
-      testimonials.map((testimonial) => ({
+      testimonials.map((testimonial, index) => ({
         ...testimonial,
         quote: testimonial.quote?.trim() ?? '',
         relationshipType: testimonial.relationshipType ?? 'colleague',
@@ -29,7 +29,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
         company: testimonial.company ?? '',
         position: testimonial.position ?? '',
         name: testimonial.name ?? 'Anonymous',
-        id: testimonial.id ?? Math.random(),
+        id: testimonial.id ?? index + 1,
       })),
     [testimonials],
   );
@@ -97,6 +97,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                 key={option.key}
                 type="button"
                 onClick={() => setActiveFilter(option.key)}
+                aria-pressed={activeFilter === option.key}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeFilter === option.key
                     ? 'bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white'
@@ -122,6 +123,9 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
           >
             {filteredTestimonials.map((testimonial) => {
               const isLong = testimonial.quote.length > 220;
+              const relationshipLabel = t(
+                `testimonials.relationshipTypes.${testimonial.relationshipType}`,
+              );
               const shownQuote =
                 !isLong || expandedCards.has(testimonial.id)
                   ? testimonial.quote
@@ -157,6 +161,13 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                       <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
                         {testimonial.position}
                         {testimonial.company ? ` · ${testimonial.company}` : ''}
+                      </p>
+                      <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
+                        {relationshipLabel ===
+                        `testimonials.relationshipTypes.${testimonial.relationshipType}`
+                          ? testimonial.relationship
+                          : relationshipLabel}
+                        {testimonial.date ? ` · ${testimonial.date}` : ''}
                       </p>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { TrendingUp, Users, Award, Calendar, GraduationCap } from 'lucide-react';
+import { TrendingUp, Users, Award, Calendar, GraduationCap, Workflow, Code2 } from 'lucide-react';
 import { PersonalInfo, Achievements, Education } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -15,7 +15,7 @@ const About = ({ personalInfo, achievements, education = [] }: AboutProps) => {
     triggerOnce: true,
     threshold: 0.1,
   });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -71,9 +71,36 @@ const About = ({ personalInfo, achievements, education = [] }: AboutProps) => {
     },
   ];
 
+  const focusAreas = [
+    {
+      icon: TrendingUp,
+      title: language === 'es' ? 'Datos accionables' : 'Actionable data',
+      description:
+        language === 'es'
+          ? 'Convierto datos complejos en decisiones claras y medibles.'
+          : 'Turning complex data into clear, measurable decisions.',
+    },
+    {
+      icon: Workflow,
+      title: language === 'es' ? 'Procesos eficientes' : 'Efficient processes',
+      description:
+        language === 'es'
+          ? 'Automatizo el trabajo repetitivo para que los equipos se enfoquen en lo importante.'
+          : 'Automating repetitive work so teams can focus on what matters.',
+    },
+    {
+      icon: Code2,
+      title: language === 'es' ? 'Productos útiles' : 'Useful products',
+      description:
+        language === 'es'
+          ? 'Construyo aplicaciones que conectan personas, sistemas y resultados.'
+          : 'Building applications that connect people, systems, and outcomes.',
+    },
+  ];
+
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      <div className="relative z-10 max-w-4xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -94,6 +121,27 @@ const About = ({ personalInfo, achievements, education = [] }: AboutProps) => {
           >
             {personalInfo.summary}
           </motion.p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid gap-4 md:grid-cols-3 mb-10"
+        >
+          {focusAreas.map(({ icon: Icon, title, description }) => (
+            <motion.div
+              key={title}
+              variants={itemVariants}
+              className="rounded-2xl border border-golden-orange/15 bg-white/80 p-5 shadow-sm dark:bg-gray-800/80"
+            >
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-golden-orange/10 text-golden-orange">
+                <Icon className="h-5 w-5" />
+              </div>
+              <h3 className="font-semibold text-gray-900 dark:text-white">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{description}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
         <motion.div
