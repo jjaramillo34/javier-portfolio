@@ -771,6 +771,9 @@
       "motivation": {
         "heading": "Why I Built This Portfolio",
         "lead": "I built this with love for Cris, Sofia, and Mateo.",
+        "storyLabel": "The journey",
+        "dedicationLabel": "Dedication",
+        "dedicationBody": "For Cris, Sofia, and Mateo: thank you for being part of the inspiration behind every step.",
         "body": "It reflects my path as a developer, educator, and lifelong learner. I work across data analytics, full-stack development, and educational technology, and I care about building tools that help other people.",
         "thanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.",
         "wife": "Wife",
@@ -895,6 +898,9 @@
       "motivation": {
         "heading": "Por Qué Creé Este Portafolio",
         "lead": "Lo hice con amor para Cris, Sofía y Mateo.",
+        "storyLabel": "El camino",
+        "dedicationLabel": "Dedicación",
+        "dedicationBody": "A Cris, Sofía y Mateo: gracias por ser parte de la inspiración detrás de cada paso.",
         "body": "Refleja mi camino como desarrollador, educador y aprendiz de por vida. Trabajo en análisis de datos, desarrollo full-stack y tecnología educativa, y me importa crear herramientas que ayuden a otras personas.",
         "thanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.",
         "wife": "Esposa",

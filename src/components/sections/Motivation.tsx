@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Heart } from 'lucide-react';
+import { Heart, Sparkles } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const Motivation = () => {
@@ -37,6 +37,20 @@ const Motivation = () => {
     language === 'es'
       ? 'Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.'
       : 'Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.'
+  );
+  const storyLabel = label(
+    'motivation.storyLabel',
+    language === 'es' ? 'El camino' : 'The journey',
+  );
+  const dedicationLabel = label(
+    'motivation.dedicationLabel',
+    language === 'es' ? 'Dedicación' : 'Dedication',
+  );
+  const dedicationBody = label(
+    'motivation.dedicationBody',
+    language === 'es'
+      ? 'A Cris, Sofía y Mateo: gracias por ser parte de la inspiración detrás de cada paso.'
+      : 'For Cris, Sofia, and Mateo: thank you for being part of the inspiration behind every step.',
   );
 
   const family = [
@@ -111,11 +125,34 @@ const Motivation = () => {
         </motion.div>
 
         <motion.div
-          variants={itemVariants}
-          className="max-w-2xl mx-auto text-center space-y-4"
+          variants={containerVariants}
+          className="grid grid-cols-1 gap-5 md:grid-cols-[1.15fr_0.85fr]"
         >
-          <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{body}</p>
-          <p className="text-base text-gray-500 dark:text-gray-400 leading-relaxed">{thanks}</p>
+          <motion.div
+            variants={itemVariants}
+            className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-8"
+          >
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-golden-orange">
+              {storyLabel}
+            </p>
+            <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-300">{body}</p>
+            <p className="mt-5 border-t border-gray-100 pt-5 text-base leading-relaxed text-gray-500 dark:border-gray-700 dark:text-gray-400">
+              {thanks}
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="rounded-2xl border border-golden-orange/25 bg-gradient-to-br from-golden-orange/10 via-white to-white p-6 shadow-sm dark:from-golden-orange/15 dark:via-gray-800 dark:to-gray-800 md:p-8"
+          >
+            <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-golden-orange">
+              <Sparkles className="h-4 w-4" />
+              {dedicationLabel}
+            </p>
+            <p className="text-xl font-semibold leading-relaxed text-gray-900 dark:text-white">
+              {dedicationBody}
+            </p>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
