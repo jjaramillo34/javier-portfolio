@@ -5,6 +5,7 @@
     "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
     "location": "New York City Metropolitan Area",
     "linkedin": "https://www.linkedin.com/in/jaramillohub/",
+    "github": "https://github.com/jjaramillo34",
     "email": "javier@jaramillohub.com",
     "phone": "+1 (347) 239-9026",
     "summary": "Experienced Data Analyst and Full Stack Developer with 15+ years of expertise in data visualization, automation, and software development. Proven track record of reducing processing time, improving efficiency, and delivering innovative solutions across education, healthcare, and technology sectors."
@@ -661,14 +662,17 @@
         "title": "Data Analyst | Full Stack Developer | IT Specialist",
         "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
         "getInTouch": "Get In Touch",
-        "linkedinProfile": "LinkedIn Profile"
+        "linkedinProfile": "LinkedIn Profile",
+        "downloadResume": "Download Resume",
+        "github": "GitHub"
       },
       "about": {
         "heading": "About Me",
         "yearsExperience": "Years Experience",
         "projectsCompleted": "Projects Completed",
         "dataPointsProcessed": "Data Points Processed",
-        "clientSatisfaction": "Client Satisfaction"
+        "clientSatisfaction": "Client Satisfaction",
+        "education": "Education"
       },
       "experience": {
         "heading": "Professional Experience",
@@ -738,11 +742,14 @@
         "locationLabel": "Location",
         "sendAMessage": "Send a message",
         "successTitle": "Message sent",
-        "success": "Thanks for reaching out. I’ll get back to you shortly."
+        "success": "Thanks for reaching out. I’ll get back to you shortly.",
+        "downloadResume": "Download resume"
       },
       "footer": {
         "credit": "Built with React",
         "email": "Email",
+        "github": "GitHub",
+        "resume": "Resume",
         "linkedin": "LinkedIn",
         "connect": "Connect"
       },
@@ -767,14 +774,17 @@
         "title": "Analista de Datos | Desarrollador Full Stack | Especialista en TI",
         "tagline": "Innovador Tecnológico | Experto en Visualización de Datos | Desarrollador de Software | Gerente de Proyectos | Líder de Equipo | Ingeniero Full Stack | Especialista en Ciencia de Datos | Líder Ágil",
         "getInTouch": "Ponte en Contacto",
-        "linkedinProfile": "Perfil de LinkedIn"
+        "linkedinProfile": "Perfil de LinkedIn",
+        "downloadResume": "Descargar currículum",
+        "github": "GitHub"
       },
       "about": {
         "heading": "Sobre Mí",
         "yearsExperience": "Años de Experiencia",
         "projectsCompleted": "Proyectos Completados",
         "dataPointsProcessed": "Puntos de Datos Analizados",
-        "clientSatisfaction": "Satisfacción del Cliente"
+        "clientSatisfaction": "Satisfacción del Cliente",
+        "education": "Educación"
       },
       "experience": {
         "heading": "Experiencia Profesional",
@@ -844,12 +854,15 @@
         "locationLabel": "Ubicación",
         "sendAMessage": "Enviar un mensaje",
         "successTitle": "Mensaje enviado",
-        "success": "Gracias por escribirme. Te responderé pronto."
+        "success": "Gracias por escribirme. Te responderé pronto.",
+        "downloadResume": "Descargar currículum"
       },
       "footer": {
         "credit": "Hecho con React",
         "email": "Correo",
         "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "resume": "Currículum",
         "connect": "Conectar"
       },
       "motivation": {

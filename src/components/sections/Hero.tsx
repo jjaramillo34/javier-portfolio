@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Download, Github } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -8,16 +8,28 @@ interface HeroProps {
   personalInfo: PersonalInfo;
 }
 
+const RESUME_HREF = '/Javier_Jaramillo_Resume.pdf';
+
 const Hero = ({ personalInfo }: HeroProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  const label = (key: string, fallback: string) => {
+    const value = t(key);
+    return value === key ? fallback : value;
+  };
 
   const sanitizedEmail = personalInfo.email?.trim() ?? '';
   const sanitizedLinkedIn = personalInfo.linkedin?.trim() ?? '';
+  const sanitizedGithub = personalInfo.github?.trim() || 'https://github.com/jjaramillo34';
   const sanitizedLocation = personalInfo.location?.trim() ?? t('contact.locationFallback') ?? 'Global';
+  const resumeLabel = label(
+    'hero.downloadResume',
+    language === 'es' ? 'Descargar currículum' : 'Download Resume'
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -99,32 +111,51 @@ const Hero = ({ personalInfo }: HeroProps) => {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
             >
               <a
-                href={sanitizedEmail ? `mailto:${sanitizedEmail}` : '#'}
-                className={`group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white font-semibold rounded-xl transition-all duration-300 ${
-                  sanitizedEmail
-                    ? 'hover:from-golden-orange-dark hover:to-golden-orange hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25'
-                    : 'opacity-60 cursor-not-allowed'
-                }`}
-                aria-disabled={!sanitizedEmail}
+                href={sanitizedEmail ? `mailto:${sanitizedEmail}` : '#contact'}
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white font-semibold rounded-xl transition-all duration-300 hover:from-golden-orange-dark hover:to-golden-orange hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25"
               >
                 <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                 {t('hero.getInTouch')}
               </a>
               <a
-                href={sanitizedLinkedIn || '#'}
-                target={sanitizedLinkedIn ? '_blank' : undefined}
-                rel={sanitizedLinkedIn ? 'noopener noreferrer' : undefined}
-                className={`group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 text-golden-orange border-2 border-golden-orange font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm ${
-                  sanitizedLinkedIn
-                    ? 'hover:from-golden-orange/30 hover:to-golden-orange/40 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25'
-                    : 'opacity-60 cursor-not-allowed'
-                }`}
-                aria-disabled={!sanitizedLinkedIn}
+                href={RESUME_HREF}
+                download="Javier_Jaramillo_Resume.pdf"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 text-golden-orange border-2 border-golden-orange font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm hover:from-golden-orange/30 hover:to-golden-orange/40 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25"
               >
-                <Linkedin className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                {t('hero.linkedinProfile')}
+                <Download className="w-5 h-5" />
+                {resumeLabel}
               </a>
             </motion.div>
+
+            {(sanitizedLinkedIn || sanitizedGithub) && (
+              <motion.div
+                variants={itemVariants}
+                className="mt-6 flex items-center justify-center lg:justify-start gap-3"
+              >
+                {sanitizedLinkedIn && (
+                  <a
+                    href={sanitizedLinkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label('hero.linkedinProfile', 'LinkedIn')}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white hover:border-golden-orange/60 hover:text-golden-orange transition-colors"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
+                {sanitizedGithub && (
+                  <a
+                    href={sanitizedGithub}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label('hero.github', 'GitHub')}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white hover:border-golden-orange/60 hover:text-golden-orange transition-colors"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                )}
+              </motion.div>
+            )}
           </div>
 
           <motion.div variants={itemVariants} className="order-first lg:order-none mx-auto">

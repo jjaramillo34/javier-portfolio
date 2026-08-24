@@ -1,4 +1,4 @@
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, Linkedin, Github, Download } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -32,11 +32,25 @@ const Footer = ({ personalInfo }: FooterProps) => {
       icon: Linkedin,
       external: true,
     },
+    {
+      href: personalInfo.github || 'https://github.com/jjaramillo34',
+      label: label('footer.github', 'GitHub'),
+      icon: Github,
+      external: true,
+    },
+    {
+      href: '/Javier_Jaramillo_Resume.pdf',
+      label: label('footer.resume', language === 'es' ? 'Currículum' : 'Resume'),
+      icon: Download,
+      external: false,
+      download: 'Javier_Jaramillo_Resume.pdf',
+    },
   ].filter(Boolean) as Array<{
     href: string;
     label: string;
     icon: typeof Mail;
     external: boolean;
+    download?: string;
   }>;
 
   return (
@@ -57,12 +71,13 @@ const Footer = ({ personalInfo }: FooterProps) => {
 
           {links.length > 0 && (
             <nav aria-label={label('footer.connect', language === 'es' ? 'Conectar' : 'Connect')} className="flex items-center gap-3">
-              {links.map(({ href, label: linkLabel, icon: Icon, external }) => (
+              {links.map(({ href, label: linkLabel, icon: Icon, external, download }) => (
                 <a
                   key={linkLabel}
                   href={href}
                   aria-label={linkLabel}
                   title={linkLabel}
+                  download={download}
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener noreferrer' : undefined}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-300 hover:text-golden-orange hover:border-golden-orange/50 hover:bg-golden-orange/10 transition-colors"

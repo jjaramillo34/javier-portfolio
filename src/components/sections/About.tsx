@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { TrendingUp, Users, Award, Calendar } from 'lucide-react';
-import { PersonalInfo, Achievements } from '../../types/portfolio';
+import { TrendingUp, Users, Award, Calendar, GraduationCap } from 'lucide-react';
+import { PersonalInfo, Achievements, Education } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 interface AboutProps {
   personalInfo: PersonalInfo;
   achievements: Achievements;
+  education?: Education[];
 }
 
-const About = ({ personalInfo, achievements }: AboutProps) => {
+const About = ({ personalInfo, achievements, education = [] }: AboutProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -117,6 +118,42 @@ const About = ({ personalInfo, achievements }: AboutProps) => {
             </motion.div>
           ))}
         </motion.div>
+
+        {education.length > 0 && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="mt-12"
+          >
+            <motion.h3
+              variants={itemVariants}
+              className="text-lg font-semibold text-gray-800 dark:text-white mb-5 text-center"
+            >
+              {t('about.education') === 'about.education' ? 'Education' : t('about.education')}
+            </motion.h3>
+            <div className="space-y-3">
+              {education.map((item) => (
+                <motion.div
+                  key={`${item.school}-${item.degree}`}
+                  variants={itemVariants}
+                  className="flex items-start gap-4 p-4 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700"
+                >
+                  <div className="mt-0.5 inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-golden-orange/10 text-golden-orange">
+                    <GraduationCap className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold text-gray-800 dark:text-white">{item.degree}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">{item.school}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      {[item.period, item.location].filter(Boolean).join(' · ')}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

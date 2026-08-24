@@ -64,7 +64,8 @@ function AppContent() {
           <section id="about">
             <About 
               personalInfo={data.personalInfo} 
-              achievements={data.achievements} 
+              achievements={data.achievements}
+              education={data.education}
             />
           </section>
           

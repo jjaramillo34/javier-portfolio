@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Phone, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Phone, Send, CheckCircle2, AlertCircle, Github, Download } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useMemo, useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -65,6 +65,13 @@ const Contact = ({ personalInfo }: ContactProps) => {
         href: personalInfo.linkedin,
         external: true,
       },
+      (personalInfo.github || 'https://github.com/jjaramillo34') && {
+        icon: Github,
+        label: label('hero.github', 'GitHub'),
+        value: (personalInfo.github || 'https://github.com/jjaramillo34').replace(/^https?:\/\/(www\.)?/, ''),
+        href: personalInfo.github || 'https://github.com/jjaramillo34',
+        external: true,
+      },
     ];
     return entries.filter(Boolean) as {
       icon: typeof Mail;
@@ -73,7 +80,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
       href: string | null;
       external: boolean;
     }[];
-  }, [personalInfo.email, personalInfo.phone, personalInfo.location, personalInfo.linkedin, t]);
+  }, [personalInfo.email, personalInfo.phone, personalInfo.location, personalInfo.linkedin, personalInfo.github, t]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -112,8 +119,9 @@ const Contact = ({ personalInfo }: ContactProps) => {
             variants={containerVariants}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start"
+            className="space-y-4"
           >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
             {contactInfo.map((contact) => {
               const content = (
                 <>
@@ -149,6 +157,15 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </a>
               );
             })}
+            </div>
+            <a
+              href="/Javier_Jaramillo_Resume.pdf"
+              download="Javier_Jaramillo_Resume.pdf"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-golden-orange/30 text-golden-orange-dark dark:text-golden-orange font-semibold hover:bg-golden-orange/10 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              {label('contact.downloadResume', 'Download resume')}
+            </a>
           </motion.div>
 
           <motion.div
