@@ -92,7 +92,7 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                     }`}
                   />
 
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+                  <div className="flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                     <div className="flex flex-wrap items-center gap-2 mb-3">
                       <span className="inline-flex items-center gap-1.5 text-sm font-medium text-golden-orange">
                         <Calendar className="w-4 h-4" />

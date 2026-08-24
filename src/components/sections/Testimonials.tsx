@@ -100,7 +100,12 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
         </motion.div>
 
         {filterOptions.length > 2 && (
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12">
+          <motion.div
+            variants={itemVariants}
+            role="group"
+            aria-label={t('testimonials.filterLabel')}
+            className="flex flex-wrap justify-center gap-2 mb-12"
+          >
             {filterOptions.map((option) => (
               <button
                 key={option.key}
@@ -111,7 +116,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                   activeFilter === option.key
                     ? 'bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white'
                     : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-golden-orange/40'
-                }`}
+                } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-golden-orange focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900`}
               >
                 {option.label}
               </button>
@@ -145,7 +150,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                 <motion.article
                   key={testimonial.id}
                   variants={itemVariants}
-                  className={`rounded-2xl border p-6 shadow-sm ${
+                  className={`flex h-full flex-col rounded-2xl border p-6 shadow-sm ${
                     isFeatured
                       ? 'border-golden-orange/30 bg-gradient-to-br from-golden-orange/10 via-white to-white md:col-span-2 dark:from-golden-orange/15 dark:via-gray-800 dark:to-gray-800'
                       : 'border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800'
@@ -161,7 +166,7 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                     )}
                   </div>
                   <blockquote
-                    className={`leading-relaxed mb-4 ${
+                    className={`mb-4 flex-1 leading-relaxed ${
                       isFeatured
                         ? 'max-w-4xl text-lg text-gray-800 dark:text-gray-100 md:text-xl'
                         : 'text-gray-700 dark:text-gray-300'
