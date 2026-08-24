@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Download, Github } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Download, Github, Circle } from 'lucide-react';
 import { Achievements, PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -30,6 +30,12 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
   const resumeLabel = label(
     'hero.downloadResume',
     language === 'es' ? 'Descargar currículum' : 'Download Resume'
+  );
+  const availabilityLabel = label(
+    'contact.availability',
+    language === 'es'
+      ? 'Disponible para proyectos selectos de datos, automatización y full-stack.'
+      : 'Available for select data, automation, and full-stack projects.',
   );
   const resultStats = [
     {
@@ -94,10 +100,16 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] gap-10 lg:gap-16 items-center">
           <div className="text-center lg:text-left">
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20">
-                <MapPin className="w-4 h-4" />
-                {sanitizedLocation}
-              </span>
+              <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+                  <MapPin className="h-4 w-4" />
+                  {sanitizedLocation}
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200/30 bg-emerald-400/15 px-3 py-2 text-xs font-semibold text-emerald-100">
+                  <Circle className="h-2.5 w-2.5 fill-current" aria-hidden="true" />
+                  {availabilityLabel}
+                </span>
+              </div>
             </motion.div>
 
             <motion.h1
@@ -127,7 +139,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
             >
               <a
                 href={sanitizedEmail ? `mailto:${sanitizedEmail}` : '#contact'}
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white font-semibold rounded-xl transition-all duration-300 hover:from-golden-orange-dark hover:to-golden-orange hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25"
+                className="group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-golden-orange to-golden-orange-dark px-8 py-4 font-semibold text-white transition-all duration-300 hover:from-golden-orange-dark hover:to-golden-orange hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-900"
               >
                 <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                 {t('hero.getInTouch')}
@@ -135,7 +147,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
               <a
                 href={RESUME_HREF}
                 download="Javier_Jaramillo_Resume.pdf"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 text-golden-orange border-2 border-golden-orange font-semibold rounded-xl transition-all duration-300 backdrop-blur-sm hover:from-golden-orange/30 hover:to-golden-orange/40 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25"
+                className="group inline-flex items-center gap-3 rounded-xl border-2 border-golden-orange bg-gradient-to-r from-golden-orange/20 to-golden-orange/30 px-8 py-4 font-semibold text-golden-orange transition-all duration-300 backdrop-blur-sm hover:from-golden-orange/30 hover:to-golden-orange/40 hover:scale-105 hover:shadow-2xl hover:shadow-golden-orange/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-900"
               >
                 <Download className="w-5 h-5" />
                 {resumeLabel}
@@ -166,7 +178,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label('hero.linkedinProfile', 'LinkedIn')}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white hover:border-golden-orange/60 hover:text-golden-orange transition-colors"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition-colors hover:border-golden-orange/60 hover:text-golden-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-900"
                   >
                     <Linkedin className="w-5 h-5" />
                   </a>
@@ -177,7 +189,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label('hero.github', 'GitHub')}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white hover:border-golden-orange/60 hover:text-golden-orange transition-colors"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white transition-colors hover:border-golden-orange/60 hover:text-golden-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-900"
                   >
                     <Github className="w-5 h-5" />
                   </a>
