@@ -75,6 +75,17 @@ const VerticalNavigation = () => {
     };
   }, [isMobile, isOpen]);
 
+  useEffect(() => {
+    if (!isMobile || !isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMobile, isOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -103,6 +114,7 @@ const VerticalNavigation = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
+          aria-controls="primary-navigation"
         >
           {isOpen ? (
             <X className="w-6 h-6 text-golden-orange" />
@@ -112,7 +124,17 @@ const VerticalNavigation = () => {
         </button>
       )}
 
+      {isMobile && isOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 z-30 bg-gray-950/50 backdrop-blur-[1px]"
+          onClick={() => setIsOpen(false)}
+          aria-label="Close navigation menu"
+        />
+      )}
+
       <motion.nav
+        id="primary-navigation"
         className={`fixed left-0 top-0 h-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-r border-golden-orange/20 shadow-2xl z-40 ${
           isMobile ? 'w-full max-w-xs overflow-x-hidden' : 'w-24'
         }`}

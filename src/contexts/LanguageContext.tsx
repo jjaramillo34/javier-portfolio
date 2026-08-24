@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Language = 'en' | 'es';
 
@@ -48,6 +48,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, tr
     setLanguage(lang);
     localStorage.setItem('language', lang);
   };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   const value = {
     language,

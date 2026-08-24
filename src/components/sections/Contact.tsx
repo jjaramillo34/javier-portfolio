@@ -34,6 +34,10 @@ const Contact = ({ personalInfo }: ContactProps) => {
     const value = t(key);
     return value === key ? fallback : value;
   };
+  const availabilityLabel = label(
+    'contact.availability',
+    'Available for select data, automation, and full-stack projects.'
+  );
 
   const contactInfo = useMemo(() => {
     const entries = [
@@ -65,7 +69,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
         href: personalInfo.linkedin,
         external: true,
       },
-      (personalInfo.github || 'https://github.com/jjaramillo34') && {
+      {
         icon: Github,
         label: label('hero.github', 'GitHub'),
         value: (personalInfo.github || 'https://github.com/jjaramillo34').replace(/^https?:\/\/(www\.)?/, ''),
@@ -111,6 +115,12 @@ const Contact = ({ personalInfo }: ContactProps) => {
           <motion.div variants={itemVariants} className="w-24 h-1 bg-gradient-to-r from-golden-orange to-golden-orange-dark mx-auto mb-8" />
           <motion.p variants={itemVariants} className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {t('contact.subheading')}
+          </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mt-5 max-w-2xl rounded-full border border-golden-orange/20 bg-golden-orange/10 px-5 py-3 text-sm font-medium text-golden-orange-dark dark:text-golden-orange"
+          >
+            {availabilityLabel}
           </motion.p>
         </motion.div>
 

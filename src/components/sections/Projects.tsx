@@ -56,6 +56,8 @@ const Projects = ({ projects }: ProjectsProps) => {
   const visitLabel = label('projects.viewProject', language === 'es' ? 'Ver proyecto' : 'View Project');
   const techLabel = label('projects.technologiesUsed', language === 'es' ? 'Tecnologías' : 'Technologies');
   const highlightsLabel = label('projects.keyAchievements', language === 'es' ? 'Logros clave' : 'Key achievements');
+  const featuredLabel = label('projects.featured', language === 'es' ? 'Trabajo destacado' : 'Featured work');
+  const allProjectsLabel = label('projects.allProjects', language === 'es' ? 'Todos los proyectos' : 'All projects');
 
   const sanitizedProjects = useMemo<ProjectCard[]>(
     () =>
@@ -129,6 +131,72 @@ const Projects = ({ projects }: ProjectsProps) => {
             </span>
           </motion.div>
         </motion.div>
+
+        {sanitizedProjects.length > 0 && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            className="mb-14"
+          >
+            <motion.div variants={itemVariants} className="flex items-end justify-between gap-4 mb-5">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-golden-orange">
+                  {featuredLabel}
+                </p>
+                <h3 className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
+                  {language === 'es' ? 'Resultados que puedes explorar' : 'Results you can explore'}
+                </h3>
+              </div>
+            </motion.div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {sanitizedProjects.slice(0, 3).map((project) => (
+                <motion.article
+                  key={`featured-${project.id}`}
+                  variants={itemVariants}
+                  className="overflow-hidden rounded-2xl border border-golden-orange/20 bg-white shadow-md dark:bg-gray-800 dark:border-golden-orange/30"
+                >
+                  <img src={project.cover} alt="" className="h-36 w-full object-cover" />
+                  <div className="p-5">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">{project.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300 line-clamp-3">
+                      {project.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedId(project.id)}
+                        className="rounded-lg border border-golden-orange/30 px-3 py-2 text-sm font-semibold text-golden-orange-dark hover:bg-golden-orange/10 dark:text-golden-orange"
+                      >
+                        {detailsLabel}
+                      </button>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-golden-orange to-golden-orange-dark px-3 py-2 text-sm font-semibold text-white"
+                        >
+                          {visitLabel}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        <motion.h3
+          variants={itemVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="mb-5 text-2xl font-bold text-gray-900 dark:text-white"
+        >
+          {allProjectsLabel}
+        </motion.h3>
 
         <motion.div
           variants={containerVariants}

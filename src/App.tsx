@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { usePortfolioData } from './hooks/usePortfolioData';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -15,42 +14,9 @@ import Contact from './components/sections/Contact';
 import Motivation from './components/sections/Motivation';
 import Footer from './components/sections/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import type { PortfolioData } from './types/portfolio';
 
-function AppContent() {
-  const { data, loading, error } = usePortfolioData();
-
-  useEffect(() => {
-    // Smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
-  }, []);
-
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (error || !data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong</h1>
-          <p className="text-xl text-gray-300 mb-8">
-            {error || 'Failed to load portfolio data'}
-          </p>
-          <button 
-            onClick={() => window.location.reload()}
-            className="px-8 py-3 bg-gradient-to-r from-golden-orange to-golden-orange-dark rounded-lg font-semibold hover:from-golden-orange-dark hover:to-golden-orange transition-all duration-300"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+function AppContent({ data }: { data: PortfolioData }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 max-w-[100vw] mx-auto overflow-x-hidden">
       <div className="flex flex-col lg:flex-row w-full">
@@ -104,16 +70,33 @@ function AppContent() {
 }
 
 function App() {
-  const { data, loading } = usePortfolioData();
+  const { data, loading, error } = usePortfolioData();
 
-  if (loading || !data) {
+  if (loading) {
     return <Loading />;
+  }
+
+  if (error || !data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div className="text-center px-6">
+          <h1 className="text-4xl font-bold mb-4">Oops! Something went wrong</h1>
+          <p className="text-xl text-gray-300 mb-8">{error || 'Failed to load portfolio data'}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-8 py-3 bg-gradient-to-r from-golden-orange to-golden-orange-dark rounded-lg font-semibold hover:from-golden-orange-dark hover:to-golden-orange transition-all duration-300"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <ThemeProvider>
       <LanguageProvider translations={data.translations}>
-        <AppContent />
+        <AppContent data={data} />
       </LanguageProvider>
     </ThemeProvider>
   );
