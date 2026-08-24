@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Linkedin, MapPin, Download, Github } from 'lucide-react';
-import { PersonalInfo } from '../../types/portfolio';
+import { Achievements, PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 interface HeroProps {
   personalInfo: PersonalInfo;
+  achievements: Achievements;
 }
 
 const RESUME_HREF = '/Javier_Jaramillo_Resume.pdf';
 
-const Hero = ({ personalInfo }: HeroProps) => {
+const Hero = ({ personalInfo, achievements }: HeroProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -30,6 +31,20 @@ const Hero = ({ personalInfo }: HeroProps) => {
     'hero.downloadResume',
     language === 'es' ? 'Descargar currículum' : 'Download Resume'
   );
+  const resultStats = [
+    {
+      value: `${achievements.yearsOfExperience}+`,
+      label: label('about.yearsExperience', language === 'es' ? 'Años de experiencia' : 'Years of experience'),
+    },
+    {
+      value: `${achievements.projectsCompleted}+`,
+      label: label('about.projectsCompleted', language === 'es' ? 'Proyectos completados' : 'Projects completed'),
+    },
+    {
+      value: `${achievements.satisfactionRate}%`,
+      label: label('about.clientSatisfaction', language === 'es' ? 'Satisfacción del cliente' : 'Client satisfaction'),
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -125,6 +140,19 @@ const Hero = ({ personalInfo }: HeroProps) => {
                 <Download className="w-5 h-5" />
                 {resumeLabel}
               </a>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="mt-8 grid max-w-xl grid-cols-3 gap-3 border-t border-white/20 pt-6 text-center lg:text-left"
+              aria-label={language === 'es' ? 'Resultados destacados' : 'Selected results'}
+            >
+              {resultStats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl font-bold text-golden-orange-light">{stat.value}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-white/75">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
 
             {(sanitizedLinkedIn || sanitizedGithub) && (

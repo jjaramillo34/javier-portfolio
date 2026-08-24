@@ -24,7 +24,7 @@ function AppContent({ data }: { data: PortfolioData }) {
         
         <main className="flex-1 w-full">
           <section id="hero">
-            <Hero personalInfo={data.personalInfo} />
+            <Hero personalInfo={data.personalInfo} achievements={data.achievements} />
           </section>
           
           <section id="about">
