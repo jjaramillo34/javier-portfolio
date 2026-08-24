@@ -84,6 +84,9 @@ const Skills = ({ skills }: SkillsProps) => {
 
   const coreLabel = t('skills.core') === 'skills.core' ? 'Core' : t('skills.core');
   const familiarLabel = t('skills.familiar') === 'skills.familiar' ? 'Also use' : t('skills.familiar');
+  const skillLegend = language === 'es'
+    ? 'Las etiquetas destacan las herramientas que más utilizo y las que también incorporo según el proyecto.'
+    : 'Tags distinguish the tools I use most from those I also bring into the right project.';
 
   const SkillChips = ({ items, featured = false }: { items: Skill[]; featured?: boolean }) => (
     <div className="flex flex-wrap gap-2">
@@ -129,6 +132,12 @@ const Skills = ({ skills }: SkillsProps) => {
                 : 'The tools I use most for data, apps, and day-to-day delivery.'
               : t('skills.subheading')}
           </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="mx-auto mt-5 max-w-2xl text-sm text-gray-500 dark:text-gray-400"
+          >
+            {skillLegend}
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -145,7 +154,7 @@ const Skills = ({ skills }: SkillsProps) => {
               <motion.div
                 key={category.title}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-lg"
+                className="flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-8 shadow-lg dark:border-gray-700 dark:bg-gray-800"
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="p-3 bg-golden-orange/10 rounded-xl">
