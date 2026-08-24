@@ -32,6 +32,8 @@ const Certifications = ({ certifications }: CertificationsProps) => {
     { key: 'excelVBA', label: t('certifications.excelVBA') },
     { key: 'security', label: t('certifications.security') },
   ];
+  const filterLabel = label('certifications.filterLabel', 'Filter certifications');
+  const resultsLabel = label('certifications.results', 'Showing results');
 
   const allCertifications = useMemo(
     () => Object.values(certifications).flat(),
@@ -92,19 +94,25 @@ const Certifications = ({ certifications }: CertificationsProps) => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="search"
+              aria-label={label('certifications.searchLabel', 'Search certifications')}
               placeholder={label('certifications.search', 'Search certifications...')}
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-xl text-gray-800 dark:text-white"
             />
           </div>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div
+            className="flex flex-wrap justify-center gap-2"
+            role="group"
+            aria-label={filterLabel}
+          >
             {categories.map((category) => (
               <button
                 key={category.key}
                 type="button"
+                aria-pressed={selectedCategory === category.key}
                 onClick={() => setSelectedCategory(category.key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-golden-orange focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900 ${
                   selectedCategory === category.key
                     ? 'bg-gradient-to-r from-golden-orange to-golden-orange-dark text-white'
                     : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-golden-orange/40'
@@ -115,7 +123,7 @@ const Certifications = ({ certifications }: CertificationsProps) => {
             ))}
           </div>
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            {filteredCertifications.length} / {allCertifications.length}
+            {resultsLabel}: {filteredCertifications.length} / {allCertifications.length}
           </p>
         </div>
 
@@ -131,7 +139,7 @@ const Certifications = ({ certifications }: CertificationsProps) => {
               <motion.article
                 key={cert.id ?? `${cert.title}-${index}`}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-6"
+                className="flex h-full flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
               >
                 <div className="flex items-start justify-between gap-3 mb-4">
                   <div>
@@ -173,7 +181,7 @@ const Certifications = ({ certifications }: CertificationsProps) => {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-golden-orange hover:text-golden-orange-dark"
+                    className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-semibold text-golden-orange hover:text-golden-orange-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-golden-orange focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-800"
                   >
                     {t('certifications.viewCredential')}
                     <ExternalLink className="w-4 h-4" />
