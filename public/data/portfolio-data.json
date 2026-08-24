@@ -127,6 +127,7 @@
     {
       "id": 5,
       "order": 1,
+      "category": "full-stack",
       "title": "Michael Kellermann Foundation",
       "titleEs": "Fundación Michael Kellermann",
       "period": "2026",
@@ -149,6 +150,7 @@
     {
       "id": 6,
       "order": 2,
+      "category": "full-stack",
       "title": "Miles for MBC",
       "period": "2026",
       "description": "Event site for the Howard Beach Color Fun Run that raises funds for metastatic breast cancer research through METAvivor. Covers registration, donations, sponsors, and local family stories.",
@@ -170,6 +172,7 @@
     {
       "id": 7,
       "order": 3,
+      "category": "full-stack",
       "title": "La Poetisa del Semáforo",
       "period": "2026",
       "description": "Literary site for Andrea Vaca Cifuentes: biography, gallery, La Luz Verde, and a poetry reader with a red-and-black visual voice.",
@@ -191,6 +194,7 @@
     {
       "id": 8,
       "order": 4,
+      "category": "full-stack",
       "title": "Crissel Studio",
       "period": "2026",
       "description": "Booking-first site for a lash, brow, and makeup studio in Ambato: services, packages, gallery, and WhatsApp reservation.",
@@ -212,6 +216,7 @@
     {
       "id": 9,
       "order": 5,
+      "category": "full-stack",
       "title": "Private Dining Pros",
       "period": "2026",
       "description": "NYC private dining directory for restaurants, rooftops, and event rooms. Search by neighborhood, browse verified venues, and plan celebrations on a map.",
@@ -233,6 +238,7 @@
     {
       "id": 1,
       "order": 6,
+      "category": "full-stack",
       "title": "Website Portfolio",
       "titleEs": "Portafolio Web",
       "period": "Apr 2019 - Present",
@@ -255,6 +261,7 @@
     {
       "id": 2,
       "order": 7,
+      "category": "full-stack",
       "title": "Iconyc - BigApps Competition",
       "period": "May 2014 - Jul 2014",
       "description": "Photo-sharing and crowdsourcing app for NYC landmarks",
@@ -269,6 +276,7 @@
     {
       "id": 3,
       "order": 8,
+      "category": "data",
       "title": "Power Solar PR Project",
       "titleEs": "Proyecto Power Solar PR",
       "period": "2022 - 2023",
@@ -291,6 +299,7 @@
     {
       "id": 4,
       "order": 9,
+      "category": "automation",
       "title": "SMS Notifications System",
       "period": "2023",
       "description": "Automated notification system with cloud deployment",

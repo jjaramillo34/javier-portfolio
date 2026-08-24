@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ExternalLink, Calendar, CheckCircle, Award } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { Project } from '../../types/portfolio';
+import { Project, ProjectCategory } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
 import {
   Dialog,
@@ -25,6 +25,7 @@ const COVER_IMAGES = [
 ];
 
 type ProjectCard = Project & {
+  category: ProjectCategory;
   technologies: string[];
   achievements: string[];
   link: string | null;
@@ -46,6 +47,7 @@ const Projects = ({ projects }: ProjectsProps) => {
   });
   const { t, language } = useLanguage();
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all');
 
   const label = (key: string, fallback: string) => {
     const value = t(key);
@@ -59,6 +61,13 @@ const Projects = ({ projects }: ProjectsProps) => {
   const featuredLabel = label('projects.featured', language === 'es' ? 'Trabajo destacado' : 'Featured work');
   const allProjectsLabel = label('projects.allProjects', language === 'es' ? 'Todos los proyectos' : 'All projects');
   const caseStudyLabel = label('projects.caseStudy', language === 'es' ? 'Caso de estudio' : 'Case study');
+  const filterLabel = label('projects.filterLabel', language === 'es' ? 'Filtrar por enfoque' : 'Filter by focus');
+  const categoryLabels: Record<ProjectCategory | 'all', string> = {
+    all: language === 'es' ? 'Todos' : 'All',
+    data: language === 'es' ? 'Datos' : 'Data',
+    'full-stack': language === 'es' ? 'Full Stack' : 'Full Stack',
+    automation: language === 'es' ? 'Automatización' : 'Automation',
+  };
 
   const sanitizedProjects = useMemo<ProjectCard[]>(
     () =>
@@ -66,6 +75,7 @@ const Projects = ({ projects }: ProjectsProps) => {
         .sort((a, b) => (a.order ?? a.id) - (b.order ?? b.id))
         .map((project, index) => ({
           ...project,
+          category: project.category ?? 'full-stack',
           technologies: project.technologies ?? [],
           achievements: project.achievements ?? [],
           link: project.link && project.link !== '#' ? project.link : null,
@@ -75,8 +85,15 @@ const Projects = ({ projects }: ProjectsProps) => {
     [projects],
   );
 
+  const visibleProjects = useMemo(
+    () =>
+      selectedCategory === 'all'
+        ? sanitizedProjects
+        : sanitizedProjects.filter((project) => project.category === selectedCategory),
+    [sanitizedProjects, selectedCategory],
+  );
   const selected = sanitizedProjects.find((project) => project.id === selectedId) ?? null;
-  const totalProjects = sanitizedProjects.length;
+  const totalProjects = visibleProjects.length;
   const subheading = t('projects.subheading');
   const totalLabel = t('projects.totalCount');
 
@@ -131,9 +148,39 @@ const Projects = ({ projects }: ProjectsProps) => {
                 : totalLabel.replace('{{count}}', String(totalProjects))}
             </span>
           </motion.div>
+          <motion.div variants={itemVariants} className="mt-8">
+            <p id="project-filter-label" className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">
+              {filterLabel}
+            </p>
+            <div
+              className="flex flex-wrap justify-center gap-2"
+              role="group"
+              aria-labelledby="project-filter-label"
+            >
+              {(['all', 'data', 'full-stack', 'automation'] as const).map((category) => {
+                const isActive = selectedCategory === category;
+
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                      isActive
+                        ? 'border-golden-orange bg-golden-orange text-white'
+                        : 'border-gray-200 bg-white text-gray-600 hover:border-golden-orange/50 hover:text-golden-orange dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                    }`}
+                  >
+                    {categoryLabels[category]}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
         </motion.div>
 
-        {sanitizedProjects.length > 0 && (
+        {visibleProjects.length > 0 && (
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -151,7 +198,7 @@ const Projects = ({ projects }: ProjectsProps) => {
               </div>
             </motion.div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              {sanitizedProjects.slice(0, 3).map((project) => (
+              {visibleProjects.slice(0, 3).map((project) => (
                 <motion.article
                   key={`featured-${project.id}`}
                   variants={itemVariants}
@@ -226,7 +273,7 @@ const Projects = ({ projects }: ProjectsProps) => {
           animate={inView ? 'visible' : 'hidden'}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
         >
-          {sanitizedProjects.map((project) => {
+          {visibleProjects.map((project) => {
             const previewTech = project.technologies.slice(0, 3);
             const extraTech = project.technologies.length - previewTech.length;
 
