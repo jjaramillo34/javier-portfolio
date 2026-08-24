@@ -683,11 +683,13 @@
       "projects": {
         "heading": "Featured Projects",
         "viewProject": "View Project",
+        "details": "Details",
         "technologiesUsed": "Technologies Used",
         "keyAchievements": "Key Achievements"
       },
       "skills": {
         "heading": "Technical Skills",
+        "subheading": "The tools I use most for data, apps, and day-to-day delivery.",
         "proficiencyLevel": "Proficiency Level",
         "programmingLanguages": "Programming Languages",
         "frontendDevelopment": "Frontend Development",
@@ -755,6 +757,12 @@
       },
       "motivation": {
         "heading": "Why I Built This Portfolio",
+        "lead": "I built this with love for Cris, Sofia, and Mateo.",
+        "body": "It reflects my path as a developer, educator, and lifelong learner. I work across data analytics, full-stack development, and educational technology, and I care about building tools that help other people.",
+        "thanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.",
+        "wife": "Wife",
+        "daughter": "Daughter",
+        "son": "Son",
         "text": "This portfolio was created with love for my wife Cris, my daughter Sofia, and my son Mateo. It reflects my journey as a developer, educator, and lifelong learner. My experience spans data analytics, full-stack development, and educational technology, and I am passionate about building tools that empower others. Thank you to my family for their unwavering support and to all the mentors, colleagues, and students who have inspired me along the way."
       }
     },
@@ -795,11 +803,13 @@
       "projects": {
         "heading": "Proyectos Destacados",
         "viewProject": "Ver Proyecto",
+        "details": "Detalles",
         "technologiesUsed": "Tecnologías Utilizadas",
         "keyAchievements": "Logros Clave"
       },
       "skills": {
         "heading": "Habilidades Técnicas",
+        "subheading": "Las herramientas que más uso para datos, aplicaciones y el trabajo del día a día.",
         "proficiencyLevel": "Nivel de Competencia",
         "programmingLanguages": "Lenguajes de Programación",
         "frontendDevelopment": "Desarrollo Frontend",
@@ -867,6 +877,12 @@
       },
       "motivation": {
         "heading": "Por Qué Creé Este Portafolio",
+        "lead": "Lo hice con amor para Cris, Sofía y Mateo.",
+        "body": "Refleja mi camino como desarrollador, educador y aprendiz de por vida. Trabajo en análisis de datos, desarrollo full-stack y tecnología educativa, y me importa crear herramientas que ayuden a otras personas.",
+        "thanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.",
+        "wife": "Esposa",
+        "daughter": "Hija",
+        "son": "Hijo",
         "text": "Este portafolio fue creado con amor para mi esposa Cris, mi hija Sofía y mi hijo Mateo. Refleja mi trayectoria como desarrollador, educador y aprendiz de por vida. Mi experiencia abarca análisis de datos, desarrollo full-stack y tecnología educativa, y me apasiona crear herramientas que empoderan a otros. Gracias a mi familia por su apoyo incondicional y a todos los mentores, colegas y estudiantes que me han inspirado en el camino."
       }
     }

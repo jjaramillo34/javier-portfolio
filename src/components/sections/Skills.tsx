@@ -25,7 +25,7 @@ const Skills = ({ skills }: SkillsProps) => {
     threshold: 0.05,
     rootMargin: '120px 0px',
   });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const normalizedSkills = useMemo(
     () => ({
@@ -123,7 +123,11 @@ const Skills = ({ skills }: SkillsProps) => {
             variants={itemVariants}
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-            {t('skills.subheading')}
+            {t('skills.subheading') === 'skills.subheading'
+              ? language === 'es'
+                ? 'Las herramientas que más uso para datos, aplicaciones y el trabajo del día a día.'
+                : 'The tools I use most for data, apps, and day-to-day delivery.'
+              : t('skills.subheading')}
           </motion.p>
         </motion.div>
 
