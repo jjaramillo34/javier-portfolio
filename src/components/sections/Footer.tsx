@@ -1,6 +1,7 @@
-import { Mail, Linkedin, Github, Download } from 'lucide-react';
+import { Mail, Linkedin, Github, Download, Eye } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useEffect, useState } from 'react';
 
 interface FooterProps {
   personalInfo: PersonalInfo;
@@ -9,6 +10,7 @@ interface FooterProps {
 const Footer = ({ personalInfo }: FooterProps) => {
   const { t, language } = useLanguage();
   const year = new Date().getFullYear();
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   const label = (key: string, fallback: string) => {
     const value = t(key);
@@ -19,6 +21,27 @@ const Footer = ({ personalInfo }: FooterProps) => {
     'footer.credit',
     language === 'es' ? 'Hecho con React' : 'Built with React'
   );
+  const visitorLabel = label(
+    'footer.visitors',
+    language === 'es' ? 'Visitantes' : 'Visitors',
+  );
+
+  useEffect(() => {
+    let active = true;
+
+    fetch('/api/visitor-count')
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload: { count?: number | null } | null) => {
+        if (active && typeof payload?.count === 'number') {
+          setVisitorCount(payload.count);
+        }
+      })
+      .catch(() => undefined);
+
+    return () => {
+      active = false;
+    };
+  }, []);
   const links = [
     personalInfo.email && {
       href: `mailto:${personalInfo.email}`,
@@ -93,6 +116,14 @@ const Footer = ({ personalInfo }: FooterProps) => {
           © {year} {personalInfo.name}
           {credit ? ` · ${credit}` : ''}
         </p>
+        {visitorCount !== null && (
+          <p className="mt-3 inline-flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
+            <Eye className="h-3.5 w-3.5" aria-hidden="true" />
+            <span>
+              {visitorLabel}: {visitorCount.toLocaleString(language === 'es' ? 'es-ES' : 'en-US')}
+            </span>
+          </p>
+        )}
       </div>
     </footer>
   );
