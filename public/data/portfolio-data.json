@@ -687,6 +687,7 @@
         "heading": "Professional Experience",
         "present": "Present",
         "currentRole": "Current role",
+        "impactHighlight": "Impact highlight",
         "years": "years",
         "months": "months"
       },
@@ -808,6 +809,7 @@
         "heading": "Experiencia Profesional",
         "present": "Presente",
         "currentRole": "Rol actual",
+        "impactHighlight": "Impacto destacado",
         "years": "años",
         "months": "meses"
       },

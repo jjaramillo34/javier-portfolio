@@ -28,6 +28,10 @@ const Experience = ({ workExperience }: ExperienceProps) => {
     t('experience.currentRole') === 'experience.currentRole'
       ? 'Current role'
       : t('experience.currentRole');
+  const impactLabel =
+    t('experience.impactHighlight') === 'experience.impactHighlight'
+      ? 'Impact highlight'
+      : t('experience.impactHighlight');
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, staggerChildren: 0.08 } },
@@ -119,17 +123,27 @@ const Experience = ({ workExperience }: ExperienceProps) => {
                     </div>
 
                     {job.achievements?.length ? (
-                      <ul className="space-y-2">
-                        {job.achievements.map((achievement) => (
-                          <li
-                            key={achievement}
-                            className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                          >
-                            <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
-                            <span className="leading-relaxed">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <>
+                        <div className="mb-4 rounded-xl border border-golden-orange/15 bg-golden-orange/5 p-4">
+                          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-golden-orange">
+                            {impactLabel}
+                          </p>
+                          <p className="text-sm font-medium leading-relaxed text-gray-800 dark:text-gray-200">
+                            {job.achievements[0]}
+                          </p>
+                        </div>
+                        <ul className="space-y-2">
+                          {job.achievements.slice(1).map((achievement) => (
+                            <li
+                              key={achievement}
+                              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
+                            >
+                              <CheckCircle className="w-4 h-4 text-golden-orange mt-1 flex-shrink-0" />
+                              <span className="leading-relaxed">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
                     ) : (
                       <p className="text-sm italic text-gray-500 dark:text-gray-400">{emptyLabel}</p>
                     )}

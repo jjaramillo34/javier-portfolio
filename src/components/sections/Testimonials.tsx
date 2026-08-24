@@ -123,6 +123,9 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
           >
             {filteredTestimonials.map((testimonial) => {
               const isLong = testimonial.quote.length > 220;
+              const relationshipLabel = t(
+                `testimonials.relationshipTypes.${testimonial.relationshipType}`,
+              );
               const shownQuote =
                 !isLong || expandedCards.has(testimonial.id)
                   ? testimonial.quote
@@ -160,7 +163,10 @@ const Testimonials = ({ testimonials }: TestimonialsProps) => {
                         {testimonial.company ? ` · ${testimonial.company}` : ''}
                       </p>
                       <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">
-                        {testimonial.relationship}
+                        {relationshipLabel ===
+                        `testimonials.relationshipTypes.${testimonial.relationshipType}`
+                          ? testimonial.relationship
+                          : relationshipLabel}
                         {testimonial.date ? ` · ${testimonial.date}` : ''}
                       </p>
                     </div>
