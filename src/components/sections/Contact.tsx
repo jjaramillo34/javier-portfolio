@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Linkedin, MapPin, Phone, Send, CheckCircle2, AlertCircle, Github, Download } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Phone, Send, CheckCircle2, AlertCircle, Github, Download, Calendar } from 'lucide-react';
 import { PersonalInfo } from '../../types/portfolio';
 import { useMemo, useState } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -37,6 +37,17 @@ const Contact = ({ personalInfo }: ContactProps) => {
   const availabilityLabel = label(
     'contact.availability',
     'Available for select data, automation, and full-stack projects.'
+  );
+  const conversationLabel = label('contact.scheduleHeading', 'Have a project in mind?');
+  const conversationDescription = label(
+    'contact.scheduleDescription',
+    'Tell me what you are building and we can find the best next step.',
+  );
+  const conversationCta = label('contact.scheduleCta', 'Start a conversation');
+  const linkedinCta = label('contact.linkedinCta', 'Connect on LinkedIn');
+  const emailSubject = encodeURIComponent('Project conversation');
+  const emailBody = encodeURIComponent(
+    'Hi Javier,\n\nI would like to discuss a project with you.\n\n',
   );
 
   const contactInfo = useMemo(() => {
@@ -131,6 +142,40 @@ const Contact = ({ personalInfo }: ContactProps) => {
             animate={inView ? 'visible' : 'hidden'}
             className="space-y-4"
           >
+            <motion.div
+              variants={itemVariants}
+              className="rounded-2xl bg-gradient-to-br from-golden-orange to-golden-orange-dark p-6 text-white shadow-lg"
+            >
+              <div className="flex items-start gap-4">
+                <div className="rounded-xl bg-white/20 p-3">
+                  <Calendar className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">{conversationLabel}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/85">{conversationDescription}</p>
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a
+                  href={`mailto:${personalInfo.email}?subject=${emailSubject}&body=${emailBody}`}
+                  className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-golden-orange-dark transition-colors hover:bg-orange-50"
+                >
+                  <Mail className="h-4 w-4" />
+                  {conversationCta}
+                </a>
+                {personalInfo.linkedin && (
+                  <a
+                    href={personalInfo.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/40 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    {linkedinCta}
+                  </a>
+                )}
+              </div>
+            </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
             {contactInfo.map((contact) => {
               const content = (
