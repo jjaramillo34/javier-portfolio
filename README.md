@@ -1,138 +1,85 @@
 # Javier Jaramillo Portfolio
 
-A bilingual, data-driven portfolio for Javier Jaramillo, built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion. It presents professional experience, selected projects, technical skills, certifications, testimonials, and contact options for recruiters and potential clients.
+A bilingual (English/Spanish) portfolio for Javier Jaramillo, built with Next.js and the open-source [Once UI](https://once-ui.com) design system. It presents experience, projects, skills, certifications, recommendations, and a contact form for recruiters and potential clients.
+
+Every page is rendered to static HTML at build time, so search engines and link previews see the full content.
 
 ## Features
 
-- Responsive portfolio layout with dark/light theme support.
-- English/Spanish language switching with synchronized document metadata.
-- Accessible vertical navigation with mobile dismissal and keyboard support.
-- Hero conversion area with availability status, verified results, resume download, and social links.
-- Featured projects, case-study previews, category filters, achievement highlights, and project detail dialogs.
-- Contentful CMS integration with a local JSON fallback for graceful degradation.
-- Searchable and filterable certifications with credential links.
-- Technical skills grouped by category and separated into core and additional tools.
-- Experience timeline with current-role and measurable-impact emphasis.
-- Testimonials with relationship context, filtering, featured recommendations, and progressive quote display.
-- Contact form through Formspree with optional reCAPTCHA protection.
-- Vercel Web Analytics integration and an optional server-side visitor count.
-- Reduced-motion support, SEO metadata, Open Graph tags, and lazy-loaded project images.
+- Home page with availability status, animated stats, selected projects, recommendations, and a call to action.
+- About page with an experience timeline, education, skill proficiency, languages, and a personal dedication.
+- Work page with category filters and a dedicated page per project.
+- Certifications grouped by subject, with credential links.
+- Contact page with a Formspree form (optional reCAPTCHA) and direct contact channels.
+- English at `/…` and Spanish at `/es/…`, with `hreflang` alternates, per-page Open Graph metadata, a sitemap, and `robots.txt`.
+- Light/dark theme that follows the system setting, set before first paint.
+- Vercel Web Analytics and an optional server-side visitor count.
 
 ## Tech stack
 
-- React 18 + TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Contentful
+- Next.js 16 (App Router) + React 19 + TypeScript
+- [Once UI core](https://github.com/once-ui-system/core) (MIT)
+- next-intl for routing and translations
 - Formspree
 - Vercel Analytics
-- Lucide React
+- Biome for linting and formatting
 - PNPM
 
 ## Getting started
 
-### Prerequisites
-
-- Node.js 18 or newer
-- PNPM
-
-### Install and run locally
+Requires Node.js 20.9 or newer and PNPM.
 
 ```bash
 git clone https://github.com/jjaramillo34/javier-portfolio.git
 cd javier-portfolio
 pnpm install
-pnpm run dev
+pnpm dev
 ```
 
-The development server runs at [http://localhost:5173](http://localhost:5173).
-
-### Validate and build
+The development server runs at [http://localhost:3000](http://localhost:3000).
 
 ```bash
-pnpm run lint
-pnpm run build
-pnpm run preview
+pnpm lint        # Biome
+pnpm typecheck   # TypeScript
+pnpm build       # production build
+pnpm start       # serve the production build
 ```
 
-The local fallback data can be checked independently with:
+## Editing content
 
-```bash
-node -e "JSON.parse(require('fs').readFileSync('public/data/portfolio-data.json')); console.log('portfolio data valid')"
-```
+- **Portfolio data** (experience, projects, skills, certifications, testimonials, stats): `src/content/portfolio-data.json`. Projects accept optional `titleEs`, `descriptionEs`, and `achievementsEs`; other entries are shown as written in both languages.
+- **Interface text** (headings, buttons, labels, home summary): `src/messages/en.json` and `src/messages/es.json`. Both files must have the same keys.
+- **Theme** (brand colors, borders, surfaces): `src/resources/once-ui.config.ts`.
+- **Site URL, resume, avatar, and social image**: `src/resources/site.ts`.
+
+Project pages live at `/work/<slug>`, where the slug comes from the English project title.
 
 ## Environment variables
 
-Create a `.env.local` file for local development. Never commit this file or put secret tokens in client-side source code.
-
-### Contact form
+Copy `.env.example` to `.env.local` for local development.
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `VITE_FORMSPREE_ID` | Recommended | Formspree form ID used by the contact form. Without it, submissions are not connected to a Formspree form. |
-| `VITE_RECAPTCHA_SITE_KEY` | Optional | Public reCAPTCHA site key. The challenge is skipped when unset and is also skipped on localhost. |
+| `NEXT_PUBLIC_FORMSPREE_ID` | Recommended | Formspree form ID. Without it, the contact page asks visitors to email instead. |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Optional | reCAPTCHA v2 site key. Skipped when unset and on localhost. |
+| `VERCEL_API_TOKEN` | Optional | Vercel API token with access to Web Analytics. Enables the footer visitor count. |
 
-### Contentful
-
-Contentful is optional. When these values are not configured, the site uses `public/data/portfolio-data.json`.
-
-| Variable | Required for Contentful | Description |
-| --- | --- | --- |
-| `VITE_CONTENTFUL_SPACE_ID` | Yes | Contentful space ID. |
-| `VITE_CONTENTFUL_DELIVERY_TOKEN` | Yes, unless preview is used | Content delivery API token. |
-| `VITE_CONTENTFUL_PREVIEW_TOKEN` | Only for preview mode | Contentful preview API token. |
-| `VITE_CONTENTFUL_USE_PREVIEW` | Optional | Set to `true` to use the preview API and preview token. |
-| `VITE_CONTENTFUL_ENVIRONMENT` | Optional | Contentful environment; defaults to `master`. |
-| `VITE_CONTENTFUL_LOCALE_EN` | Optional | English locale; defaults to `en-US`. |
-| `VITE_CONTENTFUL_LOCALE_ES` | Optional | Spanish locale; defaults to `es-ES`. |
-
-### Vercel visitor count
-
-The visitor count endpoint runs server-side so the API token is not exposed in the browser.
-
-| Variable | Required for visitor count | Description |
-| --- | --- | --- |
-| `VERCEL_API_TOKEN` | Yes | Vercel API token with permission to query Web Analytics for the `javier-portfolio` project. |
-
-If `VERCEL_API_TOKEN` is missing or the analytics request fails, the visitor count is hidden and the rest of the site remains available.
+`VERCEL_PROJECT_ID` is provided automatically on Vercel. If the token or project ID is missing, the visitor count is hidden.
 
 ## Deploying to Vercel
 
-1. Import the repository into Vercel.
-2. Select the Vite framework preset.
-3. Add the environment variables required by the features you use under **Project Settings → Environment Variables**.
-4. For the full CMS-backed deployment, add the Contentful variables. For the local JSON fallback, no Contentful variables are needed.
-5. Add `VERCEL_API_TOKEN` if the footer visitor count should be displayed.
-6. Add `VITE_FORMSPREE_ID` if the contact form should submit to Formspree.
-7. Deploy. Vercel serves the generated `dist` directory from the project build.
-
-For local Vercel-style development, use:
-
-```bash
-vercel dev
-```
+`vercel.json` sets the framework to Next.js, so the project builds correctly even if its dashboard preset is still Vite. Add the environment variables above under **Project Settings → Environment Variables** and deploy.
 
 ## Project structure
 
-- `src/components/sections/` — Portfolio sections and page content.
-- `src/components/ui/` — Reusable UI primitives.
-- `src/contexts/` — Theme and language state.
-- `src/services/contentful.ts` — Contentful client and normalization.
-- `src/types/` — TypeScript data contracts.
-- `public/data/portfolio-data.json` — Local content and translation fallback.
-- `public/images/` — Portfolio imagery.
-- `api/visitor-count.ts` — Server-side Vercel visitor-count endpoint.
-
-## Credits
-
-- [Lucide Icons](https://lucide.dev/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
-- [Contentful](https://www.contentful.com/)
-- [Formspree](https://formspree.io/)
-- [Vercel Analytics](https://vercel.com/docs/analytics)
+- `src/app/[locale]/` — Pages (home, about, work, certifications, contact) and the root layout.
+- `src/app/api/visitor-count/` — Server-side visitor count.
+- `src/components/` — Header, footer, cards, stats, and the contact form.
+- `src/content/` — Portfolio data and typed, locale-aware accessors.
+- `src/i18n/` and `src/proxy.ts` — Locale routing.
+- `src/messages/` — Interface translations.
+- `src/resources/` — Theme, icons, metadata helpers, and site constants.
+- `public/` — Images, favicons, resume PDF, and the social sharing image.
 
 ## License
 

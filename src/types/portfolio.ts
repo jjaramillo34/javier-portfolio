@@ -4,7 +4,7 @@ export interface PersonalInfo {
   tagline: string;
   location: string;
   linkedin: string;
-  github?: string;
+  github: string;
   email: string;
   phone: string;
   summary: string;
@@ -16,8 +16,6 @@ export interface WorkExperience {
   company: string;
   period: string;
   location: string;
-  year: number;
-  yearEnd: number;
   achievements: string[];
 }
 
@@ -28,19 +26,36 @@ export interface Education {
   location: string;
 }
 
-export type ProjectCategory = 'data' | 'full-stack' | 'automation';
+export type ProjectCategory = "data" | "full-stack" | "automation";
 
-export interface Project {
+/** Project as stored in the JSON, with optional Spanish fields. */
+export interface ProjectRecord {
   id: number;
+  order: number;
+  category: ProjectCategory;
+  title: string;
+  titleEs?: string;
+  period: string;
+  description: string;
+  descriptionEs?: string;
+  technologies: string[];
+  achievements: string[];
+  achievementsEs?: string[];
+  link: string;
+  image?: string;
+}
+
+/** Project resolved for one locale. */
+export interface Project {
+  slug: string;
+  category: ProjectCategory;
   title: string;
   period: string;
   description: string;
-  category?: ProjectCategory;
   technologies: string[];
   achievements: string[];
-  link: string;
-  image?: string;
-  order?: number;
+  link: string | null;
+  image: string | null;
 }
 
 export interface Skill {
@@ -48,13 +63,43 @@ export interface Skill {
   level: number;
 }
 
-export interface SkillCategory {
-  languages: Skill[];
-  frontend: Skill[];
-  dataVisualization: Skill[];
-  cloud: Skill[];
-  databases: Skill[];
-  tools: Skill[];
+export type SkillCategoryKey =
+  | "languages"
+  | "frontend"
+  | "dataVisualization"
+  | "cloud"
+  | "databases"
+  | "tools";
+
+export interface Certification {
+  id: number;
+  title: string;
+  institution: string;
+  issueDate: string;
+  credentialId: string | null;
+  skills: string[];
+  description: string;
+  link: string;
+}
+
+export type CertificationCategoryKey =
+  | "backendDevelopment"
+  | "computerVisionAI"
+  | "dataAnalysis"
+  | "excelVBA"
+  | "security";
+
+export type RelationshipType = "manager" | "colleague" | "teacher" | "client";
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  position: string;
+  company: string;
+  relationship: string;
+  relationshipType: RelationshipType;
+  date: string;
+  quote: string;
 }
 
 export interface Language {
@@ -69,55 +114,14 @@ export interface Achievements {
   satisfactionRate: number;
 }
 
-export interface Certification {
-  id: number;
-  title: string;
-  institution: string;
-  issueDate: string;
-  credentialId: string | null;
-  skills: string[];
-  description: string;
-  link: string;
-}
-
-export interface CertificationCategory {
-  backendDevelopment: Certification[];
-  computerVisionAI: Certification[];
-  dataAnalysis: Certification[];
-  excelVBA: Certification[];
-  security: Certification[];
-}
-
-export interface Testimonial {
-  id: number;
-  name: string;
-  position: string;
-  company: string;
-  relationship: string;
-  relationshipType: 'manager' | 'colleague' | 'teacher' | 'client';
-  date: string;
-  quote: string;
-  avatar?: string;
-}
-
-export interface Translation {
-  [key: string]: any;
-}
-
-export interface Translations {
-  en: Translation;
-  es: Translation;
-}
-
 export interface PortfolioData {
   personalInfo: PersonalInfo;
+  achievements: Achievements;
   workExperience: WorkExperience[];
   education: Education[];
-  projects: Project[];
-  skills: SkillCategory;
-  certifications: CertificationCategory;
+  projects: ProjectRecord[];
+  skills: Record<SkillCategoryKey, Skill[]>;
+  certifications: Record<CertificationCategoryKey, Certification[]>;
   testimonials: Testimonial[];
   languages: Language[];
-  achievements: Achievements;
-  translations: Translations;
 }
