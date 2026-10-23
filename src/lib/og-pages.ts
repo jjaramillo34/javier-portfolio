@@ -1,14 +1,11 @@
-import { certifications, getProject } from "@/content";
+import { getCertificationTimeline, getProject } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { renderOgCard } from "./og";
 
 export type OgPage = "home" | "about" | "work" | "certifications" | "contact";
 
-const certificationCount = Object.values(certifications).reduce(
-  (sum, list) => sum + list.length,
-  0,
-);
+const certificationCount = getCertificationTimeline().length;
 
 /** Social card for one of the top-level pages, in the given language. */
 export async function renderPageOg(locale: Locale, page: OgPage) {

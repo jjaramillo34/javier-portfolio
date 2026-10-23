@@ -47,12 +47,36 @@ pnpm start       # serve the production build
 
 ## Editing content
 
-- **Portfolio data** (experience, projects, skills, certifications, testimonials, stats): `src/content/portfolio-data.json`. Projects accept optional `titleEs`, `descriptionEs`, and `achievementsEs`; other entries are shown as written in both languages.
+Portfolio content is edited in **Keystatic**, a git-based CMS, at `/keystatic`:
+
+- **Locally:** run `pnpm dev` and open [http://localhost:3000/keystatic](http://localhost:3000/keystatic). Saving writes the JSON files directly; commit them as usual.
+- **On the live site:** open `https://www.jaramillohub.com/keystatic` and sign in with GitHub. Saving commits to the repo, and Vercel deploys the change in a minute or two. (Available once the GitHub App is set up; see below. Until then the route returns 404.)
+
+Content is stored as one JSON file per entry, which keeps every edit reviewable in git:
+
+| Content | Files |
+| --- | --- |
+| Projects (with optional Spanish title, description, highlights) | `src/content/projects/<slug>.json` |
+| Experience | `src/content/experience/<slug>.json` |
+| Certifications | `src/content/certifications/<slug>.json` |
+| Recommendations | `src/content/testimonials/<slug>.json` |
+| Name, contact links, home stats, education, languages | `src/content/profile.json` |
+| Skills and proficiency | `src/content/skills.json` |
+
+A project's filename is its URL: `/work/<slug>`. Entries are ordered by their `order` field.
+
+Everything else stays in code:
+
 - **Interface text** (headings, buttons, labels, home summary): `src/messages/en.json` and `src/messages/es.json`. Both files must have the same keys.
 - **Theme** (brand colors, borders, surfaces): `src/resources/once-ui.config.ts`.
-- **Site URL, resume, avatar, and social image**: `src/resources/site.ts`.
+- **Site URL, resume, and avatar**: `src/resources/site.ts`.
 
-Project pages live at `/work/<slug>`, where the slug comes from the English project title.
+### Enabling the editor on the live site (one time)
+
+1. Run `NEXT_PUBLIC_KEYSTATIC_STORAGE=github pnpm dev` and open http://localhost:3000/keystatic.
+2. Follow Keystatic's prompt to create a GitHub App for `jjaramillo34/javier-portfolio` and install it on the repo. Keystatic writes `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`, and `NEXT_PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` to `.env`.
+3. In the GitHub App's settings, add the callback URL `https://www.jaramillohub.com/api/keystatic/github/oauth/callback`.
+4. Add the same four variables in Vercel (**Project Settings → Environment Variables**, Production) and redeploy.
 
 ### Refreshing project screenshots
 

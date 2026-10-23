@@ -6,32 +6,30 @@
 // Writes public/images/projects/<slug>/{desktop,section-N,mobile}.webp and merges results
 // into src/content/project-media.json. Uses the locally installed Chrome (set CHROME_PATH
 // to use another Chromium build). A site that fails keeps its previous captures.
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { chromium } from "playwright-core";
 import sharp from "sharp";
 
-const DATA = "src/content/portfolio-data.json";
+// One JSON file per project (edited in Keystatic); the filename is the slug.
+const PROJECTS_DIR = "src/content/projects";
 const MANIFEST = "src/content/project-media.json";
 const OUT_DIR = "public/images/projects";
 const DESKTOP = { width: 1440, height: 900 };
 const MOBILE = { width: 390, height: 844 };
 const SECTIONS = 3;
 
-// Must match slugify in src/content/index.ts.
-const slugify = (value) =>
-  value
-    .normalize("NFD")
-    .replace(/\p{M}/gu, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
 const only = process.argv.slice(2);
-const data = JSON.parse(await readFile(DATA, "utf8"));
-const projects = data.projects
-  .filter((project) => project.link && project.link !== "#")
-  .map((project) => ({ slug: slugify(project.title), url: project.link }))
+const files = (await readdir(PROJECTS_DIR)).filter((file) => file.endsWith(".json"));
+const projects = (
+  await Promise.all(
+    files.map(async (file) => {
+      const project = JSON.parse(await readFile(join(PROJECTS_DIR, file), "utf8"));
+      return { slug: file.replace(/\.json$/, ""), url: project.link };
+    }),
+  )
+)
+  .filter((project) => project.url)
   .filter((project) => only.length === 0 || only.includes(project.slug));
 
 let manifest = {};

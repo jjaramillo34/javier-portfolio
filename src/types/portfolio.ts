@@ -10,8 +10,10 @@ export interface PersonalInfo {
   summary: string;
 }
 
+// Entries are stored one JSON file per item (edited in Keystatic); `id` is the filename slug.
+
 export interface WorkExperience {
-  id: number;
+  id: string;
   title: string;
   company: string;
   period: string;
@@ -28,21 +30,20 @@ export interface Education {
 
 export type ProjectCategory = "data" | "full-stack" | "automation" | "api";
 
-/** Project as stored in the JSON, with optional Spanish fields. */
+/** Project as stored in src/content/projects/<slug>.json; empty Spanish fields fall back to English. */
 export interface ProjectRecord {
-  id: number;
   order: number;
   category: ProjectCategory;
   title: string;
-  titleEs?: string;
+  titleEs: string;
   period: string;
   description: string;
-  descriptionEs?: string;
+  descriptionEs: string;
   technologies: string[];
   achievements: string[];
-  achievementsEs?: string[];
-  link: string;
-  image?: string;
+  achievementsEs: string[];
+  link: string | null;
+  image: string;
 }
 
 /** Live-site screenshots and metadata captured by scripts/capture-projects.mjs. */
@@ -84,14 +85,15 @@ export type SkillCategoryKey =
   | "tools";
 
 export interface Certification {
-  id: number;
+  id: string;
   title: string;
   institution: string;
   issueDate: string;
-  credentialId: string | null;
+  category: CertificationCategoryKey;
+  credentialId: string;
   skills: string[];
   description: string;
-  link: string;
+  link: string | null;
 }
 
 export type CertificationCategoryKey =
@@ -103,7 +105,6 @@ export type CertificationCategoryKey =
 
 /** A certification with its category and parsed issue date, for the timeline. */
 export interface TimelineCertification extends Certification {
-  category: CertificationCategoryKey;
   /** Months since year 0, for sorting ("Sep 2020" → 2020 * 12 + 8). */
   sortKey: number;
   year: number;
@@ -112,7 +113,7 @@ export interface TimelineCertification extends Certification {
 export type RelationshipType = "manager" | "colleague" | "teacher" | "client";
 
 export interface Testimonial {
-  id: number;
+  id: string;
   name: string;
   position: string;
   company: string;
@@ -132,16 +133,4 @@ export interface Achievements {
   projectsCompleted: number;
   dataPointsProcessed: string;
   satisfactionRate: number;
-}
-
-export interface PortfolioData {
-  personalInfo: PersonalInfo;
-  achievements: Achievements;
-  workExperience: WorkExperience[];
-  education: Education[];
-  projects: ProjectRecord[];
-  skills: Record<SkillCategoryKey, Skill[]>;
-  certifications: Record<CertificationCategoryKey, Certification[]>;
-  testimonials: Testimonial[];
-  languages: Language[];
 }

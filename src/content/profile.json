@@ -1,0 +1,49 @@
+{
+  "personalInfo": {
+    "name": "Javier Jaramillo",
+    "title": "Data Analyst | Full Stack Developer | IT Specialist",
+    "tagline": "Tech Innovator | Data Visualization Expert | Software Developer | Project Manager | Team Leader | Full Stack Engineer | Data Science Specialist | Agile Leader",
+    "location": "New York City Metropolitan Area",
+    "linkedin": "https://www.linkedin.com/in/jaramillohub/",
+    "github": "https://github.com/jjaramillo34",
+    "email": "javier@jaramillohub.com",
+    "phone": "+1 (347) 239-9026",
+    "summary": "Experienced Data Analyst and Full Stack Developer with 15+ years of expertise in data visualization, automation, and software development. Proven track record of reducing processing time, improving efficiency, and delivering innovative solutions across education, healthcare, and technology sectors."
+  },
+  "achievements": {
+    "yearsOfExperience": 15,
+    "projectsCompleted": 50,
+    "dataPointsProcessed": "1M+",
+    "satisfactionRate": 93
+  },
+  "education": [
+    {
+      "degree": "Bachelor's degree Computer Science",
+      "school": "Queens College",
+      "period": "2008-2011",
+      "location": "Queens, NY"
+    },
+    {
+      "degree": "Associate's degree Computer Science",
+      "school": "LaGuardia Community College",
+      "period": "2005-2007",
+      "location": "Queens, NY"
+    },
+    {
+      "degree": "Analytics Certificate",
+      "school": "General Assembly",
+      "period": "2015",
+      "location": "New York, NY"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Professional working proficiency"
+    },
+    {
+      "language": "Spanish",
+      "proficiency": "Native or bilingual proficiency"
+    }
+  ]
+}

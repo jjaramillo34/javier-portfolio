@@ -1,0 +1,26 @@
+{
+  "title": "Crissel Studio",
+  "titleEs": "",
+  "order": 5,
+  "category": "full-stack",
+  "period": "2026",
+  "description": "Booking-first site for a lash, brow, and makeup studio in Ambato: services, packages, gallery, and WhatsApp reservation.",
+  "descriptionEs": "Sitio orientado a reservas para un estudio de pestañas, cejas y maquillaje en Ambato: servicios, paquetes, galería y reserva por WhatsApp.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "achievements": [
+    "Live at crisselstudio.makeup with Spanish-first copy",
+    "Services, bundles, before/after gallery, and online booking",
+    "Local presence for Centro Comercial La Galería, Ambato"
+  ],
+  "achievementsEs": [
+    "En línea en crisselstudio.makeup, escrito primero en español",
+    "Servicios, paquetes, galería de antes y después, y reserva online",
+    "Presencia local en el Centro Comercial La Galería, Ambato"
+  ],
+  "link": "https://www.crisselstudio.makeup/",
+  "image": "/images/projects/crissel-studio.jpg"
+}

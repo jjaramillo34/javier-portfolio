@@ -1,0 +1,110 @@
+{
+  "languages": [
+    {
+      "name": "Python",
+      "level": 95
+    },
+    {
+      "name": "JavaScript",
+      "level": 90
+    },
+    {
+      "name": "TypeScript",
+      "level": 85
+    },
+    {
+      "name": "SQL",
+      "level": 90
+    },
+    {
+      "name": "Java",
+      "level": 80
+    },
+    {
+      "name": "VBA",
+      "level": 85
+    }
+  ],
+  "frontend": [
+    {
+      "name": "React.js",
+      "level": 90
+    },
+    {
+      "name": "Node.js",
+      "level": 85
+    },
+    {
+      "name": "HTML/CSS",
+      "level": 95
+    },
+    {
+      "name": "Tailwind CSS",
+      "level": 85
+    }
+  ],
+  "dataVisualization": [
+    {
+      "name": "Power BI",
+      "level": 95
+    },
+    {
+      "name": "Tableau",
+      "level": 90
+    },
+    {
+      "name": "Qlik",
+      "level": 85
+    },
+    {
+      "name": "Excel",
+      "level": 95
+    }
+  ],
+  "cloud": [
+    {
+      "name": "AWS",
+      "level": 80
+    },
+    {
+      "name": "Azure",
+      "level": 75
+    },
+    {
+      "name": "Power Platform",
+      "level": 90
+    }
+  ],
+  "databases": [
+    {
+      "name": "MongoDB",
+      "level": 85
+    },
+    {
+      "name": "SQL Server",
+      "level": 90
+    },
+    {
+      "name": "DB2",
+      "level": 75
+    }
+  ],
+  "tools": [
+    {
+      "name": "Git",
+      "level": 85
+    },
+    {
+      "name": "Power Apps",
+      "level": 90
+    },
+    {
+      "name": "Power Automate",
+      "level": 85
+    },
+    {
+      "name": "Streamlit",
+      "level": 80
+    }
+  ]
+}

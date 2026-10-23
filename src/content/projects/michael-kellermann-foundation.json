@@ -1,0 +1,27 @@
+{
+  "title": "Michael Kellermann Foundation",
+  "titleEs": "Fundación Michael Kellermann",
+  "order": 1,
+  "category": "full-stack",
+  "period": "2026",
+  "description": "Public site for MKF, a recovery foundation that funds private treatment and aftercare so people are not lost in a revolving-door clinic. Built around donate, programs, stories, and family support.",
+  "descriptionEs": "Sitio público de MKF, una fundación de recuperación que financia tratamiento privado y aftercare para que nadie se pierda en un sistema de puertas giratorias. Incluye donaciones, programas, testimonios y apoyo familiar.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel"
+  ],
+  "achievements": [
+    "Live site at mkfrecovery.org with donate, programs, and contact paths",
+    "Mission, recovery stories, and 30/60/90-day program structure",
+    "Quiet visual system around hope, sobriety, and community"
+  ],
+  "achievementsEs": [
+    "Sitio en mkfrecovery.org con donaciones, programas y contacto",
+    "Misión, testimonios y estructura de programas de 30/60/90 días",
+    "Sistema visual sereno centrado en esperanza, sobriedad y comunidad"
+  ],
+  "link": "https://mkfrecovery.org/",
+  "image": "/images/projects/mkf-recovery.jpg"
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Iconyc - BigApps Competition",
+  "titleEs": "",
+  "order": 8,
+  "category": "full-stack",
+  "period": "May 2014 - Jul 2014",
+  "description": "Photo-sharing and crowdsourcing app for NYC landmarks",
+  "descriptionEs": "",
+  "technologies": [
+    "Mobile Development",
+    "UX Design",
+    "JavaScript"
+  ],
+  "achievements": [
+    "Participant in NYC BigApps Competition",
+    "Built visual and UX design features",
+    "Focused on community engagement and landmark discovery"
+  ],
+  "achievementsEs": [],
+  "link": null,
+  "image": ""
+}

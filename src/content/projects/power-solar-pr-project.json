@@ -1,0 +1,27 @@
+{
+  "title": "Power Solar PR Project",
+  "titleEs": "Proyecto Power Solar PR",
+  "order": 9,
+  "category": "data",
+  "period": "2022 - 2023",
+  "description": "Interactive map of solar customers across Puerto Rico: clusters, heatmaps, municipality filters, and ML analytics on 13K+ installations.",
+  "descriptionEs": "Mapa interactivo de clientes solares en Puerto Rico: clusters, mapas de calor, filtros por municipio y analytics con ML sobre más de 13 mil instalaciones.",
+  "technologies": [
+    "React",
+    "Mapbox",
+    "Geographic Analysis",
+    "Data Visualization"
+  ],
+  "achievements": [
+    "Live at powersolarpr-nu.vercel.app",
+    "Coverage across 78 municipalities and 13K+ solar customers",
+    "Cluster, heatmap, 3D, and ML analytics views"
+  ],
+  "achievementsEs": [
+    "En línea en powersolarpr-nu.vercel.app",
+    "Cobertura en 78 municipios y más de 13 mil clientes solares",
+    "Vistas de clusters, mapa de calor, 3D y analytics con ML"
+  ],
+  "link": "https://powersolarpr-nu.vercel.app/",
+  "image": "/images/projects/power-solar-pr.jpg"
+}

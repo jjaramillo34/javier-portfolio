@@ -1,0 +1,15 @@
+{
+  "title": "Python Django Course",
+  "institution": "Coderhouse",
+  "issueDate": "Jun 2022",
+  "category": "backendDevelopment",
+  "description": "Advanced course in Django framework for Python web development.",
+  "skills": [
+    "Python",
+    "Django",
+    "Web Development",
+    "Backend"
+  ],
+  "credentialId": "",
+  "link": null
+}

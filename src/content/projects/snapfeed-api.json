@@ -1,0 +1,27 @@
+{
+  "title": "SnapFeed API",
+  "titleEs": "SnapFeed API",
+  "order": 2,
+  "category": "api",
+  "period": "2026",
+  "description": "Locked-down REST API for DuckDuckGo image and news search, with address-aware filtering and a NYC real-estate project timeline. Header-only API keys, rate limiting, and live interactive docs.",
+  "descriptionEs": "API REST protegida para búsqueda de imágenes y noticias en DuckDuckGo, con filtrado por dirección y una línea de tiempo de proyectos inmobiliarios de NYC. Llaves de API solo por encabezado, límites de uso y documentación interactiva en vivo.",
+  "technologies": [
+    "Python",
+    "FastAPI",
+    "REST API",
+    "OpenAPI"
+  ],
+  "achievements": [
+    "Image and news search with size, color, license, region, and time filters",
+    "US-address mode that quotes the street and drops off-target results",
+    "X-API-Key auth, 30 searches/min per IP, and a live \"Try it\" console with OpenAPI docs"
+  ],
+  "achievementsEs": [
+    "Búsqueda de imágenes y noticias con filtros de tamaño, color, licencia, región y tiempo",
+    "Modo de dirección de EE. UU. que cita la calle y descarta resultados irrelevantes",
+    "Autenticación con X-API-Key, 30 búsquedas/min por IP y consola \"Try it\" con documentación OpenAPI"
+  ],
+  "link": "https://snapfeedapi.info/",
+  "image": "/images/projects/snapfeed-api.jpg"
+}

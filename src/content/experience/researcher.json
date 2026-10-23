@@ -1,0 +1,13 @@
+{
+  "title": "Researcher",
+  "company": "National Institute of Health",
+  "period": "Jan 2007 - May 2007",
+  "location": "New York, NY",
+  "order": 7,
+  "achievements": [
+    "Conducted presentations for NIH collaborators in robotics",
+    "Tested computer software for programming robots",
+    "Used differential equations for advanced sensor analysis",
+    "Contributed to groundbreaking research in medical robotics"
+  ]
+}
