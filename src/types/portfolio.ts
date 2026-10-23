@@ -26,7 +26,7 @@ export interface Education {
   location: string;
 }
 
-export type ProjectCategory = "data" | "full-stack" | "automation";
+export type ProjectCategory = "data" | "full-stack" | "automation" | "api";
 
 /** Project as stored in the JSON, with optional Spanish fields. */
 export interface ProjectRecord {

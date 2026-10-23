@@ -104,7 +104,8 @@
     "categories": {
       "data": "Datos",
       "full-stack": "Full-stack",
-      "automation": "Automatización"
+      "automation": "Automatización",
+      "api": "APIs y backend"
     },
     "visit": "Visitar sitio",
     "details": "Detalles del proyecto",
