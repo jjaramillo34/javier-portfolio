@@ -1,0 +1,13 @@
+{
+  "title": "Data Analyst",
+  "company": "Multiple Companies",
+  "period": "Jul 2022 - Present",
+  "location": "New York, NY",
+  "order": 2,
+  "achievements": [
+    "Enhanced communication through Streamlit and Twilio API integration",
+    "Enhanced data visualization using Tableau, Power BI, and Qlik",
+    "Engineered portfolio website using React.js and Sanity.io",
+    "Automated data management processes through ETL optimizations"
+  ]
+}

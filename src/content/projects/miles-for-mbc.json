@@ -1,0 +1,26 @@
+{
+  "title": "Miles for MBC",
+  "titleEs": "",
+  "order": 3,
+  "category": "full-stack",
+  "period": "2026",
+  "description": "Event site for the Howard Beach Color Fun Run that raises funds for metastatic breast cancer research through METAvivor. Covers registration, donations, sponsors, and local family stories.",
+  "descriptionEs": "Sitio del Color Fun Run de Howard Beach que recauda fondos para investigación de cáncer de mama metastásico a través de METAvivor. Incluye registro, donaciones, patrocinadores e historias de familias locales.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "achievements": [
+    "Live site at milesformbc.org for the #LightUpMBC fun run",
+    "Paths to register, donate, fundraise, and sponsor",
+    "Community stories that keep the cause personal"
+  ],
+  "achievementsEs": [
+    "Sitio en milesformbc.org para la carrera #LightUpMBC",
+    "Flujos para registrarse, donar, recaudar y patrocinar",
+    "Historias de la comunidad que mantienen la causa presente"
+  ],
+  "link": "https://milesformbc.org/",
+  "image": "/images/projects/miles-for-mbc.jpg"
+}

@@ -37,11 +37,9 @@ type Filter = "all" | CertificationCategoryKey;
 
 interface CertificationTimelineProps {
   items: TimelineCertification[];
-  /** Resolved certification links ("#" placeholders removed). */
-  links: Record<number, string | null>;
 }
 
-export function CertificationTimeline({ items, links }: CertificationTimelineProps) {
+export function CertificationTimeline({ items }: CertificationTimelineProps) {
   const t = useTranslations("certifications");
   const [filter, setFilter] = useState<Filter>("all");
   const [animate, setAnimate] = useState(false);
@@ -150,7 +148,7 @@ export function CertificationTimeline({ items, links }: CertificationTimelinePro
                         data-lit={marker < reached}
                         aria-hidden
                       />
-                      <CertCard cert={cert} link={links[cert.id]} />
+                      <CertCard cert={cert} />
                     </li>
                   );
                 })}
@@ -163,7 +161,8 @@ export function CertificationTimeline({ items, links }: CertificationTimelinePro
   );
 }
 
-function CertCard({ cert, link }: { cert: TimelineCertification; link: string | null }) {
+function CertCard({ cert }: { cert: TimelineCertification }) {
+  const { link } = cert;
   const t = useTranslations("certifications");
   const ref = useRef<HTMLDivElement>(null);
   const inViewport = useInViewport(ref);

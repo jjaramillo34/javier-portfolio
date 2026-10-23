@@ -1,0 +1,27 @@
+{
+  "title": "Private Dining Pros",
+  "titleEs": "",
+  "order": 6,
+  "category": "full-stack",
+  "period": "2026",
+  "description": "NYC private dining directory for restaurants, rooftops, and event rooms. Search by neighborhood, browse verified venues, and plan celebrations on a map.",
+  "descriptionEs": "Directorio de cenas privadas en NYC: restaurantes, rooftops y salas para eventos. Busca por barrio, explora locales verificados y planifica en el mapa.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Map"
+  ],
+  "achievements": [
+    "Live at privatediningpros.com with 154+ venues and 339+ rooms",
+    "Verified listings across 72 neighborhoods",
+    "Featured venues, rooftops, and an interactive map"
+  ],
+  "achievementsEs": [
+    "En línea en privatediningpros.com con más de 154 locales y 339 salas",
+    "Listados verificados en 72 barrios",
+    "Locales destacados, rooftops y mapa interactivo"
+  ],
+  "link": "https://www.privatediningpros.com/",
+  "image": "/images/projects/private-dining-pros.jpg"
+}

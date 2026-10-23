@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "files": {
-    "ignore": [".next", "node_modules", "src/content/portfolio-data.json"]
+    "ignore": [".next", "node_modules", "src/content/**/*.json"]
   },
   "formatter": {
     "enabled": true,
@@ -11,9 +11,13 @@
   },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true }
+    "rules": {
+      "recommended": true
+    }
   },
   "javascript": {
-    "formatter": { "quoteStyle": "double" }
+    "formatter": {
+      "quoteStyle": "double"
+    }
   }
 }

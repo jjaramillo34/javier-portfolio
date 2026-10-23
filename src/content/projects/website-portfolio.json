@@ -1,0 +1,27 @@
+{
+  "title": "Website Portfolio",
+  "titleEs": "Portafolio Web",
+  "order": 7,
+  "category": "full-stack",
+  "period": "Apr 2019 - Present",
+  "description": "This site: a bilingual portfolio with Contentful, theme and language controls, and a vertical nav built for recruiters and clients.",
+  "descriptionEs": "Este sitio: un portafolio bilingüe con Contentful, controles de tema e idioma, y una navegación vertical pensada para reclutadores y clientes.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Contentful",
+    "Vite"
+  ],
+  "achievements": [
+    "Live at jaramillohub.com",
+    "English and Spanish copy from Contentful",
+    "Light and dark theme with a persistent sidebar"
+  ],
+  "achievementsEs": [
+    "En línea en jaramillohub.com",
+    "Textos en inglés y español desde Contentful",
+    "Tema claro y oscuro con barra lateral persistente"
+  ],
+  "link": "https://www.jaramillohub.com/",
+  "image": "/images/projects/website-portfolio.jpg"
+}

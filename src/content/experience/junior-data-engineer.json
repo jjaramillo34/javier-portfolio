@@ -1,0 +1,13 @@
+{
+  "title": "Junior Data Engineer",
+  "company": "CareerMD",
+  "period": "Jul 2019 - Nov 2019",
+  "location": "New York, NY",
+  "order": 4,
+  "achievements": [
+    "Processed 6,000+ to 10,000+ raw data points daily on medical professionals",
+    "Cut data processing time by three weeks through automation",
+    "Accelerated project completion by six months",
+    "Implemented data quality assurance protocols"
+  ]
+}

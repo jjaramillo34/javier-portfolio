@@ -1,7 +1,7 @@
 import { accentTags } from "@/components/Accent";
 import { CertificationTimeline } from "@/components/CertificationTimeline";
 import { SectionTitle } from "@/components/SectionTitle";
-import { getCertificationLink, getCertificationTimeline } from "@/content";
+import { getCertificationTimeline } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
 import { Column } from "@once-ui-system/core";
@@ -23,9 +23,6 @@ export default async function Certifications({ params }: PageProps<"/[locale]/ce
   setRequestLocale(locale);
   const t = await getTranslations("certifications");
   const timeline = getCertificationTimeline();
-  const links = Object.fromEntries(
-    timeline.map((cert) => [cert.id, getCertificationLink(cert.link)]),
-  );
 
   return (
     <Column maxWidth="l" gap="64" paddingTop="80" paddingBottom="104" s={{ paddingTop: "40" }}>
@@ -35,7 +32,7 @@ export default async function Certifications({ params }: PageProps<"/[locale]/ce
         title={t.rich("heading", accentTags)}
         description={t("subheading")}
       />
-      <CertificationTimeline items={timeline} links={links} />
+      <CertificationTimeline items={timeline} />
     </Column>
   );
 }

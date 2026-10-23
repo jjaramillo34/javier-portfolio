@@ -1,0 +1,13 @@
+{
+  "title": "Research Analyst",
+  "company": "CityRealty",
+  "period": "Dec 2012 - Mar 2019",
+  "location": "New York, NY",
+  "order": 5,
+  "achievements": [
+    "Boosted processing speed by 20x using VBA for real estate data",
+    "Reduced manual data entry by 80% through automation",
+    "Analyzed over 1 million data points using Excel, VBA, and SQL",
+    "Developed comprehensive market analysis reports"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "title": "La Poetisa del Semáforo",
+  "titleEs": "",
+  "order": 4,
+  "category": "full-stack",
+  "period": "2026",
+  "description": "Literary site for Andrea Vaca Cifuentes: biography, gallery, La Luz Verde, and a poetry reader with a red-and-black visual voice.",
+  "descriptionEs": "Sitio literario de Andrea Vaca Cifuentes: biografía, galería, La Luz Verde y un lector de poemas con una voz visual en rojo y negro.",
+  "technologies": [
+    "React",
+    "Vite",
+    "Vercel"
+  ],
+  "achievements": [
+    "Live at lapoetadelsemaforo.vercel.app",
+    "Book presentation with prologue, review, and cover views",
+    "Poem reader that keeps the traffic-light metaphor intact"
+  ],
+  "achievementsEs": [
+    "En línea en lapoetadelsemaforo.vercel.app",
+    "Presentación del libro con prólogo, reseña y portadas",
+    "Lector de poemas que conserva la metáfora del semáforo"
+  ],
+  "link": "https://lapoetadelsemaforo.vercel.app/",
+  "image": "/images/projects/la-poeta-del-semaforo.jpg"
+}

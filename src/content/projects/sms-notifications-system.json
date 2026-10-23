@@ -1,0 +1,24 @@
+{
+  "title": "SMS Notifications System",
+  "titleEs": "",
+  "order": 10,
+  "category": "automation",
+  "period": "2023",
+  "description": "Automated notification system with cloud deployment",
+  "descriptionEs": "",
+  "technologies": [
+    "Python",
+    "Streamlit",
+    "MongoDB",
+    "Twilio API",
+    "AWS"
+  ],
+  "achievements": [
+    "Deployed on AWS Lightsail for scalability",
+    "Integrated multiple communication channels",
+    "Automated alert and notification workflows"
+  ],
+  "achievementsEs": [],
+  "link": null,
+  "image": ""
+}
