@@ -138,7 +138,16 @@
     },
     "issued": "Issued {date}",
     "credentialId": "Credential ID: {id}",
-    "viewCredential": "View credential"
+    "viewCredential": "View credential",
+    "statCertifications": "Certifications",
+    "statInstitutions": "Institutions",
+    "statSpan": "Learning timeline",
+    "activityTitle": "Learning activity",
+    "activityHint": "Certifications earned per year. Select a year to jump to it.",
+    "filterAll": "All",
+    "filterLabel": "Filter by subject",
+    "count": "{count, plural, one {# certification} other {# certifications}}",
+    "jumpTo": "{year}: {count, plural, one {# certification} other {# certifications}}"
   },
   "contact": {
     "eyebrow": "Contact",

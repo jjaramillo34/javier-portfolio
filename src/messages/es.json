@@ -138,7 +138,16 @@
     },
     "issued": "Emitido {date}",
     "credentialId": "ID de credencial: {id}",
-    "viewCredential": "Ver credencial"
+    "viewCredential": "Ver credencial",
+    "statCertifications": "Certificaciones",
+    "statInstitutions": "Instituciones",
+    "statSpan": "Línea de aprendizaje",
+    "activityTitle": "Actividad de aprendizaje",
+    "activityHint": "Certificaciones obtenidas por año. Selecciona un año para ir a él.",
+    "filterAll": "Todas",
+    "filterLabel": "Filtrar por tema",
+    "count": "{count, plural, one {# certificación} other {# certificaciones}}",
+    "jumpTo": "{year}: {count, plural, one {# certificación} other {# certificaciones}}"
   },
   "contact": {
     "eyebrow": "Contacto",

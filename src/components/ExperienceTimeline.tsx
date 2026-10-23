@@ -1,61 +1,17 @@
 "use client";
 
+import { useTimelineProgress } from "@/hooks/useTimelineProgress";
 import type { WorkExperience } from "@/types/portfolio";
 import { Column, Row, Tag, Text } from "@once-ui-system/core";
-import { useEffect, useRef, useState } from "react";
 
 interface ExperienceTimelineProps {
   jobs: WorkExperience[];
   presentLabel: string;
 }
 
-// The fill reaches a dot when that dot passes this point of the viewport height.
-const ANCHOR = 0.6;
-
 /** Career timeline whose rail fills in brand colour as you scroll, lighting each dot it reaches. */
 export function ExperienceTimeline({ jobs, presentLabel }: ExperienceTimelineProps) {
-  const listRef = useRef<HTMLDivElement>(null);
-  const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [rail, setRail] = useState({ top: 0, height: 0, fill: 0 });
-  const [reached, setReached] = useState(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const measure = () => {
-      frame = 0;
-      const list = listRef.current;
-      const dots = dotRefs.current.filter((dot): dot is HTMLDivElement => dot !== null);
-      if (!list || dots.length === 0) return;
-
-      const listTop = list.getBoundingClientRect().top;
-      const centers = dots.map((dot) => {
-        const rect = dot.getBoundingClientRect();
-        return rect.top + rect.height / 2;
-      });
-      const first = centers[0];
-      const last = centers[centers.length - 1];
-      const anchor = window.innerHeight * ANCHOR;
-
-      setRail({
-        top: first - listTop,
-        height: last - first,
-        fill: Math.min(Math.max(anchor - first, 0), last - first),
-      });
-      setReached(centers.filter((center) => center <= anchor).length);
-    };
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(measure);
-    };
-
-    measure();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, []);
+  const { listRef, markerRef, rail, reached } = useTimelineProgress();
 
   return (
     <Column
@@ -96,9 +52,7 @@ export function ExperienceTimeline({ jobs, presentLabel }: ExperienceTimelinePro
           <Row as="li" key={job.id} gap="24">
             <Column horizontal="center" minWidth="16" paddingTop="8" zIndex={1}>
               <Row
-                ref={(node: HTMLDivElement | null) => {
-                  dotRefs.current[index] = node;
-                }}
+                ref={markerRef(index)}
                 width="12"
                 height="12"
                 radius="full"
