@@ -37,6 +37,7 @@ export function Header() {
   // Path without the locale prefix, e.g. "/work/miles-for-mbc".
   const pathname = usePathname();
   const otherLocale: Locale = locale === "en" ? "es" : "en";
+  const switchHref = localePath(otherLocale, pathname);
 
   return (
     <>
@@ -106,9 +107,17 @@ export function Header() {
           })}
           <Line background="neutral-alpha-medium" vert maxHeight="24" />
           <ToggleButton
-            href={localePath(otherLocale, pathname)}
+            href={switchHref}
             label={t("languageShort")}
             aria-label={t("switchLanguage")}
+            // Switching language swaps the root layout (<html lang>), which the client router
+            // can't do: prefetching it from /es pages retried endlessly. No prefetch, full load.
+            {...{ prefetch: false }}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+              event.preventDefault();
+              window.location.assign(switchHref);
+            }}
           />
           <ThemeToggle label={t("toggleTheme")} />
         </Row>
