@@ -1,0 +1,43 @@
+// Horizontal track: native scrolling with snap, so swipe, trackpad and keyboard all work.
+.track {
+  display: flex;
+  gap: var(--static-space-24);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  // Room for card shadows/focus rings without clipping.
+  padding-block: var(--static-space-4);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+// Three cards per view on desktop, two on tablets, one (with a peek of the next) on phones.
+.slide {
+  flex: 0 0 calc((100% - 2 * var(--static-space-24)) / 3);
+  scroll-snap-align: start;
+  display: flex;
+
+  @media (max-width: 1024px) {
+    flex-basis: calc((100% - var(--static-space-24)) / 2);
+  }
+
+  @media (max-width: 768px) {
+    flex-basis: 85%;
+  }
+}
+
+.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  overflow: hidden;
+}

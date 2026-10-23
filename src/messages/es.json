@@ -1,0 +1,145 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "work": "Proyectos",
+    "certifications": "Certificaciones",
+    "contact": "Contacto",
+    "switchLanguage": "View in English",
+    "languageShort": "EN",
+    "toggleTheme": "Cambiar tema",
+    "skipToContent": "Saltar al contenido"
+  },
+  "meta": {
+    "homeTitle": "Javier Jaramillo — Analista de Datos y Desarrollador Full-Stack",
+    "homeDescription": "Javier Jaramillo — analista de datos, desarrollador full-stack y especialista en TI que crea productos basados en datos y automatización.",
+    "aboutTitle": "Sobre mí",
+    "aboutDescription": "Experiencia, educación y habilidades técnicas de Javier Jaramillo.",
+    "workTitle": "Proyectos",
+    "workDescription": "Proyectos de datos, automatización y desarrollo full-stack de Javier Jaramillo.",
+    "certificationsTitle": "Certificaciones",
+    "certificationsDescription": "Licencias y certificaciones obtenidas por Javier Jaramillo.",
+    "contactTitle": "Contacto",
+    "contactDescription": "Contacta a Javier Jaramillo para proyectos de datos, automatización o full-stack."
+  },
+  "home": {
+    "available": "Disponible para proyectos selectos de datos, automatización y full-stack",
+    "role": "Analista de Datos · Desarrollador Full-Stack · Especialista en TI",
+    "summary": "Más de 15 años convirtiendo datos desordenados en dashboards, automatizaciones y productos que la gente realmente usa, en educación, salud, bienes raíces y tecnología.",
+    "getInTouch": "Ponte en contacto",
+    "downloadResume": "Descargar currículum",
+    "stats": {
+      "years": "Años de experiencia",
+      "projects": "Proyectos entregados",
+      "dataPoints": "Puntos de datos analizados",
+      "satisfaction": "Satisfacción del cliente"
+    },
+    "workEyebrow": "Trabajo seleccionado",
+    "workHeading": "Proyectos <em>recientes</em>",
+    "viewAllWork": "Ver todos los proyectos",
+    "testimonialsEyebrow": "Recomendaciones",
+    "testimonialsHeading": "Lo que <em>dicen</em> de mí",
+    "ctaHeading": "¿Tienes un proyecto <em>en mente?</em>",
+    "ctaBody": "Cuéntame qué estás construyendo y encontraremos el mejor siguiente paso.",
+    "ctaButton": "Iniciar una conversación",
+    "roles": ["Analista de Datos", "Desarrollador Full-Stack", "Especialista en TI"]
+  },
+  "testimonials": {
+    "relationship": {
+      "manager": "Ex gerente",
+      "colleague": "Ex colega",
+      "teacher": "Ex profesor",
+      "client": "Cliente"
+    },
+    "readMore": "Leer más",
+    "readLess": "Mostrar menos",
+    "previous": "Recomendación anterior",
+    "next": "Siguiente recomendación",
+    "position": "{current} de {total}",
+    "carouselLabel": "Recomendaciones",
+    "positionRange": "{start}–{end} de {total}"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "experience": "Experiencia",
+    "present": "Presente",
+    "education": "Educación",
+    "skills": "Habilidades técnicas",
+    "skillsSubheading": "Las herramientas que más uso para datos, aplicaciones y el trabajo del día a día.",
+    "skillCategories": {
+      "languages": "Lenguajes de programación",
+      "frontend": "Desarrollo frontend",
+      "dataVisualization": "Visualización de datos",
+      "cloud": "Nube y plataformas",
+      "databases": "Bases de datos",
+      "tools": "Herramientas y tecnologías"
+    },
+    "languages": "Idiomas",
+    "storyEyebrow": "Por qué creé este portafolio",
+    "storyLead": "Hecho con amor para <em>Cris, Sofía y Mateo</em>.",
+    "storyBody": "Refleja mi camino como desarrollador, educador y aprendiz de por vida. Trabajo en análisis de datos, desarrollo full-stack y tecnología educativa, y me importa crear herramientas que ayuden a otras personas.",
+    "storyThanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.",
+    "experienceTitle": "Dónde he generado <em>impacto</em>",
+    "educationTitle": "Dónde <em>aprendí</em>",
+    "skillsTitle": "Herramientas en las que <em>confío</em>"
+  },
+  "work": {
+    "eyebrow": "Portafolio",
+    "heading": "Lo que he <em>construido</em>",
+    "subheading": "Sitios en vivo, dashboards y automatizaciones, desde plataformas sin fines de lucro hasta pipelines de datos.",
+    "filterAll": "Todos",
+    "categories": {
+      "data": "Datos",
+      "full-stack": "Full-stack",
+      "automation": "Automatización"
+    },
+    "visit": "Visitar sitio",
+    "details": "Caso de estudio",
+    "technologies": "Tecnologías",
+    "highlights": "Logros clave",
+    "back": "Todos los proyectos",
+    "more": "Más <em>proyectos</em>"
+  },
+  "certifications": {
+    "eyebrow": "Aprendizaje continuo",
+    "heading": "Licencias y <em>certificaciones</em>",
+    "subheading": "Cursos y credenciales en desarrollo, IA, datos y seguridad.",
+    "categories": {
+      "backendDevelopment": "Backend y desarrollo",
+      "computerVisionAI": "Visión computacional e IA",
+      "dataAnalysis": "Análisis de datos y bases de datos",
+      "excelVBA": "Microsoft Excel y VBA",
+      "security": "Seguridad y administración de sistemas"
+    },
+    "issued": "Emitido {date}",
+    "credentialId": "ID de credencial: {id}",
+    "viewCredential": "Ver credencial"
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "heading": "Trabajemos <em>juntos</em>",
+    "subheading": "¿Listo para convertir tus datos en decisiones? Cuéntame sobre tu próximo proyecto.",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "messagePlaceholder": "Cuéntame sobre tu proyecto o idea…",
+    "send": "Enviar mensaje",
+    "successTitle": "Mensaje enviado",
+    "success": "Gracias por escribirme. Te responderé pronto.",
+    "error": "Algo salió mal. Por favor escríbeme directamente por correo.",
+    "notConfigured": "El formulario de contacto aún no está configurado. Escríbeme directamente por correo.",
+    "directly": "O contáctame directamente",
+    "location": "Ubicación",
+    "phone": "Teléfono"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "visitors": "{count} visitantes",
+    "resume": "Currículum"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "La página que buscas no existe o fue movida.",
+    "home": "Volver al inicio"
+  }
+}

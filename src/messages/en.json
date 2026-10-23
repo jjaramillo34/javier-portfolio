@@ -1,0 +1,145 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "work": "Work",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "switchLanguage": "Ver en español",
+    "languageShort": "ES",
+    "toggleTheme": "Toggle theme",
+    "skipToContent": "Skip to content"
+  },
+  "meta": {
+    "homeTitle": "Javier Jaramillo — Data Analyst & Full-Stack Developer",
+    "homeDescription": "Javier Jaramillo — data analyst, full-stack developer, and IT specialist building data-driven products and automation.",
+    "aboutTitle": "About",
+    "aboutDescription": "Experience, education, and technical skills of Javier Jaramillo.",
+    "workTitle": "Work",
+    "workDescription": "Data, automation, and full-stack projects by Javier Jaramillo.",
+    "certificationsTitle": "Certifications",
+    "certificationsDescription": "Licenses and certifications earned by Javier Jaramillo.",
+    "contactTitle": "Contact",
+    "contactDescription": "Get in touch with Javier Jaramillo about data, automation, or full-stack projects."
+  },
+  "home": {
+    "available": "Available for select data, automation & full-stack projects",
+    "role": "Data Analyst · Full-Stack Developer · IT Specialist",
+    "summary": "15+ years turning messy data into dashboards, automations, and products people actually use, across education, healthcare, real estate, and tech.",
+    "getInTouch": "Get in touch",
+    "downloadResume": "Download resume",
+    "stats": {
+      "years": "Years of experience",
+      "projects": "Projects delivered",
+      "dataPoints": "Data points analyzed",
+      "satisfaction": "Client satisfaction"
+    },
+    "workEyebrow": "Selected work",
+    "workHeading": "Recent <em>projects</em>",
+    "viewAllWork": "View all work",
+    "testimonialsEyebrow": "Recommendations",
+    "testimonialsHeading": "What people <em>say</em>",
+    "ctaHeading": "Have a project <em>in mind?</em>",
+    "ctaBody": "Tell me what you're building and we'll find the best next step.",
+    "ctaButton": "Start a conversation",
+    "roles": ["Data Analyst", "Full-Stack Developer", "IT Specialist"]
+  },
+  "testimonials": {
+    "relationship": {
+      "manager": "Former manager",
+      "colleague": "Former colleague",
+      "teacher": "Former teacher",
+      "client": "Client"
+    },
+    "readMore": "Read more",
+    "readLess": "Show less",
+    "previous": "Previous recommendation",
+    "next": "Next recommendation",
+    "position": "{current} of {total}",
+    "carouselLabel": "Recommendations",
+    "positionRange": "{start}–{end} of {total}"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "experience": "Experience",
+    "present": "Present",
+    "education": "Education",
+    "skills": "Technical skills",
+    "skillsSubheading": "The tools I use most for data, apps, and day-to-day delivery.",
+    "skillCategories": {
+      "languages": "Programming languages",
+      "frontend": "Frontend development",
+      "dataVisualization": "Data visualization",
+      "cloud": "Cloud & platforms",
+      "databases": "Databases",
+      "tools": "Tools & technologies"
+    },
+    "languages": "Languages",
+    "storyEyebrow": "Why I built this",
+    "storyLead": "Built with love for <em>Cris, Sofia, and Mateo</em>.",
+    "storyBody": "It reflects my path as a developer, educator, and lifelong learner. I work across data analytics, full-stack development, and educational technology, and I care about building tools that help other people.",
+    "storyThanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.",
+    "experienceTitle": "Where I have made an <em>impact</em>",
+    "educationTitle": "Where I <em>learned</em>",
+    "skillsTitle": "Tools I <em>trust</em>"
+  },
+  "work": {
+    "eyebrow": "Portfolio",
+    "heading": "Things I have <em>built</em>",
+    "subheading": "Live sites, dashboards, and automations, from nonprofit platforms to data pipelines.",
+    "filterAll": "All",
+    "categories": {
+      "data": "Data",
+      "full-stack": "Full-stack",
+      "automation": "Automation"
+    },
+    "visit": "Visit site",
+    "details": "Case study",
+    "technologies": "Technologies",
+    "highlights": "Highlights",
+    "back": "All projects",
+    "more": "More <em>projects</em>"
+  },
+  "certifications": {
+    "eyebrow": "Continuous learning",
+    "heading": "Licenses & <em>certifications</em>",
+    "subheading": "Courses and credentials across development, AI, data, and security.",
+    "categories": {
+      "backendDevelopment": "Backend & development",
+      "computerVisionAI": "Computer vision & AI",
+      "dataAnalysis": "Data analysis & databases",
+      "excelVBA": "Microsoft Excel & VBA",
+      "security": "Security & system administration"
+    },
+    "issued": "Issued {date}",
+    "credentialId": "Credential ID: {id}",
+    "viewCredential": "View credential"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "heading": "Let’s work <em>together</em>",
+    "subheading": "Ready to turn your data into decisions? Tell me about your next project.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "messagePlaceholder": "Tell me about your project or idea…",
+    "send": "Send message",
+    "successTitle": "Message sent",
+    "success": "Thanks for reaching out. I'll get back to you shortly.",
+    "error": "Something went wrong. Please email me directly instead.",
+    "notConfigured": "The contact form isn't configured yet. Please email me directly.",
+    "directly": "Or reach me directly",
+    "location": "Location",
+    "phone": "Phone"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "visitors": "{count} visitors",
+    "resume": "Resume"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved.",
+    "home": "Back home"
+  }
+}
