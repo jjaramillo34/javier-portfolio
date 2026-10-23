@@ -77,11 +77,24 @@
     "languages": "Idiomas",
     "storyEyebrow": "Por qué creé este portafolio",
     "storyLead": "Hecho con amor para <em>Cris, Sofía y Mateo</em>.",
-    "storyBody": "Refleja mi camino como desarrollador, educador y aprendiz de por vida. Trabajo en análisis de datos, desarrollo full-stack y tecnología educativa, y me importa crear herramientas que ayuden a otras personas.",
     "storyThanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.",
     "experienceTitle": "Dónde he generado <em>impacto</em>",
     "educationTitle": "Dónde <em>aprendí</em>",
-    "skillsTitle": "Herramientas en las que <em>confío</em>"
+    "skillsTitle": "Herramientas en las que <em>confío</em>",
+    "storyP1": "Este portafolio refleja mi camino como desarrollador, educador y aprendiz de por vida. Comenzó en LaGuardia Community College y Queens College, y creció a lo largo de más de 15 años de trabajo en investigación, educación, bienes raíces y datos de salud.",
+    "storyP2": "Hoy trabajo en análisis de datos, desarrollo full-stack y tecnología educativa. Lo que más me importa es crear herramientas que faciliten el trabajo de otras personas, desde Power Apps para programas de escuelas de la Ciudad de Nueva York hasta sitios web para organizaciones sin fines de lucro como la Fundación Michael Kellermann y Miles for MBC.",
+    "storyP3": "Nada de esto tendría el mismo significado sin las tres personas a quienes dedico este sitio.",
+    "family": {
+      "cris": "Esposa",
+      "sofia": "Hija",
+      "mateo": "Hijo"
+    },
+    "storySignature": "Javier",
+    "familyNames": {
+      "cris": "Cris",
+      "sofia": "Sofía",
+      "mateo": "Mateo"
+    }
   },
   "work": {
     "eyebrow": "Portafolio",
@@ -141,5 +154,13 @@
     "title": "Página no encontrada",
     "body": "La página que buscas no existe o fue movida.",
     "home": "Volver al inicio"
+  },
+  "og": {
+    "homeEyebrow": "Datos · Automatización · Full-stack",
+    "years": "15+ años",
+    "projects": "50+ proyectos",
+    "languages": "Español · English",
+    "certifications": "{count} certificaciones",
+    "alt": "Javier Jaramillo — Analista de Datos y Desarrollador Full-Stack"
   }
 }

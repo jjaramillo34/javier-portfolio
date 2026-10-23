@@ -1,4 +1,5 @@
 import { Accent, accentTags } from "@/components/Accent";
+import { Dedication } from "@/components/Dedication";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -119,25 +120,7 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
       </Column>
 
       {/* Dedication */}
-      <Column
-        background="surface"
-        border="brand-alpha-medium"
-        radius="xl"
-        padding="40"
-        gap="16"
-        s={{ padding: "24" }}
-      >
-        <SectionTitle eyebrow={t("storyEyebrow")} title={t.rich("storyLead", accentTags)} />
-        <Text variant="body-default-l" onBackground="neutral-medium">
-          {t("storyBody")}
-        </Text>
-        <Row gap="8" vertical="center">
-          <Icon name="heart" onBackground="brand-medium" size="s" />
-          <Text variant="body-default-m" onBackground="neutral-weak">
-            {t("storyThanks")}
-          </Text>
-        </Row>
-      </Column>
+      <Dedication />
     </Column>
   );
 }

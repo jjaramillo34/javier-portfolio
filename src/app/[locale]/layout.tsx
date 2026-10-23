@@ -46,13 +46,6 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">) {
     }),
     title: { default: t("homeTitle"), template: "%s · Javier Jaramillo" },
     authors: [{ name: "Javier Jaramillo" }],
-    icons: {
-      icon: [
-        { url: "/favicon.ico", sizes: "any" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
-      ],
-      apple: "/apple-touch-icon.png",
-    },
   };
 }
 

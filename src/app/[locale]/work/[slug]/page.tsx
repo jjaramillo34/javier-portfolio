@@ -34,7 +34,6 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/work/[sl
     path: `/work/${slug}`,
     title: project.title,
     description: project.description,
-    image: project.image ?? undefined,
   });
 }
 

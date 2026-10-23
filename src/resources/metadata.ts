@@ -1,6 +1,6 @@
 import { type Locale, localePath, routing } from "@/i18n/routing";
 import type { Metadata } from "next";
-import { baseURL, ogImage } from "./site";
+import { baseURL } from "./site";
 
 interface PageMetadata {
   locale: Locale;
@@ -8,16 +8,9 @@ interface PageMetadata {
   path: string;
   title: string;
   description: string;
-  image?: string;
 }
 
-export function buildMetadata({
-  locale,
-  path,
-  title,
-  description,
-  image = ogImage,
-}: PageMetadata): Metadata {
+export function buildMetadata({ locale, path, title, description }: PageMetadata): Metadata {
   const languages = Object.fromEntries(
     routing.locales.map((l) => [l, `${baseURL}${localePath(l, path)}`]),
   );
@@ -37,13 +30,12 @@ export function buildMetadata({
       title,
       description,
       locale: locale === "es" ? "es_US" : "en_US",
-      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      // Images come from the opengraph-image / twitter-image files next to each page.
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
     },
   };
 }
