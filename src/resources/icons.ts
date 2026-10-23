@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import { HiOutlineMapPin, HiOutlinePhone } from "react-icons/hi2";
+import { HiHeart, HiOutlineMapPin, HiOutlinePhone } from "react-icons/hi2";
 
 // Icons beyond Once UI's built-ins. Register the names below so IconName type-checks them.
 export const customIcons = {
@@ -7,6 +7,7 @@ export const customIcons = {
   linkedin: FaLinkedin,
   mapPin: HiOutlineMapPin,
   phone: HiOutlinePhone,
+  heartFill: HiHeart,
 };
 
 declare module "@once-ui-system/core" {
@@ -15,5 +16,6 @@ declare module "@once-ui-system/core" {
     linkedin: true;
     mapPin: true;
     phone: true;
+    heartFill: true;
   }
 }
