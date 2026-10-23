@@ -154,5 +154,13 @@
     "title": "Página no encontrada",
     "body": "La página que buscas no existe o fue movida.",
     "home": "Volver al inicio"
+  },
+  "og": {
+    "homeEyebrow": "Datos · Automatización · Full-stack",
+    "years": "15+ años",
+    "projects": "50+ proyectos",
+    "languages": "Español · English",
+    "certifications": "{count} certificaciones",
+    "alt": "Javier Jaramillo — Analista de Datos y Desarrollador Full-Stack"
   }
 }

@@ -79,7 +79,8 @@ Copy `.env.example` to `.env.local` for local development.
 - `src/i18n/` and `src/proxy.ts` — Locale routing.
 - `src/messages/` — Interface translations.
 - `src/resources/` — Theme, icons, metadata helpers, and site constants.
-- `public/` — Images, favicons, resume PDF, and the social sharing image.
+- `public/` — Images and the resume PDF.
+- `src/app/icon.tsx`, `apple-icon.tsx`, and the `opengraph-image` / `twitter-image` files — favicons and social cards generated at build time from `src/lib/og.tsx`.
 
 ## License
 

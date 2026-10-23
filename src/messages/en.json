@@ -154,5 +154,13 @@
     "title": "Page not found",
     "body": "The page you're looking for doesn't exist or has moved.",
     "home": "Back home"
+  },
+  "og": {
+    "homeEyebrow": "Data · Automation · Full-stack",
+    "years": "15+ years",
+    "projects": "50+ projects",
+    "languages": "English · Español",
+    "certifications": "{count} certifications",
+    "alt": "Javier Jaramillo — Data Analyst & Full-Stack Developer"
   }
 }
