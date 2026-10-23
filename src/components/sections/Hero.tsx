@@ -84,7 +84,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/images/hero.png')`,
+          backgroundImage: `url('/images/hero.webp')`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-orange-900/70 via-blue-900/50 to-green-800/60"></div>
@@ -201,7 +201,7 @@ const Hero = ({ personalInfo, achievements }: HeroProps) => {
           <motion.div variants={itemVariants} className="order-first lg:order-none mx-auto">
             <div className="relative w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64">
               <img
-                src="/images/myself.png"
+                src="/images/myself.webp"
                 alt={personalInfo.name}
                 width="256"
                 height="256"

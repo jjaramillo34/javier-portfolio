@@ -67,8 +67,12 @@ interface TranslationFields {
 const CONTENTFUL_SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
 const CONTENTFUL_ENVIRONMENT = import.meta.env.VITE_CONTENTFUL_ENVIRONMENT ?? 'master';
 const CONTENTFUL_DELIVERY_TOKEN = import.meta.env.VITE_CONTENTFUL_DELIVERY_TOKEN;
-const CONTENTFUL_PREVIEW_TOKEN = import.meta.env.VITE_CONTENTFUL_PREVIEW_TOKEN;
-const CONTENTFUL_USE_PREVIEW = import.meta.env.VITE_CONTENTFUL_USE_PREVIEW === 'true';
+// Preview exposes draft content, so it is only read in dev; production builds strip the token entirely.
+const CONTENTFUL_PREVIEW_TOKEN = import.meta.env.DEV
+  ? import.meta.env.VITE_CONTENTFUL_PREVIEW_TOKEN
+  : undefined;
+const CONTENTFUL_USE_PREVIEW =
+  import.meta.env.DEV && import.meta.env.VITE_CONTENTFUL_USE_PREVIEW === 'true';
 
 export const isContentfulConfigured =
   Boolean(CONTENTFUL_SPACE_ID) && Boolean(CONTENTFUL_DELIVERY_TOKEN || CONTENTFUL_PREVIEW_TOKEN);

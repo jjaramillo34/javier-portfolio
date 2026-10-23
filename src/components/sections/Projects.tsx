@@ -17,11 +17,11 @@ interface ProjectsProps {
 }
 
 const COVER_IMAGES = [
-  '/images/workspace.png',
+  '/images/workspace.webp',
   '/images/data-visualization.jpg',
   '/images/coding-bg.jpg',
   '/images/pattern-bg.jpg',
-  '/images/hero.png',
+  '/images/hero.webp',
 ];
 
 type ProjectCard = Project & {
