@@ -1,4 +1,5 @@
-import { SectionHeader } from "@/components/SectionHeader";
+import { accentTags } from "@/components/Accent";
+import { SectionTitle } from "@/components/SectionTitle";
 import { WorkGrid } from "@/components/WorkGrid";
 import { getProjects } from "@/content";
 import { type Locale, localePath } from "@/i18n/routing";
@@ -29,10 +30,10 @@ export default async function Work({ params }: PageProps<"/[locale]/work">) {
 
   return (
     <Column maxWidth="l" gap="40" paddingTop="80" paddingBottom="104" s={{ paddingTop: "40" }}>
-      <SectionHeader
+      <SectionTitle
         as="h1"
         eyebrow={t("eyebrow")}
-        title={t("heading")}
+        title={t.rich("heading", accentTags)}
         description={t("subheading")}
       />
       <WorkGrid

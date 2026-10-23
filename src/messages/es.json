@@ -35,13 +35,14 @@
       "satisfaction": "Satisfacción del cliente"
     },
     "workEyebrow": "Trabajo seleccionado",
-    "workHeading": "Proyectos recientes",
+    "workHeading": "Proyectos <em>recientes</em>",
     "viewAllWork": "Ver todos los proyectos",
     "testimonialsEyebrow": "Recomendaciones",
-    "testimonialsHeading": "Lo que dicen de mí",
-    "ctaHeading": "¿Tienes un proyecto en mente?",
+    "testimonialsHeading": "Lo que <em>dicen</em> de mí",
+    "ctaHeading": "¿Tienes un proyecto <em>en mente?</em>",
     "ctaBody": "Cuéntame qué estás construyendo y encontraremos el mejor siguiente paso.",
-    "ctaButton": "Iniciar una conversación"
+    "ctaButton": "Iniciar una conversación",
+    "roles": ["Analista de Datos", "Desarrollador Full-Stack", "Especialista en TI"]
   },
   "testimonials": {
     "relationship": {
@@ -68,13 +69,16 @@
     },
     "languages": "Idiomas",
     "storyEyebrow": "Por qué creé este portafolio",
-    "storyLead": "Lo hice con amor para Cris, Sofía y Mateo.",
+    "storyLead": "Hecho con amor para <em>Cris, Sofía y Mateo</em>.",
     "storyBody": "Refleja mi camino como desarrollador, educador y aprendiz de por vida. Trabajo en análisis de datos, desarrollo full-stack y tecnología educativa, y me importa crear herramientas que ayuden a otras personas.",
-    "storyThanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado."
+    "storyThanks": "Gracias a mi familia por el apoyo, y a los mentores, colegas y estudiantes que me han acompañado.",
+    "experienceTitle": "Dónde he generado <em>impacto</em>",
+    "educationTitle": "Dónde <em>aprendí</em>",
+    "skillsTitle": "Herramientas en las que <em>confío</em>"
   },
   "work": {
     "eyebrow": "Portafolio",
-    "heading": "Proyectos",
+    "heading": "Lo que he <em>construido</em>",
     "subheading": "Sitios en vivo, dashboards y automatizaciones, desde plataformas sin fines de lucro hasta pipelines de datos.",
     "filterAll": "Todos",
     "categories": {
@@ -87,11 +91,11 @@
     "technologies": "Tecnologías",
     "highlights": "Logros clave",
     "back": "Todos los proyectos",
-    "more": "Más proyectos"
+    "more": "Más <em>proyectos</em>"
   },
   "certifications": {
     "eyebrow": "Aprendizaje continuo",
-    "heading": "Licencias y certificaciones",
+    "heading": "Licencias y <em>certificaciones</em>",
     "subheading": "Cursos y credenciales en desarrollo, IA, datos y seguridad.",
     "categories": {
       "backendDevelopment": "Backend y desarrollo",
@@ -106,7 +110,7 @@
   },
   "contact": {
     "eyebrow": "Contacto",
-    "heading": "Trabajemos juntos",
+    "heading": "Trabajemos <em>juntos</em>",
     "subheading": "¿Listo para convertir tus datos en decisiones? Cuéntame sobre tu próximo proyecto.",
     "name": "Nombre",
     "email": "Correo electrónico",

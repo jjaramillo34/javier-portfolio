@@ -1,4 +1,6 @@
-import { SectionHeader } from "@/components/SectionHeader";
+import { Accent, accentTags } from "@/components/Accent";
+import { Reveal } from "@/components/Reveal";
+import { SectionTitle } from "@/components/SectionTitle";
 import { education, languages, personalInfo, skills, workExperience } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
@@ -32,6 +34,8 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
   setRequestLocale(locale);
   const t = await getTranslations("about");
   const tHome = await getTranslations("home");
+  const [firstName, ...rest] = personalInfo.name.split(" ");
+  const lastName = rest.join(" ");
 
   return (
     <Column maxWidth="m" gap="104" paddingTop="80" paddingBottom="104" s={{ paddingTop: "40" }}>
@@ -43,7 +47,7 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
             {t("eyebrow")}
           </Text>
           <Heading as="h1" variant="display-strong-m">
-            {personalInfo.name}
+            {firstName} <Accent>{lastName}</Accent>
           </Heading>
           <Text variant="heading-default-m" onBackground="neutral-weak">
             {tHome("role")}
@@ -63,9 +67,11 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
 
       {/* Experience timeline */}
       <Column gap="40">
-        <Heading as="h2" variant="display-strong-xs">
-          {t("experience")}
-        </Heading>
+        <SectionTitle
+          index={1}
+          eyebrow={t("experience")}
+          title={t.rich("experienceTitle", accentTags)}
+        />
         <Column as="ol" gap="0" margin="0" padding="0" style={{ listStyle: "none" }}>
           {workExperience.map((job, index) => {
             const current = /present/i.test(job.period);
@@ -123,64 +129,68 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
 
       {/* Education */}
       <Column gap="40">
-        <Heading as="h2" variant="display-strong-xs">
-          {t("education")}
-        </Heading>
-        <Grid columns="3" gap="16" s={{ columns: 1 }}>
-          {education.map((item) => (
-            <Column key={item.degree} background="surface" border radius="l" padding="24" gap="8">
-              <Icon name="book" onBackground="brand-medium" />
-              <Text variant="heading-strong-s">{item.degree}</Text>
-              <Text variant="body-default-s" onBackground="neutral-weak">
-                {item.school} · {item.period}
-              </Text>
-            </Column>
-          ))}
-        </Grid>
+        <SectionTitle
+          index={2}
+          eyebrow={t("education")}
+          title={t.rich("educationTitle", accentTags)}
+        />
+        <Reveal>
+          <Grid columns="3" gap="16" s={{ columns: 1 }}>
+            {education.map((item) => (
+              <Column key={item.degree} background="surface" border radius="l" padding="24" gap="8">
+                <Icon name="book" onBackground="brand-medium" />
+                <Text variant="heading-strong-s">{item.degree}</Text>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  {item.school} · {item.period}
+                </Text>
+              </Column>
+            ))}
+          </Grid>
+        </Reveal>
       </Column>
 
       {/* Skills */}
       <Column gap="40">
-        <Column gap="12">
-          <Heading as="h2" variant="display-strong-xs">
-            {t("skills")}
-          </Heading>
-          <Text variant="body-default-l" onBackground="neutral-weak">
-            {t("skillsSubheading")}
-          </Text>
-        </Column>
-        <Grid columns="2" gap="16" s={{ columns: 1 }}>
-          {SKILL_CATEGORIES.map((category) => (
-            <Column key={category} background="surface" border radius="l" padding="24" gap="16">
-              <Text variant="heading-strong-s">{t(`skillCategories.${category}`)}</Text>
-              <Column gap="12">
-                {skills[category].map((skill) => (
-                  <Column key={skill.name} gap="4">
-                    <Row horizontal="between" textVariant="label-default-s">
-                      <Text>{skill.name}</Text>
-                      <Text onBackground="neutral-weak">{skill.level}%</Text>
-                    </Row>
-                    {/* Proficiency meter */}
-                    <Row
-                      fillWidth
-                      height="4"
-                      radius="full"
-                      background="neutral-alpha-weak"
-                      aria-hidden
-                    >
+        <SectionTitle
+          index={3}
+          eyebrow={t("skills")}
+          title={t.rich("skillsTitle", accentTags)}
+          description={t("skillsSubheading")}
+        />
+        <Reveal>
+          <Grid columns="2" gap="16" s={{ columns: 1 }}>
+            {SKILL_CATEGORIES.map((category) => (
+              <Column key={category} background="surface" border radius="l" padding="24" gap="16">
+                <Text variant="heading-strong-s">{t(`skillCategories.${category}`)}</Text>
+                <Column gap="12">
+                  {skills[category].map((skill) => (
+                    <Column key={skill.name} gap="4">
+                      <Row horizontal="between" textVariant="label-default-s">
+                        <Text>{skill.name}</Text>
+                        <Text onBackground="neutral-weak">{skill.level}%</Text>
+                      </Row>
+                      {/* Proficiency meter */}
                       <Row
+                        fillWidth
                         height="4"
                         radius="full"
-                        solid="brand-strong"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </Row>
-                  </Column>
-                ))}
+                        background="neutral-alpha-weak"
+                        aria-hidden
+                      >
+                        <Row
+                          height="4"
+                          radius="full"
+                          solid="brand-strong"
+                          style={{ width: `${skill.level}%` }}
+                        />
+                      </Row>
+                    </Column>
+                  ))}
+                </Column>
               </Column>
-            </Column>
-          ))}
-        </Grid>
+            ))}
+          </Grid>
+        </Reveal>
       </Column>
 
       {/* Dedication */}
@@ -192,7 +202,7 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
         gap="16"
         s={{ padding: "24" }}
       >
-        <SectionHeader eyebrow={t("storyEyebrow")} title={t("storyLead")} />
+        <SectionTitle eyebrow={t("storyEyebrow")} title={t.rich("storyLead", accentTags)} />
         <Text variant="body-default-l" onBackground="neutral-medium">
           {t("storyBody")}
         </Text>

@@ -1,5 +1,6 @@
+import { accentTags } from "@/components/Accent";
 import { ContactForm } from "@/components/ContactForm";
-import { SectionHeader } from "@/components/SectionHeader";
+import { SectionTitle } from "@/components/SectionTitle";
 import { personalInfo } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
@@ -47,10 +48,10 @@ export default async function Contact({ params }: PageProps<"/[locale]/contact">
 
   return (
     <Column maxWidth="l" gap="40" paddingTop="80" paddingBottom="104" s={{ paddingTop: "40" }}>
-      <SectionHeader
+      <SectionTitle
         as="h1"
         eyebrow={t("eyebrow")}
-        title={t("heading")}
+        title={t.rich("heading", accentTags)}
         description={t("subheading")}
       />
       <Row gap="40" s={{ direction: "column" }}>

@@ -35,13 +35,14 @@
       "satisfaction": "Client satisfaction"
     },
     "workEyebrow": "Selected work",
-    "workHeading": "Recent projects",
+    "workHeading": "Recent <em>projects</em>",
     "viewAllWork": "View all work",
     "testimonialsEyebrow": "Recommendations",
-    "testimonialsHeading": "What people say",
-    "ctaHeading": "Have a project in mind?",
+    "testimonialsHeading": "What people <em>say</em>",
+    "ctaHeading": "Have a project <em>in mind?</em>",
     "ctaBody": "Tell me what you're building and we'll find the best next step.",
-    "ctaButton": "Start a conversation"
+    "ctaButton": "Start a conversation",
+    "roles": ["Data Analyst", "Full-Stack Developer", "IT Specialist"]
   },
   "testimonials": {
     "relationship": {
@@ -68,13 +69,16 @@
     },
     "languages": "Languages",
     "storyEyebrow": "Why I built this",
-    "storyLead": "I built this with love for Cris, Sofia, and Mateo.",
+    "storyLead": "Built with love for <em>Cris, Sofia, and Mateo</em>.",
     "storyBody": "It reflects my path as a developer, educator, and lifelong learner. I work across data analytics, full-stack development, and educational technology, and I care about building tools that help other people.",
-    "storyThanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me."
+    "storyThanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.",
+    "experienceTitle": "Where I have made an <em>impact</em>",
+    "educationTitle": "Where I <em>learned</em>",
+    "skillsTitle": "Tools I <em>trust</em>"
   },
   "work": {
     "eyebrow": "Portfolio",
-    "heading": "Projects",
+    "heading": "Things I have <em>built</em>",
     "subheading": "Live sites, dashboards, and automations, from nonprofit platforms to data pipelines.",
     "filterAll": "All",
     "categories": {
@@ -87,11 +91,11 @@
     "technologies": "Technologies",
     "highlights": "Highlights",
     "back": "All projects",
-    "more": "More projects"
+    "more": "More <em>projects</em>"
   },
   "certifications": {
     "eyebrow": "Continuous learning",
-    "heading": "Licenses & certifications",
+    "heading": "Licenses & <em>certifications</em>",
     "subheading": "Courses and credentials across development, AI, data, and security.",
     "categories": {
       "backendDevelopment": "Backend & development",
@@ -106,7 +110,7 @@
   },
   "contact": {
     "eyebrow": "Contact",
-    "heading": "Let's work together",
+    "heading": "Let’s work <em>together</em>",
     "subheading": "Ready to turn your data into decisions? Tell me about your next project.",
     "name": "Name",
     "email": "Email",

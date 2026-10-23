@@ -1,5 +1,8 @@
+import { Accent, accentTags } from "@/components/Accent";
+import { ParticleHero } from "@/components/ParticleHero";
 import { ProjectCard } from "@/components/ProjectCard";
-import { SectionHeader } from "@/components/SectionHeader";
+import { Reveal } from "@/components/Reveal";
+import { SectionTitle } from "@/components/SectionTitle";
 import { Stats } from "@/components/Stats";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { achievements, getProjects, personalInfo, testimonials } from "@/content";
@@ -17,6 +20,8 @@ import {
   Row,
   StatusIndicator,
   Text,
+  TypeFx,
+  VisuallyHidden,
 } from "@once-ui-system/core";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -30,6 +35,8 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const tWork = await getTranslations("work");
   const tTestimonials = await getTranslations("testimonials");
 
+  const [firstName, ...rest] = personalInfo.name.split(" ");
+  const lastName = rest.join(" ");
   const projects = getProjects(locale).slice(0, FEATURED_PROJECTS);
   const stats = [
     { value: `${achievements.yearsOfExperience}+`, label: t("stats.years") },
@@ -58,11 +65,18 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       />
 
       {/* Hero */}
-      <Column fillWidth horizontal="center" paddingTop="80" s={{ paddingTop: "40" }}>
-        <Row maxWidth="l" gap="64" vertical="center" s={{ direction: "column-reverse", gap: "32" }}>
+      <ParticleHero>
+        <Row
+          maxWidth="l"
+          zIndex={1}
+          gap="64"
+          vertical="center"
+          s={{ direction: "column-reverse", gap: "32" }}
+        >
           <Column flex={3} gap="24" s={{ horizontal: "center", align: "center" }}>
             {/* A Row rather than Badge so the label can wrap on narrow phones. */}
             <Row
+              fitWidth
               background="success-alpha-weak"
               border="success-alpha-medium"
               radius="full"
@@ -78,10 +92,13 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             </Row>
             <Column gap="12" s={{ horizontal: "center" }}>
               <Heading as="h1" variant="display-strong-xl">
-                {personalInfo.name}
+                {firstName} <Accent>{lastName}</Accent>
               </Heading>
               <Text variant="heading-default-l" onBackground="brand-medium">
-                {t("role")}
+                <VisuallyHidden>{t("role")}</VisuallyHidden>
+                <span aria-hidden>
+                  <TypeFx words={t.raw("roles") as string[]} speed={60} hold={2400} />
+                </span>
               </Text>
             </Column>
             <Text variant="body-default-xl" onBackground="neutral-weak" wrap="balance">
@@ -134,7 +151,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             </Row>
           </Column>
         </Row>
-      </Column>
+      </ParticleHero>
 
       {/* Stats */}
       <Column maxWidth="l">
@@ -150,7 +167,11 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           gap="24"
           s={{ direction: "column", vertical: "start" }}
         >
-          <SectionHeader eyebrow={t("workEyebrow")} title={t("workHeading")} />
+          <SectionTitle
+            index={1}
+            eyebrow={t("workEyebrow")}
+            title={t.rich("workHeading", accentTags)}
+          />
           <Button
             href={localePath(locale, "/work")}
             variant="secondary"
@@ -161,31 +182,39 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             {t("viewAllWork")}
           </Button>
         </Row>
-        <Grid columns="2" gap="24" s={{ columns: 1 }}>
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              href={localePath(locale, `/work/${project.slug}`)}
-              categoryLabel={tWork(`categories.${project.category}`)}
-              priority={index < 2}
-            />
-          ))}
-        </Grid>
+        <Reveal>
+          <Grid columns="2" gap="24" s={{ columns: 1 }}>
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                href={localePath(locale, `/work/${project.slug}`)}
+                categoryLabel={tWork(`categories.${project.category}`)}
+                priority={index < 2}
+              />
+            ))}
+          </Grid>
+        </Reveal>
       </Column>
 
       {/* Testimonials */}
       <Column maxWidth="l" gap="40">
-        <SectionHeader eyebrow={t("testimonialsEyebrow")} title={t("testimonialsHeading")} />
-        <Grid columns="3" gap="24" m={{ columns: 1 }}>
-          {testimonials.slice(0, FEATURED_TESTIMONIALS).map((testimonial) => (
-            <TestimonialCard
-              key={testimonial.id}
-              testimonial={testimonial}
-              relationshipLabel={tTestimonials(`relationship.${testimonial.relationshipType}`)}
-            />
-          ))}
-        </Grid>
+        <SectionTitle
+          index={2}
+          eyebrow={t("testimonialsEyebrow")}
+          title={t.rich("testimonialsHeading", accentTags)}
+        />
+        <Reveal>
+          <Grid columns="3" gap="24" m={{ columns: 1 }}>
+            {testimonials.slice(0, FEATURED_TESTIMONIALS).map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+                relationshipLabel={tTestimonials(`relationship.${testimonial.relationshipType}`)}
+              />
+            ))}
+          </Grid>
+        </Reveal>
       </Column>
 
       {/* Call to action */}
@@ -221,7 +250,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           />
           <Column zIndex={1} gap="12" horizontal="center" maxWidth={32}>
             <Heading as="h2" variant="display-strong-s">
-              {t("ctaHeading")}
+              {t.rich("ctaHeading", accentTags)}
             </Heading>
             <Text variant="body-default-l" onBackground="neutral-weak" wrap="balance">
               {t("ctaBody")}

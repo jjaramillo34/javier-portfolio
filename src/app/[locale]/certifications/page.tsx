@@ -1,4 +1,6 @@
-import { SectionHeader } from "@/components/SectionHeader";
+import { accentTags } from "@/components/Accent";
+import { Reveal } from "@/components/Reveal";
+import { SectionTitle } from "@/components/SectionTitle";
 import { certifications, getCertificationLink } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
@@ -32,10 +34,10 @@ export default async function Certifications({ params }: PageProps<"/[locale]/ce
 
   return (
     <Column maxWidth="l" gap="80" paddingTop="80" paddingBottom="104" s={{ paddingTop: "40" }}>
-      <SectionHeader
+      <SectionTitle
         as="h1"
         eyebrow={t("eyebrow")}
-        title={t("heading")}
+        title={t.rich("heading", accentTags)}
         description={t("subheading")}
       />
       {CATEGORIES.filter((category) => certifications[category]?.length).map((category) => (
@@ -46,48 +48,57 @@ export default async function Certifications({ params }: PageProps<"/[locale]/ce
             </Heading>
             <Tag size="s">{certifications[category].length}</Tag>
           </Row>
-          <Grid columns="3" gap="16" m={{ columns: 2 }} s={{ columns: 1 }}>
-            {certifications[category].map((cert) => {
-              const link = getCertificationLink(cert.link);
-              return (
-                <Column key={cert.id} background="surface" border radius="l" padding="24" gap="12">
-                  <Column gap="4">
-                    <Text variant="heading-strong-s">{cert.title}</Text>
-                    <Text variant="body-default-s" onBackground="brand-medium">
-                      {cert.institution}
-                    </Text>
-                  </Column>
-                  <Text variant="body-default-s" onBackground="neutral-weak">
-                    {cert.description}
-                  </Text>
-                  <Row gap="4" wrap>
-                    {cert.skills.map((skill) => (
-                      <Tag key={skill} size="s">
-                        {skill}
-                      </Tag>
-                    ))}
-                  </Row>
+          <Reveal>
+            <Grid columns="3" gap="16" m={{ columns: 2 }} s={{ columns: 1 }}>
+              {certifications[category].map((cert) => {
+                const link = getCertificationLink(cert.link);
+                return (
                   <Column
-                    gap="4"
-                    marginTop="auto"
-                    paddingTop="8"
-                    textVariant="label-default-xs"
-                    onBackground="neutral-weak"
+                    key={cert.id}
+                    background="surface"
+                    border
+                    radius="l"
+                    padding="24"
+                    gap="12"
                   >
-                    <Text>{t("issued", { date: cert.issueDate })}</Text>
-                    {cert.credentialId && (
-                      <Text>{t("credentialId", { id: cert.credentialId })}</Text>
+                    <Column gap="4">
+                      <Text variant="heading-strong-s">{cert.title}</Text>
+                      <Text variant="body-default-s" onBackground="brand-medium">
+                        {cert.institution}
+                      </Text>
+                    </Column>
+                    <Text variant="body-default-s" onBackground="neutral-weak">
+                      {cert.description}
+                    </Text>
+                    <Row gap="4" wrap>
+                      {cert.skills.map((skill) => (
+                        <Tag key={skill} size="s">
+                          {skill}
+                        </Tag>
+                      ))}
+                    </Row>
+                    <Column
+                      gap="4"
+                      marginTop="auto"
+                      paddingTop="8"
+                      textVariant="label-default-xs"
+                      onBackground="neutral-weak"
+                    >
+                      <Text>{t("issued", { date: cert.issueDate })}</Text>
+                      {cert.credentialId && (
+                        <Text>{t("credentialId", { id: cert.credentialId })}</Text>
+                      )}
+                    </Column>
+                    {link && (
+                      <SmartLink href={link} suffixIcon="arrowUpRight">
+                        {t("viewCredential")}
+                      </SmartLink>
                     )}
                   </Column>
-                  {link && (
-                    <SmartLink href={link} suffixIcon="arrowUpRight">
-                      {t("viewCredential")}
-                    </SmartLink>
-                  )}
-                </Column>
-              );
-            })}
-          </Grid>
+                );
+              })}
+            </Grid>
+          </Reveal>
         </Column>
       ))}
     </Column>

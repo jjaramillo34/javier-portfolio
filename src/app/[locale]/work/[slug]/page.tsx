@@ -1,4 +1,6 @@
+import { accentTags } from "@/components/Accent";
 import { ProjectCard } from "@/components/ProjectCard";
+import { Reveal } from "@/components/Reveal";
 import { getProject, getProjects } from "@/content";
 import { type Locale, localePath, routing } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
@@ -122,18 +124,20 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/work/
       {others.length > 0 && (
         <Column gap="24" paddingTop="40">
           <Heading as="h2" variant="display-strong-xs">
-            {t("more")}
+            {t.rich("more", accentTags)}
           </Heading>
-          <Grid columns="2" gap="24" s={{ columns: 1 }}>
-            {others.map((other) => (
-              <ProjectCard
-                key={other.slug}
-                project={other}
-                href={localePath(locale, `/work/${other.slug}`)}
-                categoryLabel={t(`categories.${other.category}`)}
-              />
-            ))}
-          </Grid>
+          <Reveal>
+            <Grid columns="2" gap="24" s={{ columns: 1 }}>
+              {others.map((other) => (
+                <ProjectCard
+                  key={other.slug}
+                  project={other}
+                  href={localePath(locale, `/work/${other.slug}`)}
+                  categoryLabel={t(`categories.${other.category}`)}
+                />
+              ))}
+            </Grid>
+          </Reveal>
         </Column>
       )}
     </Column>
