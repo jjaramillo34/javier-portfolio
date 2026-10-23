@@ -42,7 +42,11 @@
     "ctaHeading": "Have a project <em>in mind?</em>",
     "ctaBody": "Tell me what you're building and we'll find the best next step.",
     "ctaButton": "Start a conversation",
-    "roles": ["Data Analyst", "Full-Stack Developer", "IT Specialist"]
+    "roles": [
+      "Data Analyst",
+      "Full-Stack Developer",
+      "IT Specialist"
+    ]
   },
   "testimonials": {
     "relationship": {
@@ -50,7 +54,14 @@
       "colleague": "Former colleague",
       "teacher": "Former teacher",
       "client": "Client"
-    }
+    },
+    "readMore": "Read more",
+    "readLess": "Show less",
+    "previous": "Previous recommendation",
+    "next": "Next recommendation",
+    "position": "{current} of {total}",
+    "carouselLabel": "Recommendations",
+    "positionRange": "{start}–{end} of {total}"
   },
   "about": {
     "eyebrow": "About me",

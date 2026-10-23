@@ -42,7 +42,11 @@
     "ctaHeading": "¿Tienes un proyecto <em>en mente?</em>",
     "ctaBody": "Cuéntame qué estás construyendo y encontraremos el mejor siguiente paso.",
     "ctaButton": "Iniciar una conversación",
-    "roles": ["Analista de Datos", "Desarrollador Full-Stack", "Especialista en TI"]
+    "roles": [
+      "Analista de Datos",
+      "Desarrollador Full-Stack",
+      "Especialista en TI"
+    ]
   },
   "testimonials": {
     "relationship": {
@@ -50,7 +54,14 @@
       "colleague": "Ex colega",
       "teacher": "Ex profesor",
       "client": "Cliente"
-    }
+    },
+    "readMore": "Leer más",
+    "readLess": "Mostrar menos",
+    "previous": "Recomendación anterior",
+    "next": "Siguiente recomendación",
+    "position": "{current} de {total}",
+    "carouselLabel": "Recomendaciones",
+    "positionRange": "{start}–{end} de {total}"
   },
   "about": {
     "eyebrow": "Sobre mí",

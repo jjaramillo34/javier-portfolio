@@ -4,7 +4,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Stats } from "@/components/Stats";
-import { TestimonialCard } from "@/components/TestimonialCard";
+import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { achievements, getProjects, personalInfo, testimonials } from "@/content";
 import { type Locale, localePath } from "@/i18n/routing";
 import { avatar, baseURL, resumeHref } from "@/resources/site";
@@ -26,14 +26,12 @@ import {
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 const FEATURED_PROJECTS = 4;
-const FEATURED_TESTIMONIALS = 3;
 
 export default async function Home({ params }: PageProps<"/[locale]">) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const tWork = await getTranslations("work");
-  const tTestimonials = await getTranslations("testimonials");
 
   const [firstName, ...rest] = personalInfo.name.split(" ");
   const lastName = rest.join(" ");
@@ -198,23 +196,17 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       </Column>
 
       {/* Testimonials */}
-      <Column maxWidth="l" gap="40">
-        <SectionTitle
-          index={2}
-          eyebrow={t("testimonialsEyebrow")}
-          title={t.rich("testimonialsHeading", accentTags)}
+      <Column maxWidth="l">
+        <TestimonialCarousel
+          testimonials={testimonials}
+          header={
+            <SectionTitle
+              index={2}
+              eyebrow={t("testimonialsEyebrow")}
+              title={t.rich("testimonialsHeading", accentTags)}
+            />
+          }
         />
-        <Reveal>
-          <Grid columns="3" gap="24" m={{ columns: 1 }}>
-            {testimonials.slice(0, FEATURED_TESTIMONIALS).map((testimonial) => (
-              <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-                relationshipLabel={tTestimonials(`relationship.${testimonial.relationshipType}`)}
-              />
-            ))}
-          </Grid>
-        </Reveal>
       </Column>
 
       {/* Call to action */}
