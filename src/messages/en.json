@@ -77,11 +77,24 @@
     "languages": "Languages",
     "storyEyebrow": "Why I built this",
     "storyLead": "Built with love for <em>Cris, Sofia, and Mateo</em>.",
-    "storyBody": "It reflects my path as a developer, educator, and lifelong learner. I work across data analytics, full-stack development, and educational technology, and I care about building tools that help other people.",
     "storyThanks": "Thank you to my family for the support, and to the mentors, colleagues, and students who have walked with me.",
     "experienceTitle": "Where I have made an <em>impact</em>",
     "educationTitle": "Where I <em>learned</em>",
-    "skillsTitle": "Tools I <em>trust</em>"
+    "skillsTitle": "Tools I <em>trust</em>",
+    "storyP1": "This portfolio reflects my path as a developer, educator, and lifelong learner. It began at LaGuardia Community College and Queens College, and grew through more than 15 years of work in research, education, real estate, and healthcare data.",
+    "storyP2": "Today I work across data analytics, full-stack development, and educational technology. What I care about most is building tools that make other people's work easier, from Power Apps for New York City school programs to websites for nonprofits like the Michael Kellermann Foundation and Miles for MBC.",
+    "storyP3": "None of it would mean as much without the three people this site is dedicated to.",
+    "family": {
+      "cris": "Wife",
+      "sofia": "Daughter",
+      "mateo": "Son"
+    },
+    "storySignature": "Javier",
+    "familyNames": {
+      "cris": "Cris",
+      "sofia": "Sofia",
+      "mateo": "Mateo"
+    }
   },
   "work": {
     "eyebrow": "Portfolio",
