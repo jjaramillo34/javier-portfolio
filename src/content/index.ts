@@ -1,9 +1,11 @@
 import type { Locale } from "@/i18n/routing";
-import type { PortfolioData, Project, ProjectRecord } from "@/types/portfolio";
+import type { PortfolioData, Project, ProjectMedia, ProjectRecord } from "@/types/portfolio";
 import raw from "./portfolio-data.json";
+import mediaRaw from "./project-media.json";
 
 // Imported at build time, so every page is statically rendered with its content.
 const data = raw as PortfolioData;
+const projectMedia = mediaRaw as Record<string, ProjectMedia>;
 
 export const personalInfo = data.personalInfo;
 export const achievements = data.achievements;
@@ -27,9 +29,10 @@ const realLink = (link: string | undefined) => (link && link !== "#" ? link : nu
 
 const localizeProject = (project: ProjectRecord, locale: Locale): Project => {
   const es = locale === "es";
+  // Slugs come from the English title so both locales share one URL path.
+  const slug = slugify(project.title);
   return {
-    // Slugs come from the English title so both locales share one URL path.
-    slug: slugify(project.title),
+    slug,
     category: project.category,
     title: (es && project.titleEs) || project.title,
     period: project.period,
@@ -38,6 +41,7 @@ const localizeProject = (project: ProjectRecord, locale: Locale): Project => {
     achievements: (es && project.achievementsEs) || project.achievements,
     link: realLink(project.link),
     image: project.image ?? null,
+    media: projectMedia[slug] ?? null,
   };
 };
 

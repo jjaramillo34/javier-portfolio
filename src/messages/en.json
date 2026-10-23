@@ -107,11 +107,23 @@
       "automation": "Automation"
     },
     "visit": "Visit site",
-    "details": "Case study",
+    "details": "Project details",
     "technologies": "Technologies",
     "highlights": "Highlights",
     "back": "All projects",
-    "more": "More <em>projects</em>"
+    "more": "More <em>projects</em>",
+    "liveSite": "Live site",
+    "year": "Year",
+    "category": "Category",
+    "inTheirWords": "In the site's own words",
+    "galleryEyebrow": "Screenshots",
+    "galleryTitle": "A closer <em>look</em>",
+    "captured": "Screenshots captured from the live site on {date}.",
+    "desktopAlt": "{title} on desktop",
+    "mobileAlt": "{title} on a phone",
+    "sectionAlt": "{title}, section {n}",
+    "enlarge": "Enlarge screenshot: {alt}",
+    "close": "Close"
   },
   "certifications": {
     "eyebrow": "Continuous learning",

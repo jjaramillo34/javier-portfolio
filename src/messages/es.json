@@ -107,11 +107,23 @@
       "automation": "Automatización"
     },
     "visit": "Visitar sitio",
-    "details": "Caso de estudio",
+    "details": "Detalles del proyecto",
     "technologies": "Tecnologías",
     "highlights": "Logros clave",
     "back": "Todos los proyectos",
-    "more": "Más <em>proyectos</em>"
+    "more": "Más <em>proyectos</em>",
+    "liveSite": "Sitio en vivo",
+    "year": "Año",
+    "category": "Categoría",
+    "inTheirWords": "En palabras del propio sitio",
+    "galleryEyebrow": "Capturas",
+    "galleryTitle": "Una mirada <em>más de cerca</em>",
+    "captured": "Capturas tomadas del sitio en vivo el {date}.",
+    "desktopAlt": "{title} en escritorio",
+    "mobileAlt": "{title} en un teléfono",
+    "sectionAlt": "{title}, sección {n}",
+    "enlarge": "Ampliar captura: {alt}",
+    "close": "Cerrar"
   },
   "certifications": {
     "eyebrow": "Aprendizaje continuo",

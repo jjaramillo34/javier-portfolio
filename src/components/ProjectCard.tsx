@@ -18,6 +18,8 @@ const initials = (title: string) =>
     .toUpperCase();
 
 export function ProjectCard({ project, href, categoryLabel, priority }: ProjectCardProps) {
+  // Prefer the latest live capture; fall back to the curated cover image.
+  const cover = project.media?.desktop ?? project.image;
   return (
     // Subtle 3D tilt toward the cursor; mouse-only and off under reduced motion.
     <TiltFx fillWidth fillHeight radius="l">
@@ -30,9 +32,9 @@ export function ProjectCard({ project, href, categoryLabel, priority }: ProjectC
         padding="0"
         overflow="hidden"
       >
-        {project.image ? (
+        {cover ? (
           <Media
-            src={project.image}
+            src={cover}
             alt={project.title}
             aspectRatio="16 / 9"
             sizes="(max-width: 768px) 100vw, 50vw"

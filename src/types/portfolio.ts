@@ -45,6 +45,17 @@ export interface ProjectRecord {
   image?: string;
 }
 
+/** Live-site screenshots and metadata captured by scripts/capture-projects.mjs. */
+export interface ProjectMedia {
+  url: string;
+  capturedAt: string;
+  siteTitle: string;
+  siteDescription: string;
+  desktop: string;
+  mobile: string;
+  gallery: string[];
+}
+
 /** Project resolved for one locale. */
 export interface Project {
   slug: string;
@@ -56,6 +67,7 @@ export interface Project {
   achievements: string[];
   link: string | null;
   image: string | null;
+  media: ProjectMedia | null;
 }
 
 export interface Skill {

@@ -1,0 +1,52 @@
+// Leaves room under the browser frame for the overlapping phone.
+.stage {
+  position: relative;
+  padding-bottom: 48px;
+
+  @media (max-width: 768px) {
+    padding-bottom: 32px;
+  }
+}
+
+// Traffic-light dots in the fake browser bar.
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+
+  &:nth-child(1) {
+    background: #ff5f57;
+  }
+  &:nth-child(2) {
+    background: #febc2e;
+  }
+  &:nth-child(3) {
+    background: #28c840;
+  }
+}
+
+.phone {
+  position: absolute;
+  right: -24px;
+  bottom: 0;
+  width: 200px;
+  border: 8px solid #141414;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: #141414;
+
+  @media (max-width: 1024px) {
+    right: 16px;
+    width: 160px;
+  }
+
+  @media (max-width: 768px) {
+    right: 8px;
+    width: 96px;
+    border-width: 4px;
+    border-radius: 18px;
+  }
+}

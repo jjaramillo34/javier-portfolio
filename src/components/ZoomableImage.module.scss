@@ -1,0 +1,66 @@
+.trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-on-background-medium);
+    outline-offset: 2px;
+  }
+}
+
+.dialog {
+  max-width: min(1440px, 94vw);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  overflow: visible;
+
+  &::backdrop {
+    background: rgba(10, 8, 6, 0.82);
+    backdrop-filter: blur(6px);
+  }
+
+  &[open] {
+    animation: zoom-in 180ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &[open] {
+      animation: none;
+    }
+  }
+}
+
+.full {
+  display: block;
+  max-width: min(1440px, 94vw);
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  cursor: zoom-out;
+}
+
+.close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
