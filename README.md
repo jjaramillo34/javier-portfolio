@@ -54,6 +54,17 @@ pnpm start       # serve the production build
 
 Project pages live at `/work/<slug>`, where the slug comes from the English project title.
 
+### Refreshing project screenshots
+
+Projects with a live link get a browser-and-phone showcase, a screenshot gallery, and the site's own description. These come from `scripts/capture-projects.mjs`, which uses your installed Chrome (or `CHROME_PATH`) to capture each site:
+
+```bash
+pnpm capture:projects                  # every project with a link
+pnpm capture:projects crissel-studio   # just one
+```
+
+It writes WebP files to `public/images/projects/<slug>/` and updates `src/content/project-media.json`. Re-run it after a project site changes, then commit the results.
+
 ## Environment variables
 
 Copy `.env.example` to `.env.local` for local development.

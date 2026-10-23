@@ -1,0 +1,93 @@
+{
+  "michael-kellermann-foundation": {
+    "url": "https://mkfrecovery.org/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "Home | MKF",
+    "siteDescription": "The Michael Kellermann Foundation advances addiction recovery, sobriety, and life for people of all ages already living with substance use—through education, partnership, and support for families, peers, and other organizations.",
+    "desktop": "/images/projects/michael-kellermann-foundation/desktop.webp",
+    "mobile": "/images/projects/michael-kellermann-foundation/mobile.webp",
+    "gallery": [
+      "/images/projects/michael-kellermann-foundation/section-1.webp",
+      "/images/projects/michael-kellermann-foundation/section-2.webp",
+      "/images/projects/michael-kellermann-foundation/section-3.webp"
+    ]
+  },
+  "miles-for-mbc": {
+    "url": "https://milesformbc.org/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "LightUpMBC - Howard Beach Color Fun Run | October 25, 2025",
+    "siteDescription": "Join us for the 5th Annual Miles for MBC and Kelly Marie presents LightUpMBC Howard Beach Color Fun Run to benefit METAvivor. Support Metastatic Breast Cancer research. 100% of net proceeds fund MBC research.",
+    "desktop": "/images/projects/miles-for-mbc/desktop.webp",
+    "mobile": "/images/projects/miles-for-mbc/mobile.webp",
+    "gallery": [
+      "/images/projects/miles-for-mbc/section-1.webp",
+      "/images/projects/miles-for-mbc/section-2.webp",
+      "/images/projects/miles-for-mbc/section-3.webp"
+    ]
+  },
+  "la-poetisa-del-semaforo": {
+    "url": "https://lapoetadelsemaforo.vercel.app/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "Andrea Kristina Vaca Cifuentes - La Poetisa del Semáforo",
+    "siteDescription": "Portfolio de Andrea Cristina Vaca Cifuentes, poetisa pragmática de Ambato, Ecuador. La poetisa del semáforo.",
+    "desktop": "/images/projects/la-poetisa-del-semaforo/desktop.webp",
+    "mobile": "/images/projects/la-poetisa-del-semaforo/mobile.webp",
+    "gallery": [
+      "/images/projects/la-poetisa-del-semaforo/section-1.webp",
+      "/images/projects/la-poetisa-del-semaforo/section-2.webp",
+      "/images/projects/la-poetisa-del-semaforo/section-3.webp"
+    ]
+  },
+  "crissel-studio": {
+    "url": "https://www.crisselstudio.makeup/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "Crissel Studio | Expertas en mirada, cejas y maquillaje en Ambato",
+    "siteDescription": "Somos especialistas en extensiones de pestañas, diseño de cejas, maquillaje profesional y paquetes de belleza personalizada en Ambato.",
+    "desktop": "/images/projects/crissel-studio/desktop.webp",
+    "mobile": "/images/projects/crissel-studio/mobile.webp",
+    "gallery": [
+      "/images/projects/crissel-studio/section-1.webp",
+      "/images/projects/crissel-studio/section-2.webp",
+      "/images/projects/crissel-studio/section-3.webp"
+    ]
+  },
+  "private-dining-pros": {
+    "url": "https://www.privatediningpros.com/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "PrivateDiningPros - Find Restaurants with Private Rooms",
+    "siteDescription": "Discover the finest restaurants with private dining rooms. Perfect for business meetings, celebrations, and intimate gatherings.",
+    "desktop": "/images/projects/private-dining-pros/desktop.webp",
+    "mobile": "/images/projects/private-dining-pros/mobile.webp",
+    "gallery": [
+      "/images/projects/private-dining-pros/section-1.webp",
+      "/images/projects/private-dining-pros/section-2.webp",
+      "/images/projects/private-dining-pros/section-3.webp"
+    ]
+  },
+  "website-portfolio": {
+    "url": "https://www.jaramillohub.com/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "Javier Jaramillo — Data Analyst & Full-Stack Developer",
+    "siteDescription": "Javier Jaramillo — data analyst, full-stack developer, and IT specialist building data-driven products and automation.",
+    "desktop": "/images/projects/website-portfolio/desktop.webp",
+    "mobile": "/images/projects/website-portfolio/mobile.webp",
+    "gallery": [
+      "/images/projects/website-portfolio/section-1.webp",
+      "/images/projects/website-portfolio/section-2.webp",
+      "/images/projects/website-portfolio/section-3.webp"
+    ]
+  },
+  "power-solar-pr-project": {
+    "url": "https://powersolarpr-nu.vercel.app/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "Power Solar Map | Clientes de energía solar en Puerto Rico",
+    "siteDescription": "Mapa interactivo de clientes de energía solar en Puerto Rico. Explora municipios, analytics y oportunidades de mercado por territorio.",
+    "desktop": "/images/projects/power-solar-pr-project/desktop.webp",
+    "mobile": "/images/projects/power-solar-pr-project/mobile.webp",
+    "gallery": [
+      "/images/projects/power-solar-pr-project/section-1.webp",
+      "/images/projects/power-solar-pr-project/section-2.webp",
+      "/images/projects/power-solar-pr-project/section-3.webp"
+    ]
+  }
+}
