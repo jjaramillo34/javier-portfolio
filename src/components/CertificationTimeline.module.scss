@@ -1,0 +1,240 @@
+// Category colour, set per item via --cat (e.g. var(--info-on-background-medium)).
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // Cards waiting to slide in sit off to the side; don't let them widen the page.
+  overflow-x: clip;
+}
+
+// Rail and its scroll fill sit on the centre column (left column on phones).
+.rail,
+.fill {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+
+  @media (max-width: 768px) {
+    left: 15px;
+  }
+}
+
+.rail {
+  background: var(--neutral-alpha-medium);
+}
+
+.fill {
+  background: linear-gradient(to bottom, var(--brand-on-background-medium), var(--accent-on-background-medium));
+  box-shadow: 0 0 12px var(--brand-alpha-medium);
+  transition: height 120ms linear;
+}
+
+// Year marker: a pill centred on the rail.
+.year {
+  display: flex;
+  justify-content: center;
+  margin: 48px 0 24px;
+  scroll-margin-top: 120px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+}
+
+.yearPill {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--brand-alpha-medium);
+  background: var(--page-background);
+  transition:
+    background 300ms ease,
+    box-shadow 300ms ease;
+
+  &[data-lit="true"] {
+    // Tint over an opaque base so the rail doesn't show through the pill.
+    background:
+      linear-gradient(var(--brand-alpha-weak), var(--brand-alpha-weak)),
+      var(--page-background);
+    box-shadow: 0 0 0 6px var(--brand-alpha-weak);
+  }
+}
+
+// One certification: card | dot | card, alternating sides.
+.item {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: center;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+  }
+}
+
+.dot {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--neutral-alpha-strong);
+  background: var(--page-background);
+  transition:
+    background 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+
+  &[data-lit="true"] {
+    background: var(--cat);
+    border-color: var(--cat);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--cat) 22%, transparent);
+    transform: scale(1.15);
+  }
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+  }
+}
+
+.card {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+  border-left: 3px solid var(--cat);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease;
+
+  &:hover {
+    box-shadow: 0 12px 32px color-mix(in srgb, var(--cat) 18%, transparent);
+  }
+
+  .right & {
+    grid-column: 3;
+  }
+
+  @media (max-width: 768px) {
+    &,
+    .right & {
+      grid-column: 2;
+    }
+  }
+}
+
+// Entrance: only once JS has marked the timeline as animated, so content is never hidden without it.
+.timeline[data-animate="true"] .card:not([data-seen="true"]) {
+  opacity: 0;
+  transform: translateX(-32px);
+}
+
+.timeline[data-animate="true"] .right .card:not([data-seen="true"]) {
+  transform: translateX(32px);
+}
+
+@media (max-width: 768px) {
+  .timeline[data-animate="true"] .item .card:not([data-seen="true"]) {
+    transform: translateX(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline .card {
+    transition: none;
+  }
+  .timeline[data-animate="true"] .card:not([data-seen="true"]) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Learning-activity bar chart.
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 160px;
+  padding-top: 24px;
+}
+
+.bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-on-background-medium);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+}
+
+// The space between the count and the year label; the fill's height is a share of it.
+.barTrack {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+.barFill {
+  width: 100%;
+  max-width: 44px;
+  min-height: 2px;
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(to top, var(--brand-on-background-medium), var(--accent-on-background-medium));
+  transition: height 900ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  .bar:disabled & {
+    background: var(--neutral-alpha-medium);
+  }
+
+  .bar:not(:disabled):hover & {
+    filter: brightness(1.12);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cat);
+  flex-shrink: 0;
+}

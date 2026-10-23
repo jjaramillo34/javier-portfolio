@@ -101,6 +101,14 @@ export type CertificationCategoryKey =
   | "excelVBA"
   | "security";
 
+/** A certification with its category and parsed issue date, for the timeline. */
+export interface TimelineCertification extends Certification {
+  category: CertificationCategoryKey;
+  /** Months since year 0, for sorting ("Sep 2020" → 2020 * 12 + 8). */
+  sortKey: number;
+  year: number;
+}
+
 export type RelationshipType = "manager" | "colleague" | "teacher" | "client";
 
 export interface Testimonial {

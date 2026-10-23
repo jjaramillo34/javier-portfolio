@@ -1,5 +1,12 @@
 import type { Locale } from "@/i18n/routing";
-import type { PortfolioData, Project, ProjectMedia, ProjectRecord } from "@/types/portfolio";
+import type {
+  CertificationCategoryKey,
+  PortfolioData,
+  Project,
+  ProjectMedia,
+  ProjectRecord,
+  TimelineCertification,
+} from "@/types/portfolio";
 import raw from "./portfolio-data.json";
 import mediaRaw from "./project-media.json";
 
@@ -52,3 +59,22 @@ export const getProject = (locale: Locale, slug: string): Project | undefined =>
   getProjects(locale).find((project) => project.slug === slug);
 
 export const getCertificationLink = (link: string) => realLink(link);
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/** Every certification, newest first, with its category and year ("Sep 2020"). */
+export const getCertificationTimeline = (): TimelineCertification[] =>
+  (
+    Object.entries(certifications) as [
+      CertificationCategoryKey,
+      PortfolioData["certifications"][CertificationCategoryKey],
+    ][]
+  )
+    .flatMap(([category, list]) =>
+      list.map((cert) => {
+        const [month, year] = cert.issueDate.split(" ");
+        const monthIndex = Math.max(0, MONTHS.indexOf(month));
+        return { ...cert, category, year: Number(year), sortKey: Number(year) * 12 + monthIndex };
+      }),
+    )
+    .sort((a, b) => b.sortKey - a.sortKey || a.title.localeCompare(b.title));
