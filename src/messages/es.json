@@ -42,11 +42,7 @@
     "ctaHeading": "¿Tienes un proyecto <em>en mente?</em>",
     "ctaBody": "Cuéntame qué estás construyendo y encontraremos el mejor siguiente paso.",
     "ctaButton": "Iniciar una conversación",
-    "roles": [
-      "Analista de Datos",
-      "Desarrollador Full-Stack",
-      "Especialista en TI"
-    ]
+    "roles": ["Analista de Datos", "Desarrollador Full-Stack", "Especialista en TI"]
   },
   "testimonials": {
     "relationship": {
