@@ -153,8 +153,36 @@
       "image": "/images/projects/mkf-recovery.jpg"
     },
     {
-      "id": 6,
+      "id": 10,
       "order": 2,
+      "category": "api",
+      "title": "SnapFeed API",
+      "titleEs": "SnapFeed API",
+      "period": "2026",
+      "description": "Locked-down REST API for DuckDuckGo image and news search, with address-aware filtering and a NYC real-estate project timeline. Header-only API keys, rate limiting, and live interactive docs.",
+      "descriptionEs": "API REST protegida para búsqueda de imágenes y noticias en DuckDuckGo, con filtrado por dirección y una línea de tiempo de proyectos inmobiliarios de NYC. Llaves de API solo por encabezado, límites de uso y documentación interactiva en vivo.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "REST API",
+        "OpenAPI"
+      ],
+      "achievements": [
+        "Image and news search with size, color, license, region, and time filters",
+        "US-address mode that quotes the street and drops off-target results",
+        "X-API-Key auth, 30 searches/min per IP, and a live \"Try it\" console with OpenAPI docs"
+      ],
+      "achievementsEs": [
+        "Búsqueda de imágenes y noticias con filtros de tamaño, color, licencia, región y tiempo",
+        "Modo de dirección de EE. UU. que cita la calle y descarta resultados irrelevantes",
+        "Autenticación con X-API-Key, 30 búsquedas/min por IP y consola \"Try it\" con documentación OpenAPI"
+      ],
+      "link": "https://snapfeedapi.info/",
+      "image": "/images/projects/snapfeed-api.jpg"
+    },
+    {
+      "id": 6,
+      "order": 3,
       "category": "full-stack",
       "title": "Miles for MBC",
       "period": "2026",
@@ -180,7 +208,7 @@
     },
     {
       "id": 7,
-      "order": 3,
+      "order": 4,
       "category": "full-stack",
       "title": "La Poetisa del Semáforo",
       "period": "2026",
@@ -206,7 +234,7 @@
     },
     {
       "id": 8,
-      "order": 4,
+      "order": 5,
       "category": "full-stack",
       "title": "Crissel Studio",
       "period": "2026",
@@ -232,7 +260,7 @@
     },
     {
       "id": 9,
-      "order": 5,
+      "order": 6,
       "category": "full-stack",
       "title": "Private Dining Pros",
       "period": "2026",
@@ -259,7 +287,7 @@
     },
     {
       "id": 1,
-      "order": 6,
+      "order": 7,
       "category": "full-stack",
       "title": "Website Portfolio",
       "titleEs": "Portafolio Web",
@@ -287,7 +315,7 @@
     },
     {
       "id": 2,
-      "order": 7,
+      "order": 8,
       "category": "full-stack",
       "title": "Iconyc - BigApps Competition",
       "period": "May 2014 - Jul 2014",
@@ -306,7 +334,7 @@
     },
     {
       "id": 3,
-      "order": 8,
+      "order": 9,
       "category": "data",
       "title": "Power Solar PR Project",
       "titleEs": "Proyecto Power Solar PR",
@@ -334,7 +362,7 @@
     },
     {
       "id": 4,
-      "order": 9,
+      "order": 10,
       "category": "automation",
       "title": "SMS Notifications System",
       "period": "2023",

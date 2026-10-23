@@ -89,5 +89,18 @@
       "/images/projects/power-solar-pr-project/section-2.webp",
       "/images/projects/power-solar-pr-project/section-3.webp"
     ]
+  },
+  "snapfeed-api": {
+    "url": "https://snapfeedapi.info/",
+    "capturedAt": "2026-10-23",
+    "siteTitle": "DuckDuckGo Image & News Search API",
+    "siteDescription": "",
+    "desktop": "/images/projects/snapfeed-api/desktop.webp",
+    "mobile": "/images/projects/snapfeed-api/mobile.webp",
+    "gallery": [
+      "/images/projects/snapfeed-api/section-1.webp",
+      "/images/projects/snapfeed-api/section-2.webp",
+      "/images/projects/snapfeed-api/section-3.webp"
+    ]
   }
 }

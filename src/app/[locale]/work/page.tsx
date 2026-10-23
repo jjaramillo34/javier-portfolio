@@ -43,6 +43,7 @@ export default async function Work({ params }: PageProps<"/[locale]/work">) {
           data: t("categories.data"),
           "full-stack": t("categories.full-stack"),
           automation: t("categories.automation"),
+          api: t("categories.api"),
         }}
       />
     </Column>
