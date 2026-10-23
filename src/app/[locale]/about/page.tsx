@@ -1,12 +1,14 @@
 import { Accent, accentTags } from "@/components/Accent";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
+import { SkillCard } from "@/components/SkillCard";
 import { education, languages, personalInfo, skills, workExperience } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/resources/metadata";
 import { avatar } from "@/resources/site";
 import type { SkillCategoryKey } from "@/types/portfolio";
-import { Avatar, Column, Grid, Heading, Icon, Line, Row, Tag, Text } from "@once-ui-system/core";
+import { Avatar, Column, Grid, Heading, Icon, Row, Tag, Text } from "@once-ui-system/core";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 const SKILL_CATEGORIES: SkillCategoryKey[] = [
@@ -72,59 +74,7 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
           eyebrow={t("experience")}
           title={t.rich("experienceTitle", accentTags)}
         />
-        <Column as="ol" gap="0" margin="0" padding="0" style={{ listStyle: "none" }}>
-          {workExperience.map((job, index) => {
-            const current = /present/i.test(job.period);
-            const last = index === workExperience.length - 1;
-            return (
-              <Row as="li" key={job.id} gap="24">
-                {/* Timeline rail */}
-                <Column horizontal="center" minWidth="16" paddingTop="8">
-                  <Row
-                    width="12"
-                    height="12"
-                    radius="full"
-                    solid={current ? "brand-strong" : undefined}
-                    background={current ? undefined : "neutral-alpha-medium"}
-                    border={current ? "brand-alpha-strong" : true}
-                  />
-                  {!last && <Line vert flex={1} marginTop="8" background="neutral-alpha-medium" />}
-                </Column>
-                <Column flex={1} gap="8" paddingBottom="40">
-                  <Row
-                    fillWidth
-                    horizontal="between"
-                    vertical="center"
-                    gap="12"
-                    s={{ direction: "column", vertical: "start" }}
-                  >
-                    <Column gap="4">
-                      <Text variant="heading-strong-m">{job.title}</Text>
-                      <Text variant="body-default-s" onBackground="brand-medium">
-                        {job.company} · {job.location}
-                      </Text>
-                    </Column>
-                    <Tag size="s" scheme={current ? "brand" : "neutral"}>
-                      {job.period.replace("Present", t("present"))}
-                    </Tag>
-                  </Row>
-                  <Column as="ul" gap="8" margin="0" paddingLeft="20">
-                    {job.achievements.map((achievement) => (
-                      <Text
-                        as="li"
-                        key={achievement}
-                        variant="body-default-m"
-                        onBackground="neutral-weak"
-                      >
-                        {achievement}
-                      </Text>
-                    ))}
-                  </Column>
-                </Column>
-              </Row>
-            );
-          })}
-        </Column>
+        <ExperienceTimeline jobs={workExperience} presentLabel={t("present")} />
       </Column>
 
       {/* Education */}
@@ -157,40 +107,15 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
           title={t.rich("skillsTitle", accentTags)}
           description={t("skillsSubheading")}
         />
-        <Reveal>
-          <Grid columns="2" gap="16" s={{ columns: 1 }}>
-            {SKILL_CATEGORIES.map((category) => (
-              <Column key={category} background="surface" border radius="l" padding="24" gap="16">
-                <Text variant="heading-strong-s">{t(`skillCategories.${category}`)}</Text>
-                <Column gap="12">
-                  {skills[category].map((skill) => (
-                    <Column key={skill.name} gap="4">
-                      <Row horizontal="between" textVariant="label-default-s">
-                        <Text>{skill.name}</Text>
-                        <Text onBackground="neutral-weak">{skill.level}%</Text>
-                      </Row>
-                      {/* Proficiency meter */}
-                      <Row
-                        fillWidth
-                        height="4"
-                        radius="full"
-                        background="neutral-alpha-weak"
-                        aria-hidden
-                      >
-                        <Row
-                          height="4"
-                          radius="full"
-                          solid="brand-strong"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </Row>
-                    </Column>
-                  ))}
-                </Column>
-              </Column>
-            ))}
-          </Grid>
-        </Reveal>
+        <Grid columns="2" gap="16" s={{ columns: 1 }}>
+          {SKILL_CATEGORIES.map((category) => (
+            <SkillCard
+              key={category}
+              title={t(`skillCategories.${category}`)}
+              skills={skills[category]}
+            />
+          ))}
+        </Grid>
       </Column>
 
       {/* Dedication */}
