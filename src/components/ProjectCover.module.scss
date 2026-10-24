@@ -1,0 +1,90 @@
+// Generated cover for projects without screenshots: the same warm-dark style as the social
+// cards, so it reads as intentional artwork in both themes.
+.cover {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #f7f1ea;
+  background-color: #120d09;
+  background-image:
+    radial-gradient(circle at 12% 0%, rgba(232, 134, 42, 0.45), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(95, 212, 224, 0.2), transparent 50%);
+}
+
+.dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+  pointer-events: none;
+}
+
+// Big outlined initials bleeding off the corner.
+.monogram {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.22em;
+  font-size: clamp(96px, 34cqw, 360px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(247, 241, 234, 0.1);
+  user-select: none;
+  pointer-events: none;
+}
+
+// Category icon in a tile with a brand→accent gradient border.
+.tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(56px, 14cqw, 88px);
+  aspect-ratio: 1;
+  border-radius: 22%;
+  background:
+    linear-gradient(#1b140f, #1b140f) padding-box,
+    linear-gradient(135deg, #e8862a, #5fd4e0) border-box;
+  border: 2px solid transparent;
+  box-shadow: 0 0 48px rgba(232, 134, 42, 0.35);
+  color: #f0b14a;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+
+  // Lift the tile when the surrounding card is hovered.
+  :global(a):hover & {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 64px rgba(232, 134, 42, 0.5);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.stack {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 80%;
+}
+
+.chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 134, 42, 0.4);
+  background: rgba(232, 134, 42, 0.12);
+  font-family: var(--font-code), monospace;
+  font-size: 12px;
+  color: #e9dfd4;
+  white-space: nowrap;
+}

@@ -1,5 +1,6 @@
 import type { Project } from "@/types/portfolio";
 import { Card, Column, Heading, Media, Row, Tag, Text, TiltFx } from "@once-ui-system/core";
+import { ProjectCover } from "./ProjectCover";
 
 interface ProjectCardProps {
   project: Project;
@@ -7,15 +8,6 @@ interface ProjectCardProps {
   categoryLabel: string;
   priority?: boolean;
 }
-
-const initials = (title: string) =>
-  title
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
 
 export function ProjectCard({ project, href, categoryLabel, priority }: ProjectCardProps) {
   // Prefer the latest live capture; fall back to the curated cover image.
@@ -25,6 +17,7 @@ export function ProjectCard({ project, href, categoryLabel, priority }: ProjectC
     <TiltFx fillWidth fillHeight radius="l">
       <Card
         href={href}
+        fillWidth
         fillHeight
         direction="column"
         radius="l"
@@ -42,11 +35,11 @@ export function ProjectCard({ project, href, categoryLabel, priority }: ProjectC
             radius="none"
           />
         ) : (
-          <Row fillWidth aspectRatio="16 / 9" center background="brand-alpha-weak">
-            <Text variant="display-strong-s" onBackground="brand-medium">
-              {initials(project.title)}
-            </Text>
-          </Row>
+          <ProjectCover
+            title={project.title}
+            category={project.category}
+            technologies={project.technologies}
+          />
         )}
         <Column fillWidth padding="24" gap="12" flex={1}>
           <Row gap="8" vertical="center" horizontal="between">

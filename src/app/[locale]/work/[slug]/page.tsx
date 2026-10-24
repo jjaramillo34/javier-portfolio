@@ -1,6 +1,7 @@
 import { accentTags } from "@/components/Accent";
 import { BrowserFrame, DeviceShowcase } from "@/components/DeviceShowcase";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectCover } from "@/components/ProjectCover";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { getProject, getProjects } from "@/content";
@@ -111,17 +112,24 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/work/
           desktopAlt={t("desktopAlt", { title: project.title })}
           mobileAlt={t("mobileAlt", { title: project.title })}
         />
+      ) : project.image ? (
+        <Media
+          src={project.image}
+          alt={project.title}
+          aspectRatio="16 / 9"
+          radius="l"
+          priority
+          sizes="(max-width: 1024px) 100vw, 960px"
+        />
       ) : (
-        project.image && (
-          <Media
-            src={project.image}
-            alt={project.title}
-            aspectRatio="16 / 9"
-            radius="l"
-            priority
-            sizes="(max-width: 1024px) 100vw, 960px"
+        <Column fillWidth radius="l" border overflow="hidden">
+          <ProjectCover
+            title={project.title}
+            category={project.category}
+            technologies={project.technologies}
+            aspectRatio="21 / 9"
           />
-        )
+        </Column>
       )}
 
       {/* Highlights and details */}
