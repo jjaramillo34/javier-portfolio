@@ -1,0 +1,38 @@
+// A full-bleed tinted band behind a section. The colour comes from --band / --band-strong
+// (a scheme's alpha tokens), so it adapts to light and dark themes.
+.band {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-block: 72px;
+
+  @media (max-width: 768px) {
+    padding-block: 48px;
+  }
+}
+
+// Breaks out of the page padding to span the viewport; <main> clips horizontal overflow.
+.bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 65% at var(--glow-x, 12%) 45%, var(--band-strong), transparent 70%),
+    linear-gradient(to bottom, transparent, var(--band) 20%, var(--band) 80%, transparent);
+}
+
+.band[data-glow="right"] {
+  --glow-x: 88%;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

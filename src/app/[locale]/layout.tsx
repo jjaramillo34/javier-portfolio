@@ -1,5 +1,6 @@
 import "@once-ui-system/core/css/styles.css";
 import "@once-ui-system/core/css/tokens.css";
+import "@/resources/custom.css";
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -100,6 +101,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
               horizontal="center"
               paddingX="l"
               zIndex={1}
+              // Full-bleed section bands span 100vw; clip (not hidden) keeps sticky/scroll intact.
+              style={{ overflowX: "clip" }}
             >
               {children}
             </Column>
