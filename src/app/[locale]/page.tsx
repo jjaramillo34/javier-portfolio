@@ -2,8 +2,9 @@ import { Accent, accentTags } from "@/components/Accent";
 import { ParticleHero } from "@/components/ParticleHero";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/Reveal";
+import { SectionBand } from "@/components/SectionBand";
 import { SectionTitle } from "@/components/SectionTitle";
-import { Stats } from "@/components/Stats";
+import { type Stat, Stats } from "@/components/Stats";
 import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { achievements, getProjects, personalInfo, testimonials } from "@/content";
 import { type Locale, localePath } from "@/i18n/routing";
@@ -36,11 +37,31 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const [firstName, ...rest] = personalInfo.name.split(" ");
   const lastName = rest.join(" ");
   const projects = getProjects(locale).slice(0, FEATURED_PROJECTS);
-  const stats = [
-    { value: `${achievements.yearsOfExperience}+`, label: t("stats.years") },
-    { value: `${achievements.projectsCompleted}+`, label: t("stats.projects") },
-    { value: achievements.dataPointsProcessed, label: t("stats.dataPoints") },
-    { value: `${achievements.satisfactionRate}%`, label: t("stats.satisfaction") },
+  const stats: Stat[] = [
+    {
+      value: `${achievements.yearsOfExperience}+`,
+      label: t("stats.years"),
+      icon: "calendar",
+      scheme: "brand",
+    },
+    {
+      value: `${achievements.projectsCompleted}+`,
+      label: t("stats.projects"),
+      icon: "grid",
+      scheme: "accent",
+    },
+    {
+      value: achievements.dataPointsProcessed,
+      label: t("stats.dataPoints"),
+      icon: "barChart",
+      scheme: "info",
+    },
+    {
+      value: `${achievements.satisfactionRate}%`,
+      label: t("stats.satisfaction"),
+      icon: "starFill",
+      scheme: "success",
+    },
   ];
 
   const personSchema = {
@@ -157,57 +178,63 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       </Column>
 
       {/* Selected work */}
-      <Column maxWidth="l" gap="40">
-        <Row
-          fillWidth
-          horizontal="between"
-          vertical="end"
-          gap="24"
-          s={{ direction: "column", vertical: "start" }}
-        >
-          <SectionTitle
-            index={1}
-            eyebrow={t("workEyebrow")}
-            title={t.rich("workHeading", accentTags)}
-          />
-          <Button
-            href={localePath(locale, "/work")}
-            variant="secondary"
-            size="s"
-            arrowIcon
-            data-border="rounded"
+      <SectionBand scheme="accent" glow="right">
+        <Column maxWidth="l" gap="40">
+          <Row
+            fillWidth
+            horizontal="between"
+            vertical="end"
+            gap="24"
+            s={{ direction: "column", vertical: "start" }}
           >
-            {t("viewAllWork")}
-          </Button>
-        </Row>
-        <Reveal>
-          <Grid columns="2" gap="24" s={{ columns: 1 }}>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.slug}
-                project={project}
-                href={localePath(locale, `/work/${project.slug}`)}
-                categoryLabel={tWork(`categories.${project.category}`)}
-                priority={index < 2}
-              />
-            ))}
-          </Grid>
-        </Reveal>
-      </Column>
+            <SectionTitle
+              index={1}
+              scheme="accent"
+              eyebrow={t("workEyebrow")}
+              title={t.rich("workHeading", accentTags)}
+            />
+            <Button
+              href={localePath(locale, "/work")}
+              variant="secondary"
+              size="s"
+              arrowIcon
+              data-border="rounded"
+            >
+              {t("viewAllWork")}
+            </Button>
+          </Row>
+          <Reveal>
+            <Grid columns="2" gap="24" s={{ columns: 1 }}>
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.slug}
+                  project={project}
+                  href={localePath(locale, `/work/${project.slug}`)}
+                  categoryLabel={tWork(`categories.${project.category}`)}
+                  priority={index < 2}
+                />
+              ))}
+            </Grid>
+          </Reveal>
+        </Column>
+      </SectionBand>
 
       {/* Testimonials */}
-      <Column maxWidth="l">
-        <TestimonialCarousel
-          testimonials={testimonials}
-          header={
-            <SectionTitle
-              index={2}
-              eyebrow={t("testimonialsEyebrow")}
-              title={t.rich("testimonialsHeading", accentTags)}
-            />
-          }
-        />
-      </Column>
+      <SectionBand scheme="info">
+        <Column maxWidth="l">
+          <TestimonialCarousel
+            testimonials={testimonials}
+            header={
+              <SectionTitle
+                index={2}
+                scheme="info"
+                eyebrow={t("testimonialsEyebrow")}
+                title={t.rich("testimonialsHeading", accentTags)}
+              />
+            }
+          />
+        </Column>
+      </SectionBand>
 
       {/* Call to action */}
       <Column maxWidth="l">

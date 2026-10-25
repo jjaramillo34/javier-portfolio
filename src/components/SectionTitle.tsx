@@ -1,6 +1,7 @@
 import { Column, Heading, Line, Row, Text } from "@once-ui-system/core";
 import { Fragment } from "react";
 import { Reveal } from "./Reveal";
+import type { SectionScheme } from "./SectionBand";
 
 interface SectionTitleProps {
   eyebrow: string;
@@ -11,6 +12,8 @@ interface SectionTitleProps {
   index?: number;
   as?: "h1" | "h2";
   align?: "start" | "center";
+  /** Colour of the index number and rule, matching the section's band. */
+  scheme?: SectionScheme;
 }
 
 export function SectionTitle({
@@ -20,6 +23,7 @@ export function SectionTitle({
   index,
   as = "h2",
   align = "start",
+  scheme = "brand",
 }: SectionTitleProps) {
   const centered = align === "center";
   // Page titles render immediately (they are the page's main content); section titles reveal on scroll.
@@ -35,11 +39,11 @@ export function SectionTitle({
       >
         <Row gap="12" vertical="center">
           {index !== undefined && (
-            <Text variant="code-default-s" onBackground="brand-medium">
+            <Text variant="code-default-s" onBackground={`${scheme}-medium`}>
               {String(index).padStart(2, "0")}
             </Text>
           )}
-          <Line background="brand-alpha-strong" width="24" />
+          <Line background={`${scheme}-alpha-strong`} width="24" />
           <Text variant="label-default-s" onBackground="neutral-medium">
             {eyebrow}
           </Text>
